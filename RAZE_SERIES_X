@@ -523,10 +523,14 @@ end)
 end
 
 if game.PlaceId == 5445914332 then -- island tribes classic
-Section:NewButton("KillAura", "Hits People When u are near them", function()
+    Section:NewToggle("LoopKill all", "Kills Everyone in a loop", function(state)
+    if state then
     pcall(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/killaura_island"))()   
-end) 
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/killaura_island"))()
+    end)
+    else
+        getgenv().KillAuraActive = false
+    end
 end)
 end
 

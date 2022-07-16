@@ -523,7 +523,7 @@ end)
 end
 
 if game.PlaceId == 5445914332 then -- island tribes classic
-    Section:NewToggle("LoopKill all", "Kills Everyone in a loop", function(state)
+    Section:NewToggle("Killaura", "Hits Everyone Near u", function(state)
     if state then
     pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/killaura_island"))()

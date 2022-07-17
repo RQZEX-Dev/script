@@ -239,33 +239,38 @@ Section:NewButton("Server Hop", "Teleports u into the Another Server of the game
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
 Teleport()
 end)
+if game.PlaceId == 2092167559 then -- survive and kill the killers
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function()
+    killeresp()
+end)
+end
 if game.PlaceId == 2092166489 then -- survive and kill the killers
-    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function()
     killeresp()
 end)
 end
 if game.PlaceId == 5740483929 then -- survive and kill the killers
-    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function()
     killeresp()
 end)
 end
 if game.PlaceId == 3508248007 then -- survive and kill the killers Rush area 51
-    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function()
     killeresp()
 end)
 end
 if game.PlaceId == 3182083477 then -- survive and kill the killers
-    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function()
     killeresp()
 end)
 end
 if game.PlaceId == 4678052190 then -- survive and kill the killers
-    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function()
     killeresp()
 end)
 end
 if game.PlaceId == 2675280735 then -- survive and kill the killers
-    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function()
     killeresp()
 end)
 end
@@ -794,9 +799,9 @@ local Tab = Window:NewTab("LocalPlayer")
 local Section = Tab:NewSection("Local")
 Section:NewButton("Reset", "Resets Ur Character", function()
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
-wait(.1)
+wait(1)
 if game.Players.LocalPlayer.Character.Humanoid.Health >= 0 then
-game.Players.LocalPlayer.Character.Humanoid.Health:Destroy()
+game.Players.LocalPlayer.Character.Humanoid:Destroy()
 end
 end)
 Section:NewButton("No Clip", "Lets U Walk Through Walls", function() 

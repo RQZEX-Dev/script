@@ -1,6 +1,42 @@
+local queue_on_teleport =
+queue_on_teleport or
+    syn and
+        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter69420/RAZE-Series-X/main/RAZE_Series_X"))()')
+
 local Humr = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 local id = 96651
-
+local function badge()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/badges"))()
+end
+local function ammo()
+        for i, v in pairs(getgc()) do
+            if type(v) == "function" and islclosure(v) and not is_synapse_function(v) then
+                local x = debug.getconstants(v)
+                if table.find(x, "ammo") and table.find(x, "update_ammo_gui") and table.find(x, "has_scope") then
+                    debug.setconstant(v, 2, -999999)
+                end
+            end
+        end
+end
+local function killeresp()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/killer_esp"))()
+end
+local function getguns()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/getguns"))()
+end
+local function papguns()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/pap"))()
+end
+POS = game.Players.LocalPlayer.Character.Head.CFrame
+local function SavePos(POS)
+    pcall(function()
+        POS = game.Players.LocalPlayer.Character.Head.CFrame;
+    end);
+        SavedPosition = POS;
+    end;
+function LoadPos()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (SavedPosition)
+end;
 game.Players.PlayerAdded:Connect(function(player)
 	if game:GetService("MarketplaceService"):UserOwnsGamePassAsync(game.Players.LocalPlayer.UserId,id) then
     	swat = true
@@ -10,6 +46,42 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-in
 if game.PlaceId == 155615604 then --prisonlife
      loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill()"))()
      loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/lk"))()
+end
+if game.PlaceId == 6054929905 then -- survive and kill the killers Kraken normal
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+end
+if game.PlaceId == 3508248007 then -- survive and kill the killers Rush area 51
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+end
+if game.PlaceId == 2092167559 then -- survive and kill the killers be killer
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+
+end
+if game.PlaceId == 4678052190 then -- survive and kill the killers juggernaut
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+
+end
+if game.PlaceId == 2675280735 then -- survive and kill the killers endless survival
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+
+end
+if game.PlaceId == 2092166489 then-- survive and kill the killers normal normal mode
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+
+end
+if game.PlaceId == 5740483929 then -- survive and kill the killers normal hard mode
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+
+end
+if game.PlaceId == 3182083477 then -- survive and kill the killers normal extreme mode
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+
+end
+if game.PlaceId == 155382109 then -- survive and kill the killers
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill%20killers"))()
+end
+if game.PlaceId == 8260276694 then -- abbility wars
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/abbility%20loaded"))()
 end
 if game.PlaceId == 2565760594 then -- terraria rpg
     loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/terraria1"))()
@@ -30,8 +102,28 @@ if game.PlaceId ~= 5445914332 then
     if game.PlaceId ~= 155615604 then
         if game.PlaceId ~= 142823291 then
             if game.PlaceId ~= 2565760594 then
-                if game.PlaceId ~= 9570608263 then
+                if game.PlaceId  ~= 9570608263 then
+                    if game.PlaceId ~= 8260276694 then
+                        if game.PlaceId ~= 155382109 then
+                            if game.PlaceId ~= 2092167559 then
+                                if game.PlaceId ~= 4678052190 then
+                                    if game.PlaceId ~= 2675280735 then
+                                        if game.PlaceId ~= 2092166489 then
+                                            if game.PlaceId ~= 5740483929 then
+                                                if game.PlaceId ~= 3182083477 then
+                                                    if game.PlaceId ~= 3508248007 then
+                                                        if game.PlaceId ~= 6054929905 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Unsupported"))()
+end
+end
+end
+end
+end
+end
+end
+end
+end
+end
 end
 end
 end
@@ -142,20 +234,41 @@ Section:NewButton("Rejoin", "Teleports u into the same server again", function()
 local ts = game:GetService("TeleportService")
 local p = game:GetService("Players").LocalPlayer
 ts:Teleport(game.PlaceId, p)
-local queue_on_teleport =
-queue_on_teleport or
-    syn and
-        syn.queue_on_teleport ('repeat wait() until game:IsLoaded()  loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter69420/RAZE-Series-X/main/RAZE_Series_X"))()')
-
 end)
 Section:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
-local queue_on_teleport =
-queue_on_teleport or
-    syn and
-        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter69420/RAZE-Series-X/main/RAZE_Series_X"))()')
 Teleport()
 end)
+if game.PlaceId == 2092166489 then -- survive and kill the killers
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    killeresp()
+end)
+end
+if game.PlaceId == 5740483929 then -- survive and kill the killers
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    killeresp()
+end)
+end
+if game.PlaceId == 3508248007 then -- survive and kill the killers Rush area 51
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    killeresp()
+end)
+end
+if game.PlaceId == 3182083477 then -- survive and kill the killers
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    killeresp()
+end)
+end
+if game.PlaceId == 4678052190 then -- survive and kill the killers
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    killeresp()
+end)
+end
+if game.PlaceId == 2675280735 then -- survive and kill the killers
+    Section:NewButton("Killer esp", "Lets u see esp through walls", function(state)
+    killeresp()
+end)
+end
 if game.PlaceId == 142823291 then -- murder mystery
     Section:NewButton("Show Roles", "Gives u a notification of the Murder's and Sheriff's Role", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/show_roles"))()
@@ -262,10 +375,43 @@ CurrentPlayer = v.Name
 end
 end
 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+end) 
+if game.PlaceId == 8260276694 then -- abbility wars
+Section:NewDropdown("Choose team to Spawn as", "DropdownInf", {"Normal Fight Zone", "Spleaf Area", "Fight Arena", "Portal Zone", "Blood God"}, function(currentOption1)
+if currentOption1 == "Normal Fight Zone" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97, 19, 20)
+end
+if currentOption1 == "Spleaf Area" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19122, -8, 104)
+end
+if currentOption1 == "Fight Arena" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(21749, 9, 117)
+end
 end)
+end
 if game.PlaceId == 142823291 then -- murder mystery
 Section:NewButton("Teleport to gun", "Teleports u to the gun if dropped", function()
-    Humr.CFrame = game:GetService("Workspace").GunDrop.CFrame
+if game.Workspace:FindFirstChild("GunDrop") then    
+    local Humr = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+POS = game.Players.LocalPlayer.Character.Head.CFrame
+local function SavePos(POS)
+    pcall(function()
+        POS = game.Players.LocalPlayer.Character.Head.CFrame;
+    end);
+        SavedPosition = POS;
+    end;
+function LoadPos()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (SavedPosition)
+end;
+SavePos()
+wait()
+function gun()
+Humr.CFrame = game:GetService("Workspace").GunDrop.CFrame
+end
+gun()
+wait(1)
+LoadPos()
+    end
 end)
 end
 if game.PlaceId == 155615604 then -- prison life
@@ -328,8 +474,122 @@ end
 
 
 
+
+
+
 local Tab = Window:NewTab("Combat")
 local Section = Tab:NewSection("Combat")
+
+
+Section:NewButton("Aim Bot", "Aims on Other Players When right mb is hold", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/aimbot'))()
+end)
+if game.PlaceId == 8260276694 then -- abbility wars
+    Section:NewToggle("Killaura", "Hits People Near u", function(state)
+    if state then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/abbility%20kill"))()
+    else
+        getgenv().KillAuraActive = false
+    end
+end)
+end
+if game.PlaceId == 6054929905 then -- survive and kill the killers Kraken normal
+    Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+end
+if game.PlaceId == 3508248007 then -- survive and kill the killers Rush area 51
+Section:NewButton("All guns", "Gives u every gun", function()
+    SavePos()
+    getguns()
+    LoadPos()
+end)
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+end
+if game.PlaceId == 2092167559 then -- be killer
+Section:NewButton("All guns", "Gives u every gun", function()
+    SavePos()
+    getguns()
+    LoadPos()
+end)
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+Section:NewButton("Pap guns", "Pack a Punches Every gun u own (the usual amount of kills is requires)", function()
+    SavePos()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(280, 323, 783)
+    papguns()
+    wait(1)
+    LoadPos()
+end)
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+end
+if game.PlaceId == 4678052190 then
+
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function() -- juggernaut
+    ammo()
+end)
+end
+if game.PlaceId == 2675280735 then -- endless survival
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+end 
+if game.PlaceId == 2092166489 then --normal normal mode
+Section:NewButton("All guns", "Gives u every gun", function()
+    SavePos()
+    getguns()
+    LoadPos()
+end)
+Section:NewButton("Pap guns", "Pack a Punches Every gun u own (the usual amount of kills is requires)", function()
+    SavePos()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(280, 323, 783)
+    papguns()
+    wait(1)
+    LoadPos()
+end)
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+end
+if game.PlaceId == 5740483929 then --normal hard mode
+Section:NewButton("All guns", "Gives u every gun", function()
+    SavePos()
+    getguns()
+    LoadPos()
+end)
+Section:NewButton("Pap guns", "Pack a Punches Every gun u own (the usual amount of kills is requires)", function()
+    SavePos()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(280, 323, 783)
+    papguns()
+    wait(1)
+    LoadPos()
+end)
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+end
+if game.PlaceId == 3182083477 then -- normal extreme mode
+Section:NewButton("All guns", "Gives u every gun", function()
+    SavePos()
+    getguns()
+    LoadPos()
+end)
+Section:NewButton("Pap guns", "Pack a Punches Every gun u own (the usual amount of kills is requires)", function()
+    SavePos()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(280, 323, 783)
+    papguns()
+    wait(1)
+    LoadPos()
+end)
+Section:NewButton("Activates infinite ammo", "U cant lose ammo", function()
+    ammo()
+end)
+end
 if game.PlaceId == 155615604 then -- prison life
 Section:NewTextBox("kill", "Type the name of the player u wanna kill", function(txt2)
         function getFullNameFromPartial(PartialName)
@@ -397,9 +657,6 @@ LCS.Size = Vector3.new(6, 0.2, 6)
 LCS.Transparency = 0
 end)
 end
-Section:NewButton("Aim Bot", "Aims on Other Players When right mb is hold", function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/aimbot'))()
-end)
 if game.PlaceId == 155615604 then -- prison life
     Section:NewButton("Kill all", "Kills Everyone in the game", function()
 kill()
@@ -647,6 +904,30 @@ end)
 
 local Tab = Window:NewTab("Auto")
 local Section = Tab:NewSection("Auto")
+if game.PlaceId == 2092166489 then -- survive and kill the killers
+    Section:NewButton("Auto Quest", "Auto Maticly Complete's Quest", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/auto%20quest"))()
+end)
+    Section:NewButton("Auto Badges", "Gives u Badges", function()
+badge()
+end)
+end
+if game.PlaceId == 5740483929 then -- survive and kill the killers
+    Section:NewButton("Auto Quest", "Auto Maticly Complete's Quest", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/auto%20quest"))()
+end)
+    Section:NewButton("Auto Badges", "Gives u Badges", function()
+badge()
+end)
+end
+if game.PlaceId == 3182083477 then -- survive and kill the killers
+    Section:NewButton("Auto Quest", "Auto Maticly Complete's Quest", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/auto%20quest"))()
+end)
+    Section:NewButton("Auto Badges", "Gives u Badges", function()
+badge()
+end)
+end
 if game.PlaceId == 155615604 then --prison life
 Section:NewButton("Auto Quick Spawn", "Automaticly Respawns", function()
 if crim == true then
@@ -742,8 +1023,23 @@ if game.PlaceId == 2565760594 then -- terraria rpg
 end
 if game.PlaceId == 142823291 then --murder mystery
     Section:NewButton("Kill all (Requires Knife in Hand)", "Teleports to Players And Kills them", function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/mm2_killall"))
-    end)
+local Humr = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+        for i,v in pairs(game.Players:GetPlayers()) do
+    if v ~= game.Players.LocalPlayer then
+Humr.CFrame = v.Character.HumanoidRootPart.CFrame
+wait()
+for i=1,5 do
+local args = {
+    [1] = "Slash"
+}
+
+game:GetService("Players").LocalPlayer.Character.Knife.Stab:FireServer(unpack(args))
+wait()
+end
+wait(.3)
+end
+end
+end)
 end
 if game.PlaceId == 9570608263 then --Lorl Hood
     Section:NewButton("Crash Server ", "(Requires Money Bag in Hand and 10 Million Cash)", function()

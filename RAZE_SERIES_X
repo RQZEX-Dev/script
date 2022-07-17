@@ -239,6 +239,9 @@ Section:NewButton("Server Hop", "Teleports u into the Another Server of the game
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
 Teleport()
 end)
+Section:NewButton("FullBright", "Makes u see everything brighter", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
+end)
 if game.PlaceId == 2092167559 then -- survive and kill the killers
     Section:NewButton("Killer esp", "Lets u see esp through walls", function()
     killeresp()

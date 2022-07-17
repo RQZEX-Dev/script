@@ -1,7 +1,7 @@
 local queue_on_teleport =
 queue_on_teleport or
     syn and
-        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter69420/RAZE-Series-X/main/RAZE_Series_X"))()')
+        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter69420/RAZE-Series-X/main/RAZE_Series_X"))()')
 
 local Humr = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 local id = 96651

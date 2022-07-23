@@ -124,7 +124,6 @@ end
 end
 end
 end
-end
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
@@ -1103,7 +1102,6 @@ idk12 = false
 
 end
 end
-
 
 
 

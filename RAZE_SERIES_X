@@ -95,14 +95,10 @@ end
 if game.PlaceId == 5445914332 then -- island tribes classic
     loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Island_tribes"))() 
 end
-if game.PlaceId == 9570608263 then --Lorl Hood
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Lorl_Hood"))()
-end
 if game.PlaceId ~= 5445914332 then
     if game.PlaceId ~= 155615604 then
         if game.PlaceId ~= 142823291 then
             if game.PlaceId ~= 2565760594 then
-                if game.PlaceId  ~= 9570608263 then
                     if game.PlaceId ~= 8260276694 then
                         if game.PlaceId ~= 155382109 then
                             if game.PlaceId ~= 2092167559 then

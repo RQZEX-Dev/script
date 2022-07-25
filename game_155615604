@@ -5,8 +5,20 @@ queue_on_teleport or
         syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/loader.lua"))()')
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill()"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/lk"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Prison_Life"))()
+local NotificationLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/Notification.lua"))()
 
+NotificationLib:Notification("Prison Life")
+wait(2)
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Thanks for using RAZE Series X Do u like it?";
+    Duration = math.huge;
+    --Callback here
+    Button1 = "Yes";
+    Button2 = "Yes!!!";
+})
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),

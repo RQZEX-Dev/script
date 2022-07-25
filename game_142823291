@@ -63,6 +63,8 @@ wait(.3)
 end
 end
 end)
+
+
 local LocalPlayer = Window:NewTab("Local Player")
 local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
@@ -118,7 +120,28 @@ wait(1)
 LoadPos()
     end
 end)
+LocalPlayer:NewButton("Fly", "Click to fly", function()
+    CoreGui:SetCore("SendNotification", {
+    Title = "RAZE Series X";
+    Text = "Click X to Toggle Fly";
+    Duration = 20;
+ Button1 = "Thanks";
+    Button2 = "You Welcome";
+})
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fly"))()
+end)
+LocalPlayer:NewSlider("FlySpeed", "Changes ur Fly Speed", 20, 1, function(c)
+_G.Speed = c
+end)
+LocalPlayer:NewSlider("WalkSpeed", "Changes ur Speed", 500, 16, function(a) -- 500 = max 0 = min
 
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = a
+end)
+LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
+
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
+
+end)
 
 
 

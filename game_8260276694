@@ -165,7 +165,7 @@ Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
 Teleport()
 end)
-Misc:NewButton("Get Badges(700 punches required for 1 more)","Gives u The badges possible to give u", function()
+Misc:NewButton("Get Badges","Gives u The badges possible to give u", function()
 if game:GetService("Workspace").Main:FindFirstChild("Seat") then
     for i,v in pairs(game:GetService("Workspace").Main:GetChildren()) do
         if v == game:GetService("Workspace").Main.Seat then

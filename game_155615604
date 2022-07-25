@@ -346,16 +346,16 @@ end)
     end
     end)
     LocalPlayer:NewDropdown("teleport", "Teleport to specific places", {"Crim Base", "Police Station", "Prison", "Yard"}, function(CurrentOption)
-    if currentOption == ("Crim Base") then
+    if CurrentOption == ("Crim Base") then
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-929, 94, 2065)
     end
-    if currentOption == ("Police Station") then
+    if CurrentOption == ("Police Station") then
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(835, 100, 2265)
     end
-    if currentOption == ("Prison") then
+    if CurrentOption == ("Prison") then
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(918, 100, 2391)
     end
-    if currentOption == ("Yard") then
+    if CurrentOption == ("Yard") then
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(794, 98, 2550)
     end
     end)
@@ -374,6 +374,21 @@ LocalPlayer:NewButton("Arrest Criminals", "Teleports U To Criminals And Arrests 
     until i == 0
 end
 end
+end)
+LocalPlayer:NewButton("No Clip", "Lets U Walk Through Walls", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/no_clip"))()
+end)
+LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
+end)
+LocalPlayer:NewSlider("WalkSpeed", "Changes ur Speed", 500, 16, function(a) -- 500 = max 0 = min
+
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = a
+end)
+LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
+
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
+
 end)
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")

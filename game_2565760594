@@ -1,0 +1,100 @@
+local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+local queue_on_teleport =
+queue_on_teleport or
+    syn and
+        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/loader.lua"))()')
+local NotificationLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/Notification.lua"))()
+
+NotificationLib:Notification("Terraria RPG")
+wait(2)
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local colors = {
+    SchemeColor = Color3.fromRGB(225,60,60),
+    Background = Color3.fromRGB(20,20,20),
+    Header = Color3.fromRGB(10,10,10),
+    TextColor = Color3.fromRGB(225,225,225),
+    ElementColor = Color3.fromRGB(40,40,40)
+}
+
+local Window = Library.CreateLib("RAZE Series X", colors)
+
+local Welcome = Window:NewTab("Welcome")
+local Welcome = Welcome:NewSection("Welcome")
+Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
+Welcome:NewLabel("Thanks for using RAZE Series X")
+
+
+local Guis = Window:NewTab("Guis")
+local Guis = Guis:NewSection("Guis")
+Guis:NewButton("Esp", "U can see people through walls", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/unnamed-esp'))()
+end)
+Guis:NewButton("Aimbot", "Aims ur mouse on a player's body", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/Miscellaneous/main/UNIVERSAL.lua"))()
+end)
+local Combat = Window:NewTab("Combat")
+local Combat = Combat:NewSection("Combat")
+    Combat:NewButton("Auto Complete", "Click to Complete the game", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/terraria"))()
+    end)
+local LocalPlayer = Window:NewTab("Local Player")
+local LocalPlayer = LocalPlayer:NewSection("Local Player")
+LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
+ 
+        function getFullNameFromPartial(PartialName)
+local CurrentPlayer=nil;
+local Players= game.Players:GetPlayers();
+for i=1,#Players do
+ local foundPlayer=Players[i];
+if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+end;
+end;
+return CurrentPlayer ;
+end
+
+local CurrentPlayer = getFullNameFromPartial(txt)
+
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.DisplayName == CurrentPlayer then
+CurrentPlayer = v.Name
+end
+end
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+end)
+LocalPlayer:NewButton("FullBright", "Makes u see everything brighter", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
+end)
+local Misc = Window:NewTab("Misc")
+local Misc = Misc:NewSection("Misc")
+Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
+local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p)
+end)
+Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+Teleport()
+end)
+Misc:NewButton("Reset", "Resets ur Stats", function()
+game:GetService("ReplicatedStorage").GameRemotes.ResetData:FireServer()
+
+end)
+
+local Settings = Window:NewTab("Settings")
+local Settings = Settings:NewSection("Settings")
+Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+local Credits = Window:NewTab("Credits")
+local Credits = Credits:NewSection("Credits")
+Credits:NewLabel("Made by RQZEX#9971")
+Credits:NewLabel("Credits: SkiddDev#2675")
+Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
+getgenv().DiscordInvite = "suEFpCAFaD"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+end)

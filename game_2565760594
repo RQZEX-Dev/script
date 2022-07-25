@@ -7,6 +7,16 @@ local NotificationLib = loadstring(game:HttpGet("https://raw.githubusercontent.c
 
 NotificationLib:Notification("Terraria RPG")
 wait(2)
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Thanks for using RAZE Series X Do u like it?";
+    Duration = math.huge;
+    --Callback here
+    Button1 = "Yes";
+    Button2 = "Yes!!!";
+})
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -69,6 +79,77 @@ end)
 LocalPlayer:NewButton("FullBright", "Makes u see everything brighter", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
 end)
+LocalPlayer:NewButton("Reset Player", "Resets Ur Character", function()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(1)
+if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+game.Players.LocalPlayer.Character.Humanoid:Destroy()
+end
+end)
+LocalPlayer:NewButton("No Clip", "Lets U Walk Through Walls", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/no_clip"))()
+end)
+LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
+end)
+LocalPlayer:NewButton("QuickSpeed", "Hold to Walk fast ", function()
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Hold C to use Quick Speed";
+    Duration = 10;
+    --Callback here
+    Button1 = "Thanks";
+    Button2 = "You Welcome";
+})
+   plr = game:GetService('Players').LocalPlayer
+
+down = true
+
+function onButton1Down(mouse)
+
+    down = true
+
+    while down do
+
+        if not down then break end
+
+        local char = plr.Character
+
+        char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.lookVector * 190
+
+        wait()
+
+    end
+
+end
+
+function onButton1Up(mouse)
+
+    down = false
+
+end
+
+function onSelected(mouse)
+
+    mouse.KeyDown:connect(function(c) if c:lower()=="c"then onButton1Down(mouse)end end)
+
+    mouse.KeyUp:connect(function(c) if c:lower()=="c"then onButton1Up(mouse)end end)
+
+end
+
+onSelected(game.Players.LocalPlayer:GetMouse())
+end)
+LocalPlayer:NewSlider("WalkSpeed", "Changes ur Speed", 500, 16, function(a) -- 500 = max 0 = min
+
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = a
+end)
+LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
+
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
+
+end)
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
@@ -80,11 +161,9 @@ Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
 Teleport()
 end)
-Misc:NewButton("Reset", "Resets ur Stats", function()
+Misc:NewButton("Reset stats", "Resets ur Stats", function()
 game:GetService("ReplicatedStorage").GameRemotes.ResetData:FireServer()
-
 end)
-
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
 Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()

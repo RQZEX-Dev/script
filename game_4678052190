@@ -1,0 +1,205 @@
+POS = game.Players.LocalPlayer.Character.Head.CFrame
+local function SavePos(POS)
+    pcall(function()
+        POS = game.Players.LocalPlayer.Character.Head.CFrame;
+    end);
+        SavedPosition = POS;
+    end;
+function LoadPos()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (SavedPosition)
+end;
+local function badge()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/badges"))()
+end
+local function ammo()
+        for i, v in pairs(getgc()) do
+            if type(v) == "function" and islclosure(v) and not is_synapse_function(v) then
+                local x = debug.getconstants(v)
+                if table.find(x, "ammo") and table.find(x, "update_ammo_gui") and table.find(x, "has_scope") then
+                    debug.setconstant(v, 2, -999999)
+                end
+            end
+        end
+end
+local function killeresp()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/killer_esp"))()
+end
+local function getguns()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/getguns"))()
+end
+local function papguns()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/pap"))()
+end
+local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+local queue_on_teleport =
+queue_on_teleport or
+    syn and
+        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/loader.lua"))()')
+local NotificationLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/Notification.lua"))()
+
+NotificationLib:Notification("Survive and kill the killers")
+wait(2)
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Thanks for using RAZE Series X Do u like it?";
+    Duration = math.huge;
+    --Callback here
+    Button1 = "Yes";
+    Button2 = "Yes!!!";
+})
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local colors = {
+    SchemeColor = Color3.fromRGB(225,60,60),
+    Background = Color3.fromRGB(20,20,20),
+    Header = Color3.fromRGB(10,10,10),
+    TextColor = Color3.fromRGB(225,225,225),
+    ElementColor = Color3.fromRGB(40,40,40)
+}
+
+local Window = Library.CreateLib("RAZE Series X", colors)
+
+local Welcome = Window:NewTab("Welcome")
+local Welcome = Welcome:NewSection("Welcome")
+Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
+Welcome:NewLabel("Thanks for using RAZE Series X")
+
+
+local Guis = Window:NewTab("Guis")
+local Guis = Guis:NewSection("Guis")
+Guis:NewButton("Esp", "U can see people through walls", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/unnamed-esp'))()
+end)
+Guis:NewButton("Aimbot", "Aims ur mouse on a player's body", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/Miscellaneous/main/UNIVERSAL.lua"))()
+end)
+local Combat = Window:NewTab("Combat")
+local Combat = Combat:NewSection("Combat")
+Combat:NewButton("Infinite ammo", "Gives u infinite ammo", function()
+ammo()
+end)
+local LocalPlayer = Window:NewTab("Local Player")
+local LocalPlayer = LocalPlayer:NewSection("Local Player")
+LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
+ 
+        function getFullNameFromPartial(PartialName)
+local CurrentPlayer=nil;
+local Players= game.Players:GetPlayers();
+for i=1,#Players do
+ local foundPlayer=Players[i];
+if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+end;
+end;
+return CurrentPlayer ;
+end
+
+local CurrentPlayer = getFullNameFromPartial(txt)
+
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.DisplayName == CurrentPlayer then
+CurrentPlayer = v.Name
+end
+end
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+end)
+LocalPlayer:NewButton("FullBright", "Makes u see everything brighter", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
+end)
+LocalPlayer:NewButton("Reset Player", "Resets Ur Character", function()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(1)
+if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+game.Players.LocalPlayer.Character.Humanoid:Destroy()
+end
+end)
+LocalPlayer:NewButton("No Clip", "Lets U Walk Through Walls", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/no_clip"))()
+end)
+LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
+end)
+LocalPlayer:NewButton("QuickSpeed", "Hold to Walk fast ", function()
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Hold C to use Quick Speed";
+    Duration = 10;
+    --Callback here
+    Button1 = "Thanks";
+    Button2 = "You Welcome";
+})
+   plr = game:GetService('Players').LocalPlayer
+
+down = true
+
+function onButton1Down(mouse)
+
+    down = true
+
+    while down do
+
+        if not down then break end
+
+        local char = plr.Character
+
+        char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.lookVector * 190
+
+        wait()
+
+    end
+
+end
+
+function onButton1Up(mouse)
+
+    down = false
+
+end
+
+function onSelected(mouse)
+
+    mouse.KeyDown:connect(function(c) if c:lower()=="c"then onButton1Down(mouse)end end)
+
+    mouse.KeyUp:connect(function(c) if c:lower()=="c"then onButton1Up(mouse)end end)
+
+end
+
+onSelected(game.Players.LocalPlayer:GetMouse())
+end)
+LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
+
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
+
+end)
+local Misc = Window:NewTab("Misc")
+local Misc = Misc:NewSection("Misc")
+Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
+local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p)
+end)
+Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+Teleport()
+end)
+
+local Settings = Window:NewTab("Settings")
+local Settings = Settings:NewSection("Settings")
+Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+local Credits = Window:NewTab("Credits")
+local Credits = Credits:NewSection("Credits")
+Credits:NewLabel("Made by RQZEX#9971")
+Credits:NewLabel("Credits: SkiddDev#2675")
+Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
+getgenv().DiscordInvite = "suEFpCAFaD"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+end)

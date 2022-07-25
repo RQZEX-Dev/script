@@ -1,3 +1,13 @@
+POS = game.Players.LocalPlayer.Character.Head.CFrame
+local function SavePos(POS)
+    pcall(function()
+        POS = game.Players.LocalPlayer.Character.Head.CFrame;
+    end);
+        SavedPosition = POS;
+    end;
+function LoadPos()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (SavedPosition)
+end;
 local function badge()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/badges"))()
 end
@@ -70,7 +80,10 @@ Combat:NewButton("Infinite ammo", "Gives u infinite ammo", function()
 ammo()
 end)
 Combat:NewButton("All guns", "Gives u every gun", function()
+    SavePos()
 getguns()
+wait()
+LoadPos()
 end)
 Combat:NewButton("pap guns", "Pack a Punches every gun", function()
 papguns()

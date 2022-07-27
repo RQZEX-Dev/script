@@ -303,7 +303,7 @@ end)
 Misc:NewButton("Paint all","Paints all building in ur base", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/skidd"))()
 end)
-Misc:NewButton("Picks up everything in ur base","Paints all building in ur base", function()
+Misc:NewButton("Picks up everything in ur base","Auto picks up everything like vaults", function()
 FireClickDetectors = true
 while FireClickDetectors == true do
 for i,v in pairs(game.Workspace:GetDescendants()) do
@@ -318,7 +318,7 @@ end
 wait(10)
 end
 end)
-Misc:NewButton("Repairs everything (less buildings = faster repair)","Paints all building in ur base", function()
+Misc:NewButton("Repairs everything (less buildings = faster repair)","Repairs all buildings in ur base", function()
 repair = true
 while repair == true do
 for i,v in pairs(workspace.Tycoons:GetChildren()) do

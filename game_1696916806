@@ -1,0 +1,381 @@
+local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+local queue_on_teleport =
+queue_on_teleport or
+    syn and
+        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(5)  loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/loader.lua"))()')
+local NotificationLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/Notification.lua"))()
+
+NotificationLib:Notification("Base Raiders")
+wait(2)
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Thanks for using RAZE Series X Do u like it?";
+    Duration = math.huge;
+    --Callback here
+    Button1 = "Yes";
+    Button2 = "Yes!!!";
+})
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local colors = {
+    SchemeColor = Color3.fromRGB(225,60,60),
+    Background = Color3.fromRGB(20,20,20),
+    Header = Color3.fromRGB(10,10,10),
+    TextColor = Color3.fromRGB(225,225,225),
+    ElementColor = Color3.fromRGB(40,40,40)
+}
+
+local Window = Library.CreateLib("RAZE Series X", colors)
+
+
+
+
+
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
+local Welcome = Window:NewTab("Welcome")
+local Welcome = Welcome:NewSection("Welcome")
+Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
+Welcome:NewLabel("Thanks for using RAZE Series X")
+
+
+
+
+
+
+
+--[[
+-------------------Guis----------------
+--]]
+
+
+
+
+
+
+
+local Guis = Window:NewTab("Guis")
+local Guis = Guis:NewSection("Guis")
+Guis:NewButton("Esp", "U can see people through walls", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/unnamed-esp'))()
+end)
+Guis:NewButton("Aimbot", "Aims ur mouse on a player's body", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/Miscellaneous/main/UNIVERSAL.lua"))()
+end)
+
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
+
+
+local Combat = Window:NewTab("Combat")
+local Combat = Combat:NewSection("Combat")
+Combat:NewTextBox("Raid Base", "teleports u to the base of the player and raids them", function(txt1)
+ 
+        function getFullNameFromPartial(PartialName)
+local CurrentPlayer=nil;
+local Players= game.Players:GetPlayers();
+for i=1,#Players do
+ local foundPlayer=Players[i];
+if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+end;
+end;
+return CurrentPlayer ;
+end
+
+local CurrentPlayer = getFullNameFromPartial(txt1)
+
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.DisplayName == CurrentPlayer then
+CurrentPlayer = v.Name
+end
+end
+for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
+if v.Owner.Value == (CurrentPlayer) then
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    wait(game.Players.RespawnTime)
+    repeat wait() until game.Players.LocalPlayer.Character
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
+
+
+end
+end
+end)
+Combat:NewTextBox("loop Raid Base", "loop teleports u to the base of the player and raids them", function(txt2)
+loop = false
+loop = true
+while loop == true do
+        function getFullNameFromPartial(PartialName)
+local CurrentPlayer=nil;
+local Players= game.Players:GetPlayers();
+for i=1,#Players do
+ local foundPlayer=Players[i];
+if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+end;
+end;
+return CurrentPlayer ;
+end
+
+local CurrentPlayer = getFullNameFromPartial(txt2)
+
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.DisplayName == CurrentPlayer then
+CurrentPlayer = v.Name
+end
+end
+for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
+if v.Owner.Value == (CurrentPlayer) then
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    wait(game.Players.RespawnTime)
+    repeat wait() until game.Players.LocalPlayer.Character
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
+
+
+end
+end
+wait(70)
+end
+end)
+Combat:NewButton("Mod guns", "Makes ur guns better", function()
+local FEmusic = true;
+local musicid = " "; --edit the id
+local shotsound = true
+local shotsoundid = " "--edit the id
+ 
+ 
+for i,v in pairs(game.ReplicatedStorage.WeaponScripts.WeaponConfigs:GetChildren()) do
+local gun = require(v)
+    if v ~= game.ReplicatedStorage.WeaponScripts.WeaponConfigs:FindFirstChild("Rocket Launcher") then
+        gun.magSize = 10000000
+gun.damage = 999
+gun.pellets = 30
+gun.reloadTime = 0
+gun.bulletSpeed = 100009999990
+gun.range = 200099
+gun.minSpread = 0
+gun.maxSprea = 0
+gun.RPM = 1000000000
+gun.fireMode = 1
+gun.customDamage.Head = 10000
+gun.spreadCooldown = 0
+gun.spreadAdd = 0
+end
+if shotsound == true then
+   gun.shootSound = {shotsoundid,1000000000, 1, true }
+end
+if FEmusic == true then
+       gun.equipSound = { musicid, 1000000000, 1, true }
+end
+end
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
+
+
+local LocalPlayer = Window:NewTab("Local Player")
+local LocalPlayer = LocalPlayer:NewSection("Local Player")
+LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
+ 
+        function getFullNameFromPartial(PartialName)
+local CurrentPlayer=nil;
+local Players= game.Players:GetPlayers();
+for i=1,#Players do
+ local foundPlayer=Players[i];
+if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+end;
+end;
+return CurrentPlayer ;
+end
+
+local CurrentPlayer = getFullNameFromPartial(txt)
+
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.DisplayName == CurrentPlayer then
+CurrentPlayer = v.Name
+end
+end
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    wait(game.Players.RespawnTime)
+    repeat wait() until game.Players.LocalPlayer.Character
+    wait()
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+end)
+LocalPlayer:NewButton("FullBright", "Makes u see everything brighter", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
+end)
+LocalPlayer:NewButton("Reset Player", "Resets Ur Character", function()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(1)
+if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+game.Players.LocalPlayer.Character.Humanoid:Destroy()
+end
+end)
+LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
+end)
+LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 350, 50, function(b) -- 500 = max 0 = min
+
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
+
+end)
+
+
+
+
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
+local Misc = Window:NewTab("Misc")
+local Misc = Misc:NewSection("Misc")
+Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
+local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p)
+end)
+Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+Teleport()
+end)
+Misc:NewButton("Paint all","Paints all building in ur base", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/skidd"))()
+end)
+Misc:NewButton("Picks up everything in ur base","Paints all building in ur base", function()
+FireClickDetectors = true
+while FireClickDetectors == true do
+for i,v in pairs(game.Workspace:GetDescendants()) do
+if v:IsA("Part") then
+    if not v.Parent.Parent:FindFirstChild("NEWITEM") then
+    if v:FindFirstChild("ClickDetector") then
+    fireclickdetector(v.ClickDetector)
+end
+end
+end
+end
+wait(10)
+end
+end)
+Misc:NewButton("Repairs everything (less buildings = faster repair)","Paints all building in ur base", function()
+repair = true
+while repair == true do
+for i,v in pairs(workspace.Tycoons:GetChildren()) do
+if v.Owner.Value == game.Players.LocalPlayer.Name then
+for i,b in pairs(v.PlacedContent:GetChildren()) do
+local args = {
+    [1] = b
+}
+
+game:GetService("ReplicatedStorage").Events.RepairItem:InvokeServer(unpack(args))
+end
+end
+end
+wait(.1)
+end
+end)
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
+
+local Settings = Window:NewTab("Settings")
+local Settings = Settings:NewSection("Settings")
+Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
+
+local Credits = Window:NewTab("Credits")
+local Credits = Credits:NewSection("Credits")
+Credits:NewLabel("Made by RQZEX#9971")
+Credits:NewLabel("Credits: SkiddDev#2675")
+Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
+getgenv().DiscordInvite = "suEFpCAFaD"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+end)

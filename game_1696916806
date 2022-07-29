@@ -318,7 +318,7 @@ end
 wait(10)
 end
 end)
-Misc:NewButton("Repairs everything (less buildings = faster repair)","Repairs all buildings in ur base", function()
+Misc:NewButton("Repairs everything quick ","Repairs all buildings in ur base", function()
 repair = true
 while repair == true do
 for i,v in pairs(workspace.Tycoons:GetChildren()) do

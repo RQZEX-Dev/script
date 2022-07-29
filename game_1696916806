@@ -324,11 +324,13 @@ while repair == true do
 for i,v in pairs(workspace.Tycoons:GetChildren()) do
 if v.Owner.Value == game.Players.LocalPlayer.Name then
 for i,b in pairs(v.PlacedContent:GetChildren()) do
+    if b:FindFirstChild("Broken") then
 local args = {
     [1] = b
 }
 
 game:GetService("ReplicatedStorage").Events.RepairItem:InvokeServer(unpack(args))
+end
 end
 end
 end

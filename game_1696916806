@@ -342,24 +342,48 @@ local humr = game.Players.LocalPlayer.Character.HumanoidRootPart
 crates = true
 while crates == true do
 if game.Workspace:FindFirstChild("Base Crate") then
+    if game.Players.Character:FindFirstChild("HumanoidRootPart") then
 humr.CFrame = game:GetService("Workspace")["Base Crate"].Part.CFrame
 end
+else
+print("no common")
+end
 if game.Workspace:FindFirstChild("Blazing Crate") then
+    if game.Players.Character:FindFirstChild("HumanoidRootPart") then
 humr.CFrame = game:GetService("Workspace")["Blazing Crate"].Part.CFrame
 end
+else
+print("no uncommon")
+end
 if game.Workspace:FindFirstChild("Dark Matter Crate") then
+    if game.Players.Character:FindFirstChild("HumanoidRootPart") then
 humr.CFrame = game:GetService("Workspace")["Dark Matter Crate"].Part.CFrame
 end
+else
+print("no rare")
+end
 if game.Workspace:FindFirstChild("Rainbow Crate") then
+    if game.Players.Character:FindFirstChild("HumanoidRootPart") then
 humr.CFrame = game:GetService("Workspace")["Rainbow Crate"].Part.CFrame
 end
+else
+print("no epic")
+end
 if game.Workspace:FindFirstChild("Legendary Crate") then
+    if game.Players.Character:FindFirstChild("HumanoidRootPart") then
 humr.CFrame = game:GetService("Workspace")["Legendary Crate"].Part.CFrame
 end
+else
+print("no legendary")
+end
 if game.Workspace:FindFirstChild("Godly Crate") then
+    if game.Players.Character:FindFirstChild("HumanoidRootPart") then
 humr.CFrame = game:GetService("Workspace")["Godly Crate"].Part.CFrame
 end
-wait()
+else
+print("no godly")
+end
+wait(2)
 end
 
 
@@ -418,3 +442,5 @@ Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
 getgenv().DiscordInvite = "suEFpCAFaD"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
 end)
+a = "RAZE Series X has been loaded"
+while wait(100000000000) do print(a) a = "bro u've been in this lobby for"end

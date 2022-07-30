@@ -337,8 +337,45 @@ end
 wait(.1)
 end
 end)
+Misc:NewButton("Auto Crates","automaticly gives u the crates that spawn", function()
+local humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+crates = true
+while crates == true do
+if game.Workspace:FindFirstChild("Base Crate") then
+humr.CFrame = game:GetService("Workspace")["Base Crate"].Part.CFrame
+end
+if game.Workspace:FindFirstChild("Blazing Crate") then
+humr.CFrame = game:GetService("Workspace")["Blazing Crate"].Part.CFrame
+end
+if game.Workspace:FindFirstChild("Dark Matter Crate") then
+humr.CFrame = game:GetService("Workspace")["Dark Matter Crate"].Part.CFrame
+end
+if game.Workspace:FindFirstChild("Rainbow Crate") then
+humr.CFrame = game:GetService("Workspace")["Rainbow Crate"].Part.CFrame
+end
+if game.Workspace:FindFirstChild("Legendary Crate") then
+humr.CFrame = game:GetService("Workspace")["Legendary Crate"].Part.CFrame
+end
+if game.Workspace:FindFirstChild("Godly Crate") then
+humr.CFrame = game:GetService("Workspace")["Godly Crate"].Part.CFrame
+end
+wait()
+end
 
 
+end)
+Misc:NewButton("Unlock paint colors","Makes u able to use gamepass colors", function()
+for i,v in pairs(game:GetService("ReplicatedStorage").Colors:GetChildren()) do
+if v:FindFirstChild("NeedsPass") then
+v.NeedsPass:Destroy()
+end
+end
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Colors:GetChildren()) do
+if v:FindFirstChild("LOCK") then
+v.LOCK.Visible = false
+end
+end
+end)
 
 
 

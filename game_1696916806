@@ -273,7 +273,19 @@ LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 350, 50, function(b
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
 
 end)
+LocalPlayer:NewButton("Anti afk", "U wont get kicked from afking more than 20 minutes", function() 
+antiafk = true
+while antiafk== true do
+	local vu = game:GetService("VirtualUser")
+	game:GetService("Players").LocalPlayer.Idled:connect(function()
+		vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		wait(1)
+		vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	end)
+	wait(20)
+	end
 
+end)
 
 
 
@@ -338,47 +350,46 @@ wait(.1)
 end
 end)
 Misc:NewButton("Auto Crates","automaticly gives u the crates that spawn", function()
-local humr = game.Players.LocalPlayer.Character.HumanoidRootPart
 crates = true
 while crates == true do
 if game.Workspace:FindFirstChild("Base Crate") then
     if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-humr.CFrame = game:GetService("Workspace")["Base Crate"].Part.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Base Crate"].Part.CFrame
 end
 else
 print("no common")
 end
 if game.Workspace:FindFirstChild("Blazing Crate") then
     if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-humr.CFrame = game:GetService("Workspace")["Blazing Crate"].Part.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Blazing Crate"].Part.CFrame
 end
 else
 print("no uncommon")
 end
 if game.Workspace:FindFirstChild("Dark Matter Crate") then
     if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-humr.CFrame = game:GetService("Workspace")["Dark Matter Crate"].Part.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Dark Matter Crate"].Part.CFrame
 end
 else
 print("no rare")
 end
 if game.Workspace:FindFirstChild("Rainbow Crate") then
     if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-humr.CFrame = game:GetService("Workspace")["Rainbow Crate"].Part.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Rainbow Crate"].Part.CFrame
 end
 else
 print("no epic")
 end
 if game.Workspace:FindFirstChild("Legendary Crate") then
     if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-humr.CFrame = game:GetService("Workspace")["Legendary Crate"].Part.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Legendary Crate"].Part.CFrame
 end
 else
 print("no legendary")
 end
 if game.Workspace:FindFirstChild("Godly Crate") then
     if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-humr.CFrame = game:GetService("Workspace")["Godly Crate"].Part.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Godly Crate"].Part.CFrame
 end
 else
 print("no godly")
@@ -400,7 +411,42 @@ v.LOCK.Visible = false
 end
 end
 end)
+Misc:NewButton("auto rewards","Automaticly claims rewards", function()
+rewards = true
+while rewards == true do
 
+local args = {
+    [1] = "Reward1"
+}
+
+game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
+
+local args = {
+    [1] = "Reward2"
+}
+
+game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
+
+local args = {
+    [1] = "Reward3"
+}
+
+game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
+
+local args = {
+    [1] = "Reward4"
+}
+
+game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
+
+local args = {
+    [1] = "Reward5"
+}
+
+game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
+wait(10)
+end
+end)
 
 
 --[[
@@ -442,5 +488,5 @@ Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
 getgenv().DiscordInvite = "suEFpCAFaD"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
 end)
-a = "bro u've been in this lobby for 2000 years to see this messege"
-while wait(100000000000) do print(a)end
+a = "RAZE Series X has been loaded"
+while wait(100000000000) do print(a) a = "bro u've been in this lobby for"end

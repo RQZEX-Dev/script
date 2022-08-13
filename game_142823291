@@ -123,6 +123,26 @@ end)
 LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
 end)
+local noclip = true
+LocalPlayer:NewKeybind("Noclip", "Noclip", Enum.KeyCode.G, function()
+local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+noclip = not noclip
+while true do
+    character = game.Players.LocalPlayer.Character
+
+    if noclip then
+        for _, v in pairs(character:GetDescendants()) do
+            pcall(function()
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end)
+        end
+    end
+
+    game:GetService("RunService").Stepped:wait()
+end
+end)
 LocalPlayer:NewButton("QuickSpeed", "Hold to Walk fast ", function()
 local CoreGui = game:GetService("StarterGui")
 

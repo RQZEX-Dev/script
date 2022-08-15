@@ -1,0 +1,633 @@
+local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+local queue_on_teleport =
+queue_on_teleport or
+    syn and
+        syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/loader.lua"))()')
+local NotificationLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkiddDev/RazeSeriesX/SkiddAuth/Notification.lua"))()
+
+NotificationLib:Notification("Dogecoin Mining Tycoon")
+wait(2)
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Thanks for using RAZE Series X Do u like it?";
+    Duration = math.huge;
+    --Callback here
+    Button1 = "Yes";
+    Button2 = "Yes!!!";
+})
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local colors = {
+    SchemeColor = Color3.fromRGB(225,60,60),
+    Background = Color3.fromRGB(20,20,20),
+    Header = Color3.fromRGB(10,10,10),
+    TextColor = Color3.fromRGB(225,225,225),
+    ElementColor = Color3.fromRGB(40,40,40)
+}
+
+local Window = Library.CreateLib("RAZE Series X", colors)
+
+
+
+
+
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
+local Welcome = Window:NewTab("Welcome")
+local Welcome = Welcome:NewSection("Welcome")
+Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
+Welcome:NewLabel("Thanks for using RAZE Series X")
+
+
+
+
+
+
+
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
+
+
+local LocalPlayer = Window:NewTab("Local Player")
+local LocalPlayer = LocalPlayer:NewSection("Local Player")
+LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
+ 
+        function getFullNameFromPartial(PartialName)
+local CurrentPlayer=nil;
+local Players= game.Players:GetPlayers();
+for i=1,#Players do
+ local foundPlayer=Players[i];
+if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+ CurrentPlayer=foundPlayer.DisplayName;
+  break;
+end;
+end;
+return CurrentPlayer ;
+end
+
+local CurrentPlayer = getFullNameFromPartial(txt)
+
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.DisplayName == CurrentPlayer then
+CurrentPlayer = v.Name
+end
+end
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+end)
+LocalPlayer:NewButton("FullBright", "Makes u see everything brighter", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
+end)
+LocalPlayer:NewButton("Reset Player", "Resets Ur Character", function()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(1)
+if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+game.Players.LocalPlayer.Character.Humanoid:Destroy()
+end
+end)
+local noclip = true
+LocalPlayer:NewKeybind("Noclip", "Noclip", Enum.KeyCode.G, function()
+local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+noclip = not noclip
+while true do
+    character = game.Players.LocalPlayer.Character
+
+    if noclip then
+        for _, v in pairs(character:GetDescendants()) do
+            pcall(function()
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end)
+        end
+    end
+
+    game:GetService("RunService").Stepped:wait()
+end
+end)
+LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
+end)
+LocalPlayer:NewButton("QuickSpeed", "Hold to Walk fast ", function()
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Hold C to use Quick Speed";
+    Duration = 10;
+    --Callback here
+    Button1 = "Thanks";
+    Button2 = "You Welcome";
+})
+   plr = game:GetService('Players').LocalPlayer
+
+down = true
+
+function onButton1Down(mouse)
+
+    down = true
+
+    while down do
+
+        if not down then break end
+
+        local char = plr.Character
+
+        char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.lookVector * 190
+
+        wait()
+
+    end
+
+end
+
+function onButton1Up(mouse)
+
+    down = false
+
+end
+
+function onSelected(mouse)
+
+    mouse.KeyDown:connect(function(c) if c:lower()=="c"then onButton1Down(mouse)end end)
+
+    mouse.KeyUp:connect(function(c) if c:lower()=="c"then onButton1Up(mouse)end end)
+
+end
+
+onSelected(game.Players.LocalPlayer:GetMouse())
+end)
+LocalPlayer:NewButton("Fly", "Click to fly", function()
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Click x to Toggle Fly";
+    Duration = 10;
+    --Callback here
+    Button1 = "Thanks";
+    Button2 = "You Welcome";
+})
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fly"))()
+end)
+LocalPlayer:NewSlider("FlySpeed", "Changes ur Fly Speed", 20, 1, function(c)
+_G.Speed = c
+end)
+LocalPlayer:NewSlider("WalkSpeed", "Changes ur Speed", 500, 16, function(a) -- 500 = max 0 = min
+
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = a
+end)
+LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
+
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
+
+end)
+
+
+
+
+--[[
+-------------------Teleports----------------
+--]]
+
+
+
+
+
+
+
+
+
+local Teleport = Window:NewTab("Teleport")
+local Teleport = Teleport:NewSection("Teleport")
+Teleport:NewButton("Unlock Teleport Gamepass","All Teleports are getting Unlocked",function()
+getgenv().teleport = false
+wait()
+getgenv().teleport = true
+while getgenv().teleport == true do
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Teleporter.Main.Locations:GetChildren()) do
+if v:FindFirstChild("Locked") then
+v.Locked.Visible = false
+end
+end
+wait()
+end
+end)
+Teleports:NewButton("Teleport To Winter Map","Teleports u to the winter Map",function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["__Maps"].Winter.Decor["Meshes/StonePath"].CFrame
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
+local Misc = Window:NewTab("Misc")
+local Misc = Misc:NewSection("Misc")
+Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
+local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p)
+end)
+Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+Teleport()
+end)
+Misc:NewButton("Complete Current Quest", "Auto Completes ur Current Quest", function()
+
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.QuestList.Main:GetChildren()) do
+if v.Name ~= "UIGridLayout" then
+if v.Locked.Visible == false then
+if v.Completed.Visible == false then
+if v.InProgress.Visible == true then
+CurrentQuest = v.Name
+end
+end
+end
+end
+end
+print(CurrentQuest)
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 1
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 2
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 3
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 4
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 5
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 6
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 7
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 8
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 9
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 10
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 11
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 12
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 13
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 14
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,15 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 15
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+
+end)
+Misc:NewButton("Get Easter egss", "Automaticly teleports to easter eggs", function()
+pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+for i,v in pairs(game:GetService("Workspace").EasterEggs:GetChildren()) do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Main.CFrame
+wait(.5)
+end
+wait(.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+Misc:NewButton("Redeem Codes","Automaticly Redeems codes", function()
+    local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "SHOWMETHEMONEY"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "DOGECOINTYCOON"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "JOINURSAMAJORGAMES"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "DOGECASH"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+    local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "UPDATE10"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+    local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "UPDATE11"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "PRODOGECOINMINER"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "COOLESTCOOLEREVER"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "MAXIMUMDOGECOIN"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "NOVICEMINER"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "DOGECOINMININBTYCOON"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+local args = {
+    [1] = "Redeem",
+    [2] = {
+        ["Code"] = "LIKEDOGECOIN"
+    }
+}
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
+
+end)
+Misc:NewButton("Auto Exchange (at 450)", "Automaticly Exchanges Dogecoins (Close Range)", function()
+getgenv().autoexchange = false
+wait(.1)
+getgenv().autoexchange = true
+while getgenv().autoexchange == true do
+if game:GetService("Workspace")["__Locations"].Exchange.Rate.Value >= 450 then
+local args = {
+    [1] = "Exchange",
+    [2] = {
+        ["Rate"] = game:GetService("Workspace")["__Locations"].Exchange.Rate.Value
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Exchange:FireServer(unpack(args))
+end
+wait()
+end
+end)
+
+
+
+
+
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
+
+local Settings = Window:NewTab("Settings")
+local Settings = Settings:NewSection("Settings")
+Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
+
+local Credits = Window:NewTab("Credits")
+local Credits = Credits:NewSection("Credits")
+Credits:NewLabel("Made by RQZEX#9971")
+Credits:NewLabel("Credits: SkiddDev#2675")
+Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
+getgenv().DiscordInvite = "suEFpCAFaD"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+end)

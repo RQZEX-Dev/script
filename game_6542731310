@@ -234,7 +234,7 @@ end
 wait()
 end
 end)
-Teleports:NewButton("Teleport To Winter Map","Teleports u to the winter Map",function()
+Teleport:NewButton("Teleport To Winter Map","Teleports u to the winter Map",function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["__Maps"].Winter.Decor["Meshes/StonePath"].CFrame
 end)
 

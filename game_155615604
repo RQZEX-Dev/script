@@ -49,13 +49,13 @@ local Combat = Combat:NewSection("Combat")
 
 
 Combat:NewTextBox("Kill", "Type the name of the player u wanna kill", function(txt2)
-        function getFullNameFromPartial(PartialName)
+function getFullNameFromPartial(PartialName)
 local CurrentPlayer=nil;
 local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
  CurrentPlayer=foundPlayer.DisplayName;
@@ -66,12 +66,7 @@ return CurrentPlayer ;
 end
 
 local CurrentPlayer = getFullNameFromPartial(txt2)
-
-for i, v in pairs(game.Players:GetPlayers()) do
-if v.DisplayName == CurrentPlayer then
-CurrentPlayer = v.Name
-end
-end    
+  
     workspace.Remote.TeamEvent:FireServer("Medium stone grey")
 wait(.1)
     local args = {
@@ -143,7 +138,7 @@ local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
  CurrentPlayer=foundPlayer.DisplayName;
@@ -155,11 +150,6 @@ end
 
 local CurrentPlayer = getFullNameFromPartial(txt1)
 
-for i, v in pairs(game.Players:GetPlayers()) do
-if v.DisplayName == CurrentPlayer then
-CurrentPlayer = v.Name
-end
-end
 local args = {
     [1] = " -----------------------Nuke Alert--------------------------------",
     [2] = "All"
@@ -241,14 +231,13 @@ end)
 local LocalPlayer = Window:NewTab("Local Player")
 local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
- 
-        function getFullNameFromPartial(PartialName)
+function getFullNameFromPartial(PartialName)
 local CurrentPlayer=nil;
 local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
  CurrentPlayer=foundPlayer.DisplayName;
@@ -260,11 +249,6 @@ end
 
 local CurrentPlayer = getFullNameFromPartial(txt)
 
-for i, v in pairs(game.Players:GetPlayers()) do
-if v.DisplayName == CurrentPlayer then
-CurrentPlayer = v.Name
-end
-end
 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Click-Tp (Ctrl)", "Teleports u where u click", function()

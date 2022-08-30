@@ -92,13 +92,13 @@ local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
 Combat:NewTextBox("Raid Base", "teleports u to the base of the player and raids them", function(txt1)
  
-        function getFullNameFromPartial(PartialName)
+function getFullNameFromPartial(PartialName)
 local CurrentPlayer=nil;
 local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
  CurrentPlayer=foundPlayer.DisplayName;
@@ -108,13 +108,8 @@ end;
 return CurrentPlayer ;
 end
 
-local CurrentPlayer = getFullNameFromPartial(txt1)
+local CurrentPlayer = getFullNameFromPartial(txt)
 
-for i, v in pairs(game.Players:GetPlayers()) do
-if v.DisplayName == CurrentPlayer then
-CurrentPlayer = v.Name
-end
-end
 for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
 if v.Owner.Value == (CurrentPlayer) then
     game.Players.LocalPlayer.Character.Humanoid.Health = 0

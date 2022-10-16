@@ -13,21 +13,6 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-
-local l__LocalPlayer__10 = game.Players.LocalPlayer
-local l__Parent__4 = game:GetService("Players").LocalPlayer.PlayerGui.Main
-local l__ChooseTeam__63 = game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam
-local l__CurrentCamera__64 = workspace.CurrentCamera;
-
-
-l__ChooseTeam__63.Visible = false
-l__ChooseTeam__63:Destroy()
-
-l__CurrentCamera__64.CameraType = "Custom";
-repeat wait() until l__LocalPlayer__10.Character
-wait(0.5)
-l__CurrentCamera__64.CameraSubject = l__LocalPlayer__10.Character.Head;
-wait(2)
 getgenv().AllowFruit = true;
 print("LOADED 100%")
 local function StoreFruits()

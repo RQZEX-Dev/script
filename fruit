@@ -1,0 +1,86 @@
+local queue_on_teleport =
+queue_on_teleport or
+    syn and
+        syn.queue_on_teleport ([[]])
+
+repeat wait(.1) until game:IsLoaded()
+
+repeat wait() until game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 9e9):WaitForChild("Main", 9e9):WaitForChild("Loading", 9e9).Visible == false
+print("LOADED!")
+local args = {
+    [1] = "SetTeam",
+    [2] = "Pirates"
+}
+
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+
+local l__LocalPlayer__10 = game.Players.LocalPlayer
+local l__Parent__4 = game:GetService("Players").LocalPlayer.PlayerGui.Main
+local l__ChooseTeam__63 = game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam
+local l__CurrentCamera__64 = workspace.CurrentCamera;
+
+
+l__ChooseTeam__63.Visible = false
+l__ChooseTeam__63:Destroy()
+
+l__CurrentCamera__64.CameraType = "Custom";
+repeat wait() until l__LocalPlayer__10.Character
+wait(0.5)
+l__CurrentCamera__64.CameraSubject = l__LocalPlayer__10.Character.Head;
+wait(2)
+getgenv().AllowFruit = true;
+print("LOADED 100%")
+local function StoreFruits()
+    for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren())do
+        if string.find(v.Name, "Fruit") then
+            spl = false
+            if v.Name:find(":") then
+                spl = true
+                splitted = v.Name:split(":")
+                name = splitted[1].."-"..splitted[1]..":"..splitted[2]
+                splitted2 = name:split(" Fruit")
+                name = splitted2[1]
+            end
+            if spl == false then
+                splitted = v.Name:split(" ")
+                name = splitted[1].."-"..splitted[1]
+            end
+            local args = {
+                [1] = "StoreFruit",
+                [2] = name,
+                [3] = v
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            
+        end
+    end
+end
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+    Teleport()
+end)
+for _, fruit in pairs(game.Workspace:GetChildren())do
+    if string.find(fruit.Name, "Fruit") then
+        if getgenv().AllowFruit == true then
+            getgenv().AllowFruit = false
+            local CFrameEnd = fruit.Handle.CFrame
+            local Time = (fruit.Handle.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude / 200
+            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time, Enum.EasingStyle.Linear), {CFrame = CFrameEnd})
+            tween:Play()
+            tween.Completed:Wait()
+            wait(1)
+            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+            wait(1)
+            StoreFruits()
+            wait(0.5)
+            getgenv().AllowFruit = true
+        end
+    end
+    wait()
+end
+
+wait(2)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+Teleport()

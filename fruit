@@ -7,6 +7,7 @@ repeat wait(.1) until game:IsLoaded()
 
 repeat wait() until game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 9e9):WaitForChild("Main", 9e9):WaitForChild("Loading", 9e9).Visible == false
 print("LOADED!")
+wait(2.5)
 local args = {
     [1] = "SetTeam",
     [2] = "Pirates"

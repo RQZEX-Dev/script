@@ -1,7 +1,7 @@
 local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
-loadstring(game:HttpGet("https://github.com/joemuma/script/blob/main/Notification"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("abbility Wars")
 wait(2)
@@ -280,18 +280,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-in
 Teleport()
 end)
 Misc:NewButton("Get Badges","Gives u The badges possible to give u", function()
-if game:GetService("Workspace").Main:FindFirstChild("Seat") then
-    for i,v in pairs(game:GetService("Workspace").Main:GetChildren()) do
-        if v == game:GetService("Workspace").Main.Seat then
-            v:destroy()
+if game:GetService("Workspace").Main.Cave:FindFirstChild("Seats") then
+    game:GetService("Workspace").Main.Cave.Seats:Destroy()
 end
-end
-end
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Groceries.Cake.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Map Items").Cake.CFrame
 wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Groceries.Burger.CFrame
-wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Groceries.Pizza.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Map Items").Burger.CFrame
+wait(.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Map Items").Pizza.CFrame
 wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(139, 24, -149)
 wait(.2)
@@ -306,14 +302,6 @@ local args = {
 
 game:GetService("ReplicatedStorage").RequestMission:InvokeServer(unpack(args))
 wait()
-if game:GetService("Workspace").Main:FindFirstChild("backrooms 2") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Main.Backrooms.CFrame
-else
-   game:GetService("Workspace").Main.Backrooms.Name = "backrooms 2"
-   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Main.Backrooms.CFrame
-end
-wait()
-
 end)
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")

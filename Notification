@@ -1,4 +1,4 @@
-local function noti(lol)
+function noti(lol)
 AnnGUI = Instance.new("Frame")
 local background = Instance.new("Frame")
 local TextBox = Instance.new("TextLabel")

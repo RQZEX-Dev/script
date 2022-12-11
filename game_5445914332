@@ -1,5 +1,11 @@
 local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
+function SavePos()
+    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
+end
+function Tp()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Island Tribes")
@@ -248,6 +254,32 @@ Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
 Teleport()
 end)
+Misc:NewButton("Save Pos", "Saves ur Current Position so u can go back to it", function()
+    SavePos()
+end)
+Misc:NewButton("Teleport to Saved Pos", "Teleports u To ur Saved Position", function()
+    if SavedPos ~= nil then
+        Tp()
+    end
+end)
+Misc:NewButton("Teleport to Iron", "Teleports u To an Existing Silver if A Silver Exists", function()
+    pcall(function()
+        if game:GetService("Workspace"):FindFirstChild("Silver Rock") then
+            if game:GetService("Workspace"):FindFirstChild("Silver Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
+                Humr.CFrame = game:GetService("Workspace")["Silver Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+            end
+        end
+    end)
+end)
+Misc:NewButton("Teleport to Gold", "Teleports u To an Existing Gold if A Gold Exists", function()
+    pcall(function()
+        if game:GetService("Workspace"):FindFirstChild("Gold Rock") then
+            if game:GetService("Workspace"):FindFirstChild("Gold Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
+                Humr.CFrame = game:GetService("Workspace")["Gold Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+            end
+        end
+    end)
+end)
 Misc:NewButton("Teleport to Ruby", "Teleports u To an Existing Ruby if A Ruby Exists", function()
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Ruby Rock") then
@@ -320,8 +352,8 @@ local function GetNearestObject()
     local Closest
     local PlayerPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
      
-    for i,v in pairs(workspace:GetChildren()) do
-        if v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("MeshPart") and v ~= game.Players.LocalPlayer.Character and not v:FindFirstChild("Humanoid")  then
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("MeshPart") and not v:FindFirstChild("Humanoid")  then
             if Closest == nil then
                 Closest = v:FindFirstChildWhichIsA("MeshPart")
             else

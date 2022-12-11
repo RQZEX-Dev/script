@@ -30,7 +30,7 @@ TextBox.Size = UDim2.new(0, 348, 0, 120)
 TextBox.Font = Enum.Font.SourceSans
 TextBox.TextSize = 18
 TextBox.TextWrapped = true
-TextBox.Text = "Raze Series X\n\n Game Detected\n"..lol.."\n Loading..."
+TextBox.Text = "Raze Series X\n\n Game Detected:  "..lol.."\n\n Loading..."
 TextBox.TextColor3 = Color3.new(1, 1, 1)
 TextBox.TextXAlignment = Enum.TextXAlignment.Left
 TextBox.TextYAlignment = Enum.TextYAlignment.Top
@@ -71,4 +71,3 @@ Exit.MouseButton1Click:Connect(function()
 end)
 wait(5)
 end
-print("hi")

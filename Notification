@@ -61,7 +61,7 @@ Exit.Size = UDim2.new(0, 20, 0, 20)
 Exit.ZIndex = 4
 Exit.Image = "rbxassetid://2132544126"
  
-wait(1)
+wait(.3)
 AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, 150), "InOut", "Quart", 0.5, true, nil)
  
 Exit.MouseButton1Click:Connect(function()
@@ -69,5 +69,6 @@ Exit.MouseButton1Click:Connect(function()
     wait(0.6)
     AnnGUI:Destroy()
 end)
-wait(5)
+wait(3)
+AnnGUI:Destroy()
 end

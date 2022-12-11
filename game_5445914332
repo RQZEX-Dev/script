@@ -9,7 +9,6 @@ end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Island Tribes")
-wait(2)
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {

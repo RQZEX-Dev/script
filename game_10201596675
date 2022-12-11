@@ -4,7 +4,7 @@ local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('r
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("abbility Wars")
-wait(2)
+
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {

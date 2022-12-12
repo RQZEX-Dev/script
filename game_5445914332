@@ -308,7 +308,7 @@ Misc:NewButton("Teleport to Iron", "Teleports u To an Existing Silver if A Silve
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Silver Rock") then
             if game:GetService("Workspace"):FindFirstChild("Silver Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Silver Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Silver Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)
@@ -317,7 +317,7 @@ Misc:NewButton("Teleport to Gold", "Teleports u To an Existing Gold if A Gold Ex
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Gold Rock") then
             if game:GetService("Workspace"):FindFirstChild("Gold Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Gold Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Gold Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)
@@ -326,7 +326,7 @@ Misc:NewButton("Teleport to Ruby", "Teleports u To an Existing Ruby if A Ruby Ex
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Ruby Rock") then
             if game:GetService("Workspace"):FindFirstChild("Ruby Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Ruby Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Ruby Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)
@@ -335,7 +335,7 @@ Misc:NewButton("Teleport to Diamond", "Teleports u To an Existing Diamond if A R
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Diamond Rock") then
             if game:GetService("Workspace"):FindFirstChild("Diamond Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Diamond Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Diamond Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)

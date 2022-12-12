@@ -55,6 +55,47 @@ Combat:NewToggle("Killaura", "Hits Everyone Near u", function(state)
         getgenv().KillAuraActive = false
     end
 end)
+local function GetNearestAnimal()
+    local Closest
+    local PlayerPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+     
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("MeshPart") and v:FindFirstChild("Humanoid") and not v:FindFirstChild("Body Colors")  then
+            if Closest == nil then
+                Closest = v:FindFirstChildWhichIsA("MeshPart")
+            else
+                if (PlayerPosition - v:FindFirstChildWhichIsA("MeshPart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
+                    Closest = v:FindFirstChildWhichIsA("MeshPart")
+                end
+            end 
+        end
+    end
+    return Closest.Parent
+end
+Combat:NewToggle("Animal Aura", "Automaticly Kills Animals", function(state)
+    if state then
+        getgenv().AutoAnimal = true
+        while getgenv().AutoAnimal == true do
+            pcall(function()
+                NeareastAnimal = GetNearestAnimal()
+                Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastAnimal:FindFirstChildWhichIsA("MeshPart").Position).magnitude
+                
+                if Mag <= 20 then
+                    local args = {
+                        [1] = 1,
+                        [2] = "Destroyable",
+                        [3] = NeareastAnimal 
+                    }
+                    
+                    game:GetService("ReplicatedStorage").References.Comm.Events.ToolAction:FireServer(unpack(args))
+                end
+            end)
+            wait()
+        end
+    else
+        getgenv().AutoAnimal = false
+    end
+end)
 local LocalPlayer = Window:NewTab("Local Player")
 local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
@@ -254,7 +295,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-in
 Teleport()
 end)
 Misc:NewButton("Save Pos", "Saves ur Current Position so u can go back to it", function()
-    SavePos()
+    pcall(function()
+        SavePos()
+    end)
 end)
 Misc:NewButton("Teleport to Saved Pos", "Teleports u To ur Saved Position", function()
     if SavedPos ~= nil then
@@ -265,7 +308,7 @@ Misc:NewButton("Teleport to Iron", "Teleports u To an Existing Silver if A Silve
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Silver Rock") then
             if game:GetService("Workspace"):FindFirstChild("Silver Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                Humr.CFrame = game:GetService("Workspace")["Silver Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Silver Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)
@@ -274,7 +317,7 @@ Misc:NewButton("Teleport to Gold", "Teleports u To an Existing Gold if A Gold Ex
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Gold Rock") then
             if game:GetService("Workspace"):FindFirstChild("Gold Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                Humr.CFrame = game:GetService("Workspace")["Gold Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Gold Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)
@@ -283,7 +326,7 @@ Misc:NewButton("Teleport to Ruby", "Teleports u To an Existing Ruby if A Ruby Ex
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Ruby Rock") then
             if game:GetService("Workspace"):FindFirstChild("Ruby Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                Humr.CFrame = game:GetService("Workspace")["Ruby Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Ruby Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)
@@ -292,7 +335,7 @@ Misc:NewButton("Teleport to Diamond", "Teleports u To an Existing Diamond if A R
     pcall(function()
         if game:GetService("Workspace"):FindFirstChild("Diamond Rock") then
             if game:GetService("Workspace"):FindFirstChild("Diamond Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                Humr.CFrame = game:GetService("Workspace")["Diamond Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame .CFrame = game:GetService("Workspace")["Diamond Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
             end
         end
     end)

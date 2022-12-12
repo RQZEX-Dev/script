@@ -98,7 +98,7 @@ if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(Parti
  CurrentPlayer=foundPlayer.Name;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 end;
 end;
@@ -128,10 +128,10 @@ local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 end;
 end;
@@ -224,10 +224,10 @@ local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.DisplayName;
+ CurrentPlayer=foundPlayer.Name;
   break;
 end;
 end;

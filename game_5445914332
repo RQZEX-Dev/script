@@ -395,12 +395,12 @@ local function GetNearestObject()
     local PlayerPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
      
     for i,v in pairs(workspace:GetDescendants()) do
-        if v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("MeshPart") and not v:FindFirstChild("Humanoid")  then
+        if v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("BasePart") and not v:FindFirstChild("Humanoid")  then
             if Closest == nil then
-                Closest = v:FindFirstChildWhichIsA("MeshPart")
+                Closest = v:FindFirstChildWhichIsA("BasePart")
             else
-                if (PlayerPosition - v:FindFirstChildWhichIsA("MeshPart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
-                    Closest = v:FindFirstChildWhichIsA("MeshPart")
+                if (PlayerPosition - v:FindFirstChildWhichIsA("BasePart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
+                    Closest = v:FindFirstChildWhichIsA("BasePart")
                 end
             end 
         end
@@ -413,7 +413,7 @@ Misc:NewToggle("Mine Aura", "Automaticly Mines Stuff Around u", function(state)
         while getgenv().AutoMine == true do
             pcall(function()
                 NeareastObject = GetNearestObject()
-                Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastObject:FindFirstChildWhichIsA("MeshPart").Position).magnitude
+                Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastObject:FindFirstChildWhichIsA("BasePart").Position).magnitude
                 
                 if Mag <= 20 then
                     local args = {

@@ -1,3 +1,4 @@
+--[[
 function noti(lol)
 AnnGUI = Instance.new("Frame")
 local background = Instance.new("Frame")
@@ -60,15 +61,84 @@ Exit.BackgroundTransparency = 1
 Exit.Size = UDim2.new(0, 20, 0, 20)
 Exit.ZIndex = 4
 Exit.Image = "rbxassetid://2132544126"
- 
-wait(.3)
-AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, 150), "InOut", "Quart", 0.5, true, nil)
- 
+
 Exit.MouseButton1Click:Connect(function()
     AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, -400), "InOut", "Quart", 0.5, true, nil)
     wait(0.6)
+    AnnGUI:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+    wait(0.6)
     AnnGUI:Destroy()
 end)
+
+wait(.3)
+AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, 150), "InOut", "Quart", 0.5, true, nil)
+ 
 wait(5)
+AnnGUI:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+wait(.6)
 AnnGUI:Destroy()
+end
+--]]
+function noti(lol)
+local LoadingScreen = Instance.new("ScreenGui")
+local LoadingFrame = Instance.new("Frame")
+local LoadingBar = Instance.new("Frame")
+local LoadingText = Instance.new("TextLabel")
+local ActualLoadingBar = Instance.new("Frame")
+
+LoadingScreen.Name = "Loading Screen"
+LoadingScreen.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+LoadingScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LoadingScreen.ResetOnSpawn = false
+
+LoadingFrame.Name = "Loading Frame"
+LoadingFrame.Parent = LoadingScreen
+LoadingFrame.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
+LoadingFrame.BorderColor3 = Color3.fromRGB(36, 36, 37)
+LoadingFrame.Position = UDim2.new(0.370000005, 0, -1, 0)
+LoadingFrame.Size = UDim2.new(0, 350, 0, 125)
+
+LoadingBar.Name = "Loading Bar"
+LoadingBar.Parent = LoadingFrame
+LoadingBar.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+LoadingBar.BorderColor3 = Color3.fromRGB(46, 46, 47)
+LoadingBar.Position = UDim2.new(0.105714291, 0, 0.368000031, 0)
+LoadingBar.Size = UDim2.new(0, 275, 0, 33)
+
+LoadingText.Name = "Loading Text"
+LoadingText.Parent = LoadingFrame
+LoadingText.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+LoadingText.BorderColor3 = Color3.fromRGB(46, 46, 47)
+LoadingText.Position = UDim2.new(0.211428568, 0, 0.143999994, 0)
+LoadingText.Size = UDim2.new(0, 200, 0, 20)
+LoadingText.Font = Enum.Font.SourceSans
+LoadingText.Text = "Loading Game..."
+LoadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoadingText.TextSize = 14.000
+
+ActualLoadingBar.Name = "Actual Loading Bar"
+ActualLoadingBar.Parent = LoadingFrame
+ActualLoadingBar.BackgroundColor3 = Color3.fromRGB(7, 239, 3)
+ActualLoadingBar.BorderColor3 = Color3.fromRGB(7, 239, 3)
+ActualLoadingBar.Position = UDim2.new(0.105714291, 0, 0.368000031, 0)
+ActualLoadingBar.Size = UDim2.new(0, 0, 0, 33)
+wait(.5)
+game:GetService("Players").LocalPlayer.PlayerGui["Loading Screen"]["Loading Frame"]:TweenPosition(UDim2.new(0.370000005, 0, 0.388000011, 0),Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+local function done()
+    wait(wait1 + 0.2)
+    LoadingText.Text = "Game Detected:  "..lol
+    wait(2)
+    game:GetService("Players").LocalPlayer.PlayerGui["Loading Screen"]["Loading Frame"]:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+    wait(.6)
+    game:GetService("Players").LocalPlayer.PlayerGui["Loading Screen"]:destroy()
+end
+wait(.5)
+wait1 = math.random(3,5)
+game:GetService("Players").LocalPlayer.PlayerGui["Loading Screen"]["Loading Frame"]["Actual Loading Bar"]:TweenSize(UDim2.new(0, 275, 0, 33),
+    Enum.EasingDirection.Out, Enum.EasingStyle.Linear,
+    wait1,
+    true,
+    nil
+)
+done()
 end

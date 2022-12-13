@@ -403,21 +403,9 @@ local function GetNearestObject()
                     Closest = v:FindFirstChildWhichIsA("BasePart")
                 end
             end
-        elseif v:FindFirstChild("Health") and v:FindFirstChild("Tree") and not v:FindFirstChild("Humanoid") then
-            if Closest == nil then
-                Closest = v.Tree:FindFirstChildWhichIsA("BasePart")
-            else
-                if (PlayerPosition - v.Tree:FindFirstChildWhichIsA("BasePart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
-                    Closest = v.Tree:FindFirstChildWhichIsA("BasePart")
-                end
-            end
         end
     end
-    if Closest.Parent.Name == "Tree" then
-        return Closest.Parent.Parent
-    else
         return Closest.Parent
-    end
 end
 Misc:NewToggle("Mine Aura", "Automaticly Mines Stuff Around u", function(state)
     if state then
@@ -425,11 +413,7 @@ Misc:NewToggle("Mine Aura", "Automaticly Mines Stuff Around u", function(state)
         while getgenv().AutoMine == true do
             pcall(function()
                 NeareastObject = GetNearestObject()
-                if NeareastObject:FindFirstChild("Tree") then
-                    Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastObject.Tree:FindFirstChildWhichIsA("BasePart").Position).magnitude
-                else
                     Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastObject:FindFirstChildWhichIsA("BasePart").Position).magnitude
-                end
                 if Mag <= 20 then
                     local args = {
                         [1] = 1,

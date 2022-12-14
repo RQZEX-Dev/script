@@ -154,7 +154,7 @@ done()
 end
 --]]
 function noti(lol)
-    
+   pcall(function()
 local ScreenGui = Instance.new("ScreenGui")
 local Boomer = Instance.new("Frame")
 local background = Instance.new("Frame")
@@ -264,4 +264,5 @@ ActualLoadingBar:TweenSize(UDim2.new(0, 318, 0, 24),
     nil
 )
 done()
+end)
 end

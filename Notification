@@ -79,6 +79,16 @@ wait(.6)
 AnnGUI:Destroy()
 end
 --]]
+
+
+
+
+
+
+
+
+
+--[[
 function noti(lol)
 local LoadingScreen = Instance.new("ScreenGui")
 local LoadingFrame = Instance.new("Frame")
@@ -135,6 +145,119 @@ end
 wait(.5)
 wait1 = math.random(3,5)
 game:GetService("Players").LocalPlayer.PlayerGui["Loading Screen"]["Loading Frame"]["Actual Loading Bar"]:TweenSize(UDim2.new(0, 275, 0, 33),
+    Enum.EasingDirection.Out, Enum.EasingStyle.Linear,
+    wait1,
+    true,
+    nil
+)
+done()
+end
+--]]
+function noti(lol)
+    
+local ScreenGui = Instance.new("ScreenGui")
+local Boomer = Instance.new("Frame")
+local background = Instance.new("Frame")
+local TextBox = Instance.new("TextLabel")
+local LoadingBar = Instance.new("Frame")
+local ActualLoadingBar = Instance.new("Frame")
+local Shadow = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local Exit = Instance.new("ImageButton")
+
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+Boomer.Name = "Boomer"
+Boomer.Parent = ScreenGui
+Boomer.Active = true
+Boomer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Boomer.BackgroundTransparency = 1.000
+Boomer.Position = UDim2.new(0.5, -180, -1, 0)
+Boomer.Size = UDim2.new(0, 360, 0, 20)
+Boomer.ZIndex = 4
+
+background.Name = "background"
+background.Parent = Boomer
+background.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
+background.BorderSizePixel = 0
+background.Position = UDim2.new(0, 0, 0, 20)
+background.Size = UDim2.new(0, 360, 0, 135)
+
+TextBox.Parent = background
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BackgroundTransparency = 1.000
+TextBox.Position = UDim2.new(0.0170000009, 0, 0.0599999987, 0)
+TextBox.Size = UDim2.new(0, 348, 0, 120)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.Text = "Raze Series X\n\n\n Loading... "
+TextBox.TextColor3 = Color3.fromRGB(1, 1, 1)
+TextBox.TextSize = 18.000
+TextBox.TextWrapped = true
+TextBox.TextXAlignment = Enum.TextXAlignment.Left
+TextBox.TextYAlignment = Enum.TextYAlignment.Top
+
+LoadingBar.Name = "Loading Bar"
+LoadingBar.Parent = background
+LoadingBar.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+LoadingBar.BorderSizePixel = 0
+LoadingBar.Position = UDim2.new(0.0388888866, 0, 0.214814812, 0)
+LoadingBar.Size = UDim2.new(0, 318, 0, 24)
+
+ActualLoadingBar.Name = "Actual Loading Bar"
+ActualLoadingBar.Parent = background
+ActualLoadingBar.BackgroundColor3 = Color3.fromRGB(7, 239, 3)
+ActualLoadingBar.BorderSizePixel = 0
+ActualLoadingBar.Position = UDim2.new(0.0388888866, 0, 0.214814812, 0)
+ActualLoadingBar.Size = UDim2.new(0, 0, 0, 24)
+
+Shadow.Name = "Shadow"
+Shadow.Parent = Boomer
+Shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+Shadow.BorderSizePixel = 0
+Shadow.Size = UDim2.new(0, 360, 0, 20)
+Shadow.ZIndex = 4
+
+TextLabel.Parent = Shadow
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0, 51, 0, 0)
+TextLabel.Size = UDim2.new(0.75999999, -16, 0.949999988, 0)
+TextLabel.ZIndex = 4
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Server Announcement"
+TextLabel.TextColor3 = Color3.fromRGB(1, 1, 1)
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+Exit.Name = "Exit"
+Exit.Parent = Shadow
+Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Exit.BackgroundTransparency = 1.000
+Exit.Size = UDim2.new(0, 20, 0, 20)
+Exit.ZIndex = 4
+Exit.Image = "rbxassetid://2132544126"
+
+Exit.MouseButton1Click:Connect(function()
+    Boomer:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+    wait(0.6)
+    ScreenGui:Destroy()
+end)
+Boomer:TweenPosition(UDim2.new(0.5, -180, 0, 150), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+wait(.5)
+local function done()
+    wait(wait1 + 0.1)
+    TextBox.Text = "Raze Series X\n\n\n Game Detected:  "..lol.."\n\n Loading..."
+    wait(2)
+    Boomer:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+    wait(.6)
+    ScreenGui:destroy()
+end
+wait(.5)
+wait1 = math.random(3,5)
+ActualLoadingBar:TweenSize(UDim2.new(0, 318, 0, 24),
     Enum.EasingDirection.Out, Enum.EasingStyle.Linear,
     wait1,
     true,

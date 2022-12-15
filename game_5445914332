@@ -358,41 +358,58 @@ Misc:NewButton("Save Pos", "Saves ur Current Position so u can go back to it", f
 end)
 Misc:NewButton("Teleport to Saved Pos", "Teleports u To ur Saved Position", function()
     if SavedPos ~= nil then
-        Tp()
     end
+end)
+Misc:NewButton("Teleport to Tree", "Teleports u To an Existing Tree if A Tree Exists", function()
+    pcall(function()
+        for i,v in pairs(game.workspace:GetDescendants()) do
+            if v.Name == "Conifer" then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
+            end
+        end
+    end)
+end)
+Misc:NewButton("Teleport to Stone", "Teleports u To an Existing Stone if A Stone Exists", function()
+    pcall(function()
+        for i,v in pairs(game.workspace:GetDescendants()) do
+            if v.Name == "Rock" then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
+            end
+        end
+    end)
 end)
 Misc:NewButton("Teleport to Iron", "Teleports u To an Existing Silver if A Silver Exists", function()
     pcall(function()
-        if game:GetService("Workspace"):FindFirstChild("Silver Rock") then
-            if game:GetService("Workspace"):FindFirstChild("Silver Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Silver Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+        for i,v in pairs(game.workspace:GetDescendants()) do
+            if v.Name == "Silver Rock" then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
             end
         end
     end)
 end)
 Misc:NewButton("Teleport to Gold", "Teleports u To an Existing Gold if A Gold Exists", function()
     pcall(function()
-        if game:GetService("Workspace"):FindFirstChild("Gold Rock") then
-            if game:GetService("Workspace"):FindFirstChild("Gold Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Gold Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+        for i,v in pairs(game.workspace:GetDescendants()) do
+            if v.Name == "Gold Rock" then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
             end
         end
     end)
 end)
 Misc:NewButton("Teleport to Ruby", "Teleports u To an Existing Ruby if A Ruby Exists", function()
     pcall(function()
-        if game:GetService("Workspace"):FindFirstChild("Ruby Rock") then
-            if game:GetService("Workspace"):FindFirstChild("Ruby Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Ruby Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+        for i,v in pairs(game.workspace:GetDescendants()) do
+            if v.Name == "Ruby Rock" then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
             end
         end
     end)
 end)
 Misc:NewButton("Teleport to Diamond", "Teleports u To an Existing Diamond if A Ruby Exists", function()
     pcall(function()
-        if game:GetService("Workspace"):FindFirstChild("Diamond Rock") then
-            if game:GetService("Workspace"):FindFirstChild("Diamond Rock"):FindFirstChild("Meshes/Ore Rock 2_Gems") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Diamond Rock"]["Meshes/Ore Rock 2_Gems"].CFrame
+        for i,v in pairs(game.workspace:GetDescendants()) do
+            if v.Name == "Diamond Rock" then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
             end
         end
     end)
@@ -428,7 +445,6 @@ Misc:NewToggle("PickUp Aura", "Automaticly Picks Stuff Around u", function(state
         getgenv().AutoPickup = true
         while getgenv().AutoPickup == true do
             pcall(function()
-                print("hi")
                 NeareastItem = GetNearestItem()
                 Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastItem:FindFirstChildWhichIsA("MeshPart").Position).magnitude
                 
@@ -487,6 +503,7 @@ Misc:NewToggle("Mine Aura", "Automaticly Mines Stuff Around u", function(state)
         getgenv().AutoMine = false
     end
 end)
+
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
 Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()

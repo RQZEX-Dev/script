@@ -194,7 +194,7 @@ TextBox.Position = UDim2.new(0.0170000009, 0, 0.0599999987, 0)
 TextBox.Size = UDim2.new(0, 348, 0, 120)
 TextBox.Font = Enum.Font.SourceSans
 TextBox.Text = "Raze Series X\n\n\n Loading... "
-TextBox.TextColor3 = Color3.fromRGB(1, 1, 1)
+TextBox.TextColor3 = Color3.fromRGB(255, 255 ,255 )
 TextBox.TextSize = 18.000
 TextBox.TextWrapped = true
 TextBox.TextXAlignment = Enum.TextXAlignment.Left
@@ -229,7 +229,7 @@ TextLabel.Size = UDim2.new(0.75999999, -16, 0.949999988, 0)
 TextLabel.ZIndex = 4
 TextLabel.Font = Enum.Font.SourceSans
 TextLabel.Text = "Server Announcement"
-TextLabel.TextColor3 = Color3.fromRGB(1, 1, 1)
+TextLabel.TextColor3 = Color3.fromRGB(255, 255 ,255 )
 TextLabel.TextSize = 14.000
 TextLabel.TextWrapped = true
 
@@ -239,18 +239,18 @@ Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Exit.BackgroundTransparency = 1.000
 Exit.Size = UDim2.new(0, 20, 0, 20)
 Exit.ZIndex = 4
-Exit.Image = "rbxassetid://2132544126"
-
-Exit.MouseButton1Click:Connect(function()
-    Boomer:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
-    wait(0.6)
-    ScreenGui:Destroy()
-end)
 Boomer:TweenPosition(UDim2.new(0.5, -180, 0, 150), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
 wait(.5)
 local function done()
     wait(wait1 + 0.1)
     TextBox.Text = "Raze Series X\n\n\n Game Detected:  "..lol.."\n\n Loading..."
+    Exit.Image = "rbxassetid://2132544126"
+    
+    Exit.MouseButton1Click:Connect(function()
+        Boomer:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
+        wait(0.6)
+        ScreenGui:Destroy()
+    end)
     wait(2)
     Boomer:TweenPosition(UDim2.new(0.370000005, 0, -1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true, nil)
     wait(.6)
@@ -268,3 +268,4 @@ done()
 end
 end)
 end
+noti("game")

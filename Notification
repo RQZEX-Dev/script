@@ -267,3 +267,4 @@ ActualLoadingBar:TweenSize(UDim2.new(0, 318, 0, 24),
 done()
 end
 end)
+end

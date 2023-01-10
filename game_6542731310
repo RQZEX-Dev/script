@@ -735,3 +735,62 @@ Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
 getgenv().DiscordInvite = "suEFpCAFaD"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
 end)
+
+if game.Players.LocalPlayer.Character then
+    if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
+        if game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment") then
+            game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment"):destroy()
+        end
+    end
+end
+game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
+    repeat wait() until Char 
+    repeat wait() until Char:FindFirstChild("Head")
+    repeat wait() until Char.Head:FindFirstChild("FaceCenterAttachment")
+    Char.Head:FindFirstChild("FaceCenterAttachment"):destroy()
+end)
+
+for i,v in pairs(game.Players:GetChildren()) do
+    if v ~= game.Players.LocalPlayer then
+        if v.Character ~= nil then
+            if v.Character:FindFirstChild("Humanoid") then
+                if v.Character:FindFirstChild("Head") then
+                    if not v.Character.Head:FindFirstChild("FaceCenterAttachment") then
+                        v.Character.Humanoid.DisplayName = "[💀] "..v.Character.Humanoid.DisplayName
+                    end
+                end
+            end
+        end
+    end
+    v.CharacterAdded:Connect(function(Char)
+        repeat wait() until Char.Name ~= nil
+        if Char.Name ~= game.Players.LocalPlayer then
+            repeat wait() until Char 
+            repeat wait() until Char:FindFirstChild("Head")
+            repeat wait() until Char:FindFirstChild("Humanoid")
+            if not Char.Head:FindFirstChild("FaceCenterAttachment") then
+                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+            else
+                repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment")
+                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+            end
+        end
+    end)
+end
+
+game.Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function(Char)
+        repeat wait() until Char.Name ~= nil
+        if Char.Name ~= game.Players.LocalPlayer then
+            repeat wait() until Char 
+            repeat wait() until Char:FindFirstChild("Head")
+            repeat wait() until Char:FindFirstChild("Humanoid")
+            if not Char.Head:FindFirstChild("FaceCenterAttachment") then
+                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+            else
+                repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment")
+                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+            end
+        end
+    end)
+end)

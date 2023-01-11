@@ -128,10 +128,10 @@ local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
+ CurrentPlayer=foundPlayer;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
+ CurrentPlayer=foundPlayer;
   break;
 end;
 end;
@@ -141,7 +141,7 @@ end
 local CurrentPlayer = getFullNameFromPartial(txt)
 
 
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid

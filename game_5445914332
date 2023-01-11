@@ -518,7 +518,6 @@ getgenv().DiscordInvite = "suEFpCAFaD"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
 end)
 
-
 if game.Players.LocalPlayer.Character then
     if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
         if game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment") then
@@ -562,7 +561,10 @@ for i,v in pairs(game.Players:GetChildren()) do
                     Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
                 else
                     repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    if Char.Humanoid.Health == 0 then
+                    else
+                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    end
                 end
             end
         end
@@ -583,7 +585,10 @@ game.Players.PlayerAdded:Connect(function(plr)
                     Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
                 else
                     repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    if Char.Humanoid.Health == 0 then
+                    else
+                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    end
                 end
             end
         end

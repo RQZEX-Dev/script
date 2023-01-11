@@ -86,10 +86,10 @@ LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",func
     for i=1,#Players do
      local foundPlayer=Players[i];
     if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
-     CurrentPlayer=foundPlayer.Name;
+     CurrentPlayer=foundPlayer;
       break;
     elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
-     CurrentPlayer=foundPlayer.Name;
+     CurrentPlayer=foundPlayer;
       break;
     end;
     end;
@@ -98,7 +98,7 @@ LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",func
     
     local CurrentPlayer = getFullNameFromPartial(txt)
     
-    game:GetService("Workspace").Camera.CameraSubject = game.Players:FindFirstChild(CurrentPlayer).Character.Humanoid
+    game:GetService("Workspace").Camera.CameraSubject = CurrentPlayer.Character.Humanoid
     end)
 end)
 LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
@@ -108,10 +108,10 @@ local Players= game.Players:GetPlayers();
 for i=1,#Players do
  local foundPlayer=Players[i];
 if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
+ CurrentPlayer=foundPlayer;
   break;
 elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
+ CurrentPlayer=foundPlayer;
   break;
 end;
 end;
@@ -121,7 +121,7 @@ end
 local CurrentPlayer = getFullNameFromPartial(txt)
 
 
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
@@ -367,7 +367,10 @@ for i,v in pairs(game.Players:GetChildren()) do
                     Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
                 else
                     repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    if Char.Humanoid.Health == 0 then
+                    else
+                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    end
                 end
             end
         end
@@ -388,7 +391,10 @@ game.Players.PlayerAdded:Connect(function(plr)
                     Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
                 else
                     repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    if Char.Humanoid.Health == 0 then
+                    else
+                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    end
                 end
             end
         end

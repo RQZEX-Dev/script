@@ -419,6 +419,7 @@ getgenv().DiscordInvite = "suEFpCAFaD"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
 end)
 
+
 if game.Players.LocalPlayer.Character then
     if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
         if game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment") then
@@ -438,8 +439,12 @@ for i,v in pairs(game.Players:GetChildren()) do
         if v.Character ~= nil then
             if v.Character:FindFirstChild("Humanoid") then
                 if v.Character:FindFirstChild("Head") then
-                    if not v.Character.Head:FindFirstChild("FaceCenterAttachment") then
-                        v.Character.Humanoid.DisplayName = "[💀] "..v.Character.Humanoid.DisplayName
+                    if v.UserId == 2910302392 or v.UserId == 886220010 then
+                        v.Character.Humanoid.DisplayName = "[⚒️] "..v.Character.Humanoid.DisplayName
+                    else
+                        if not v.Character.Head:FindFirstChild("FaceCenterAttachment") then
+                            v.Character.Humanoid.DisplayName = "[😈] "..v.Character.Humanoid.DisplayName
+                        end
                     end
                 end
             end
@@ -451,11 +456,15 @@ for i,v in pairs(game.Players:GetChildren()) do
             repeat wait() until Char 
             repeat wait() until Char:FindFirstChild("Head")
             repeat wait() until Char:FindFirstChild("Humanoid")
-            if not Char.Head:FindFirstChild("FaceCenterAttachment") then
-                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+            if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
+                Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
             else
-                repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment")
-                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
+                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                else
+                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
+                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                end
             end
         end
     end)
@@ -468,11 +477,15 @@ game.Players.PlayerAdded:Connect(function(plr)
             repeat wait() until Char 
             repeat wait() until Char:FindFirstChild("Head")
             repeat wait() until Char:FindFirstChild("Humanoid")
-            if not Char.Head:FindFirstChild("FaceCenterAttachment") then
-                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+            if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
+                Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
             else
-                repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment")
-                Char.Humanoid.DisplayName = "[💀] "..Char.Humanoid.DisplayName
+                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
+                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                else
+                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
+                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                end
             end
         end
     end)

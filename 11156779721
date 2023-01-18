@@ -1,0 +1,664 @@
+local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
+
+noti("The Survival")
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Raze Series X";
+    Text = "Thanks for using RAZE Series X Do u like it?";
+    Duration = math.huge;
+    --Callback here
+    Button1 = "Yes";
+    Button2 = "Yes!!!";
+})
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local colors = {
+    SchemeColor = Color3.fromRGB(225,60,60),
+    Background = Color3.fromRGB(20,20,20),
+    Header = Color3.fromRGB(10,10,10),
+    TextColor = Color3.fromRGB(225,225,225),
+    ElementColor = Color3.fromRGB(40,40,40)
+}
+
+local Window = Library.CreateLib("RAZE Series X", colors)
+
+
+
+
+
+
+function BoatTp()
+            if game:GetService("Workspace"):FindFirstChild("boats") then
+                if game:GetService("Workspace"):FindFirstChild("boats"):FindFirstChild("Raft") or game:GetService("Workspace"):FindFirstChild("boats"):FindFirstChild("Boat") then
+                    for i,v in pairs(game.workspace.boats:GetChildren()) do
+                        Seat = v:FindFirstChildWhichIsA("VehicleSeat")
+                        if Seat and not Seat.Occupant then 
+                            break
+                        end
+                    end
+                    if Seat then
+                        Loop = game:GetService("RunService").Heartbeat:Connect(function()
+                            if Seat.Parent and Seat.Parent.PrimaryPart then
+                                Seat.Parent.PrimaryPart.CFrame = Target + Vector3.new(0, 5, 0)
+                                Seat.Parent.PrimaryPart.Velocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.AssemblyAngularVelocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.AssemblyLinearVelocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.RotVelocity = Vector3.zero
+                            end
+                        end)
+                        wait()
+                        Seat:Sit(game.Players.LocalPlayer.Character.Humanoid)
+                        wait(3)
+                        game.Players.LocalPlayer.character.Humanoid.Sit = false
+                        wait(.1)
+                        Loop:Disconnect()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyAngularVelocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.RotVelocity = Vector3.zero
+                    end
+                end
+            end
+end
+function AnimalTp()
+            if game:GetService("Workspace"):FindFirstChild("boats") then
+                if game:GetService("Workspace"):FindFirstChild("boats"):FindFirstChild("Raft") or game:GetService("Workspace"):FindFirstChild("boats"):FindFirstChild("Boat") then
+                    for i,v in pairs(game.workspace.boats:GetChildren()) do
+                        Seat = v:FindFirstChildWhichIsA("VehicleSeat")
+                        if Seat and not Seat.Occupant then 
+                            break
+                        end
+                    end
+                    if Seat then
+                        Loop = game:GetService("RunService").Heartbeat:Connect(function()
+                            if Seat.Parent and Seat.Parent.PrimaryPart then
+                                Seat.Parent.PrimaryPart.CFrame = Target + Vector3.new(0, 10, 0)
+                                Seat.Parent.PrimaryPart.Velocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.AssemblyAngularVelocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.AssemblyLinearVelocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.RotVelocity = Vector3.zero
+                            end
+                        end)
+                        wait()
+                        Seat:Sit(game.Players.LocalPlayer.Character.Humanoid)
+                        wait(3)
+                        game.Players.LocalPlayer.character.Humanoid.Sit = false
+                        wait(.1)
+                        Loop:Disconnect()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyAngularVelocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.RotVelocity = Vector3.zero
+                    end
+                end
+            end
+end
+
+function TreeTp()
+            if game:GetService("Workspace"):FindFirstChild("boats") then
+                if game:GetService("Workspace"):FindFirstChild("boats"):FindFirstChild("Raft") or game:GetService("Workspace"):FindFirstChild("boats"):FindFirstChild("Boat") then
+                    for i,v in pairs(game.workspace.boats:GetChildren()) do
+                        Seat = v:FindFirstChildWhichIsA("VehicleSeat")
+                        if Seat and not Seat.Occupant then 
+                            break
+                        end
+                    end
+                    if Seat then
+                        Loop = game:GetService("RunService").Heartbeat:Connect(function()
+                            if Seat.Parent and Seat.Parent.PrimaryPart then
+                                Seat.Parent.PrimaryPart.CFrame = Target + Vector3.new(0, 15, 0)
+                                Seat.Parent.PrimaryPart.Velocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.AssemblyAngularVelocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.AssemblyLinearVelocity = Vector3.zero
+                                Seat.Parent.PrimaryPart.RotVelocity = Vector3.zero
+                            end
+                        end)
+                        wait()
+                        Seat:Sit(game.Players.LocalPlayer.Character.Humanoid)
+                        wait(3)
+                        game.Players.LocalPlayer.character.Humanoid.Sit = false
+                        wait(.1)
+                        Loop:Disconnect()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyAngularVelocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.RotVelocity = Vector3.zero
+                    end
+                end
+            end
+end
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
+local Welcome = Window:NewTab("Welcome")
+local Welcome = Welcome:NewSection("Welcome")
+Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
+Welcome:NewLabel("Thanks for using RAZE Series X")
+
+
+
+
+
+
+
+--[[
+-------------------Guis----------------
+--]]
+
+
+
+
+
+
+
+local Guis = Window:NewTab("Guis")
+local Guis = Guis:NewSection("Guis")
+Guis:NewButton("Esp", "U can see people through walls", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/unnamed-esp'))()
+end)
+Guis:NewButton("Aimbot", "Aims ur mouse on a player's body", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/Miscellaneous/main/UNIVERSAL.lua"))()
+end)
+
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
+
+
+local Combat = Window:NewTab("Combat")
+local Combat = Combat:NewSection("Combat")
+
+
+
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
+
+
+local LocalPlayer = Window:NewTab("Local Player")
+local LocalPlayer = LocalPlayer:NewSection("Local Player")
+LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",function(txt)
+    pcall(function()
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    
+    game:GetService("Workspace").CurrentCamera.CameraSubject = CurrentPlayer.Character.Humanoid
+    end)
+end)
+LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        Target = CurrentPlayer.Character.HumanoidRootPart.CFrame
+        if Target ~= nil then
+            BoatTp()
+            else
+        end
+    end
+    Target = nil
+end)
+LocalPlayer:NewButton("Unview", "Views Urself", function()
+    game:GetService("Workspace").CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+end)
+LocalPlayer:NewButton("Reset Player", "Resets Ur Character", function()
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+wait(1)
+if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
+game.Players.LocalPlayer.Character.Humanoid:Destroy()
+end
+end)
+local noclip = false
+LocalPlayer:NewKeybind("Noclip", "Noclip", Enum.KeyCode.G, function()
+local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+noclip = not noclip
+    while true do
+        character = game.Players.LocalPlayer.Character
+    
+        if noclip then
+            for _, v in pairs(character:GetDescendants()) do
+                pcall(function()
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false
+                    end
+                end)
+            end
+        end
+    
+        game:GetService("RunService").Stepped:wait()
+    end
+end)
+LocalPlayer:NewButton("Save Pos", "Saves Current Pos", function()
+    pcall(function()
+        getgenv().Saved = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    end)
+end)
+LocalPlayer:NewButton("Load Pos", "Saves Current Pos", function()
+    if getgenv().Saved ~= nil then
+        Target = getgenv().Saved 
+    end
+    if Target ~= nil then
+        BoatTp()
+    end
+    Target = nil
+end)
+
+LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Big Stone", "Copper", "Iron", "Bluesteel"}, function(CurrentOption)
+    if CurrentOption == "Coal" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Coal Ore"]:GetChildren()) do
+            if v.BigRocks.Transparency ~= 1 then
+                Target = v.BigRocks.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+    end
+    if CurrentOption == "Stone" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Stone"]:GetChildren()) do
+            if v.PrimaryPart.Transparency ~= 1 then
+                Target = v.PrimaryPart.CFrame
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Stone" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Stone"]:GetChildren()) do
+            if v.PrimaryPart.Transparency ~= 1 then
+                Target = v.PrimaryPart.CFrame
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Copper" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Copper Ore"]:GetChildren()) do
+            if v.BigRocks.Transparency ~= 1 then
+                Target = v.BigRocks.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Iron" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Iron Ore"]:GetChildren()) do
+            if v.BigRocks.Transparency ~= 1 then
+                Target = v.BigRocks.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Bluesteel" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Bluesteel"]:GetChildren()) do
+            if v.lid.Transparency ~= 1 then
+                Target = v.lid.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+end)
+LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine", "Big Pine", "Palm", "Big Palm", "Jungle", "Big Jungle"}, function(CurrentOption)
+    if CurrentOption == "Oak" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Oak Tree"]:GetChildren()) do
+            if v.Trunk.Transparency ~= 1 then
+                Target = v.Trunk.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Big Oak" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Oak Tree"]:GetChildren()) do
+            if v.Trunk.Transparency ~= 1 then
+                Target = v.Trunk.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Pine" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Pine Tree"]:GetChildren()) do
+            if v.Trunk.Transparency ~= 1 then
+                Target = v.Trunk.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Big Pine" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Pine Tree"]:GetChildren()) do
+            if v.Trunk.Transparency ~= 1 then
+                Target = v.Trunk.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Palm" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Palm Tree"]:GetChildren()) do
+            if v.Trunk.Transparency ~= 1 then
+                Target = v.Trunk.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Big Palm" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Palm Tree"]:GetChildren()) do
+            if v.Trunk.Transparency ~= 1 then
+                Target = v.Trunk.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Jungle" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Jungle Tree"]:GetChildren()) do
+            if v.Trunk.Transparency ~= 1 then
+                Target = v.Trunk.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Big Jungle" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Jungle Tree"]:GetChildren()) do
+            if v.Vines.Transparency ~= 1 then
+                Target = v.Vines.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+
+end)
+LocalPlayer:NewDropdown("Tp To Nature", "DropdownInf", {"Mushroom", "Wheat", "Carrot (not Safe)", "Bush (not Safe)", "Berry Bush (not Safe)"}, function(CurrentOption)
+    if CurrentOption == "Mushroom" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Mushroom"]:GetChildren()) do
+            if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
+                Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Wheat" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Wheat"]:GetChildren()) do
+            if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
+                Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Carrot (not Safe)" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Carrot"]:GetChildren()) do
+            if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
+                Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Bush (not Safe)" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Bush"]:GetChildren()) do
+            if v.Leaves.Transparency ~= 1 then
+                Target = v.Leaves.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Berry Bush (not Safe)" then
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Berry Bush"]:GetChildren()) do
+            if v.Leaves.Transparency ~= 1 then
+                Target = v.Leaves.CFrame
+                break
+            end
+        end
+        if Target ~= nil then
+            BoatTp()
+        end
+        Target = nil
+    end
+
+end)
+
+LocalPlayer:NewDropdown("Tp To Animal", "DropdownInf", {"Deer", "Boar", "Elephant", "Chicken"}, function(CurrentOption)
+    if CurrentOption == "Deer" then
+        for i,v in pairs(game:GetService("Workspace").animals:GetChildren()) do
+            if v.Name == "Deer" then
+                if v.PrimaryPart ~= nil then
+                    Target = v.PrimaryPart.CFrame
+                    break
+                end
+            end
+        end
+        if Target ~= nil then
+            AnimalTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Boar" then
+        for i,v in pairs(game:GetService("Workspace").animals:GetChildren()) do
+            if v.Name == "Boar" then
+                if v.PrimaryPart ~= nil then
+                    Target = v.PrimaryPart.CFrame
+                    break
+                end
+            end
+        end
+        if Target ~= nil then
+            AnimalTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Elephant" then
+        for i,v in pairs(game:GetService("Workspace").animals:GetChildren()) do
+            if v.Name == "Elephant" then
+                if v.PrimaryPart ~= nil then
+                    Target = v.PrimaryPart.CFrame
+                    break
+                end
+            end
+        end
+        if Target ~= nil then
+            TreeTp()
+        end
+        Target = nil
+    end
+    if CurrentOption == "Chicken" then
+        for i,v in pairs(game:GetService("Workspace").animals:GetChildren()) do
+            if v.Name == "Chicken" then
+                if v.PrimaryPart ~= nil then
+                    Target = v.PrimaryPart.CFrame
+                    break
+                end
+            end
+        end
+        if Target ~= nil then
+            AnimalTp()
+        end
+        Target = nil
+    end
+
+end)
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
+local Misc = Window:NewTab("Misc")
+local Misc = Misc:NewSection("Misc")
+Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
+local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p)
+end)
+Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+Teleport()
+end)
+
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
+
+local Settings = Window:NewTab("Settings")
+local Settings = Settings:NewSection("Settings")
+Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
+
+local Credits = Window:NewTab("Credits")
+local Credits = Credits:NewSection("Credits")
+Credits:NewLabel("Made by RQZEX#9971")
+Credits:NewLabel("Credits: SkiddDev#2675")
+Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
+getgenv().DiscordInvite = "suEFpCAFaD"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+end)

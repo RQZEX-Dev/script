@@ -152,30 +152,6 @@ Welcome:NewLabel("Thanks for using RAZE Series X")
 
 
 --[[
--------------------Guis----------------
---]]
-
-
-
-
-
-
-
-local Guis = Window:NewTab("Guis")
-local Guis = Guis:NewSection("Guis")
-Guis:NewButton("Esp", "U can see people through walls", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/unnamed-esp'))()
-end)
-Guis:NewButton("Aimbot", "Aims ur mouse on a player's body", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/Miscellaneous/main/UNIVERSAL.lua"))()
-end)
-
-
-
-
-
-
---[[
 -------------------Combat----------------
 --]]
 

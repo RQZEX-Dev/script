@@ -1,4 +1,3 @@
-local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()

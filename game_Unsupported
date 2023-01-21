@@ -36,16 +36,6 @@ local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('r
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Unsupported")
-local CoreGui = game:GetService("StarterGui")
-
-CoreGui:SetCore("SendNotification", {
-    Title = "Raze Series X";
-    Text = "Thanks for using RAZE Series X Do u like it?";
-    Duration = math.huge;
-    --Callback here
-    Button1 = "Yes";
-    Button2 = "Yes!!!";
-})
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),

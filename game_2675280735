@@ -1,5 +1,23 @@
 local function badge()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/badges"))()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.UltimateSecret.Platform.CFrame
+    wait(.1)
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.HelpfulKillers.Platform.CFrame
+    wait(.1)
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.TheWayOut.Platform.CFrame
+    wait(.1)
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.AtomicBomb.Platform.CFrame
+    for i,v in pairs(game:GetService("Workspace").AREA51.Soldiers.WatchtowerSoldiers:GetChildren()) do
+        if v.Soldier.IsBored.Value == true then
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Soldier.Head.CFrame
+            wait()
+            local args = {
+                [1] = v.Soldier.RobloxDialogue
+            }
+            game:GetService("ReplicatedStorage").RobloxDialogue.Remotes.DialogueRequested:FireServer(unpack(args))
+            wait()
+            game:GetService("ReplicatedStorage").RobloxDialogue.Remotes.DialogueUserEnded:FireServer()
+        end
+    end
 end
 local function ammo()
         for i, v in pairs(getgc()) do
@@ -12,30 +30,81 @@ local function ammo()
         end
 end
 local function killeresp()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/killer_esp"))()
+_G.lol = true
+        if _G.lol == true then
+        repeat
+            local function esp(player)
+                local b = Instance.new("BoxHandleAdornment", player)
+                b.AlwaysOnTop = true
+                b.ZIndex = 5
+                b.Size = player.Size
+                b.Adornee = player
+                b.Transparency = 0.8
+            end
+
+            function Main(Esp)
+                for i, v in pairs(Esp:GetChildren()) do
+                    if v:IsA("BasePart") and not v:FindFirstChild("BoxHandleAdornment") then
+                        esp(v)
+                    end
+                end
+            end
+
+            for i, v in pairs(game.Workspace:GetDescendants()) do
+                pcall(
+                    function()
+                        if v:FindFirstChild("Zombie") and v.Name ~= game.Players.LocalPlayer.Name then
+                            Main(v)
+                        end
+                    end
+                )
+            end
+            wait(7)
+        until _G.lol == false
+        if _G.lol == false then
+            for i, v in pairs(game.Workspace.Killers:GetDescendants()) do
+                if v:IsA("BoxHandleAdornment") then
+                    v:Destroy()
+                end
+            end
+        end
+    end
+
 end
 local function getguns()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/getguns"))()
+    for i,v in pairs(game:GetService("Workspace").Weapons:GetChildren()) do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Hitbox.CFrame
+        wait()
+        fireproximityprompt(v.Hitbox.ProximityPrompt)
+        wait(.1)
+    end
 end
 local function papguns()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/pap"))()
+    for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA("Tool") then
+            if v.Name ~= "Landmine" then
+                if v.Name ~= "Energy" then
+                    if v.Name ~= "Hookshot" then
+                        if v.Name ~= "FlashLight" then
+                           local args = {
+                                [1] = v.Name
+                            }
+                            game:GetService("ReplicatedStorage"):FindFirstChild("Remote Functions"):FindFirstChild("PAP Weapon"):InvokeServer(unpack(args))
+                            game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PAPFinished:FireServer() wait ()
+                        end
+                    end
+                end
+            end
+        end
+    end
 end
-local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Survive and kill the killers")
-local CoreGui = game:GetService("StarterGui")
 
-CoreGui:SetCore("SendNotification", {
-    Title = "Raze Series X";
-    Text = "Thanks for using RAZE Series X Do u like it?";
-    Duration = math.huge;
-    --Callback here
-    Button1 = "Yes";
-    Button2 = "Yes!!!";
-})
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -53,14 +122,6 @@ Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
 Welcome:NewLabel("Thanks for using RAZE Series X")
 
 
-local Guis = Window:NewTab("Guis")
-local Guis = Guis:NewSection("Guis")
-Guis:NewButton("Esp", "U can see people through walls", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/unnamed-esp'))()
-end)
-Guis:NewButton("Aimbot", "Aims ur mouse on a player's body", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/Miscellaneous/main/UNIVERSAL.lua"))()
-end)
 local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
 Combat:NewButton("Infinite ammo", "Gives u infinite ammo", function()
@@ -116,171 +177,225 @@ end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 end)
-LocalPlayer:NewButton("Click-Tp (Ctrl)", "Teleports u where u click", function()
-
-
-local player = game:GetService("Players").LocalPlayer
-local char = player.Character
-local mouse = player:GetMouse()
-local uis = game:GetService("UserInputService")
-
-local shifthold  = false
-
-mouse.Button1Down:Connect(function()
-    if shifthold then
-        char:MoveTo(mouse.Hit.p)
-    end
-end)
-
-uis.InputBegan:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = true
-    end
-end)
-
-uis.InputEnded:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = false
-    end
-end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function()
-
-local player = game:GetService("Players").LocalPlayer
-local char = player.Character
-local mouse = player:GetMouse()
-local uis = game:GetService("UserInputService")
-
-local shifthold  = false
-
-mouse.Button1Down:Connect(function()
-    if shifthold then
-        char:MoveTo(mouse.Hit.p)
-    end
-end)
-
-uis.InputBegan:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = true
-    end
-end)
-
-uis.InputEnded:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = false
-    end
-end) 
-end)
-end)
-LocalPlayer:NewButton("FullBright", "Makes u see everything brighter", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
-end)
-LocalPlayer:NewButton("Xray (X)", "U can see through walls", function()
-
-local t=false
-
-local function scan(z,t)
-for _,i in pairs(z:GetChildren()) do
-if i:IsA("BasePart") and not i.Parent:FindFirstChild("Humanoid") and not i.Parent.Parent:FindFirstChild("Humanoid") then
-i.LocalTransparencyModifier=t
-end
-
-scan(i,t)
-end
-end
-
-function x(v)
-if v then
-scan(workspace,0.5)
-else
-scan(workspace,0)
-end
-end
-
-game:GetService("UserInputService").InputBegan:connect(function (input)
-if input.UserInputType==Enum.UserInputType.Keyboard and input.KeyCode==Enum.KeyCode.X then
-t=not t
-x(t)
-end
-end)
-end)
-LocalPlayer:NewButton("Reset Player", "Resets Ur Character", function()
-game.Players.LocalPlayer.Character.Humanoid.Health = 0
-wait(1)
-if game.Players.LocalPlayer.Character.Humanoid.Health >= 1 then
-game.Players.LocalPlayer.Character.Humanoid:Destroy()
-end
-end)
-local noclip = true
+local noclip = false
 LocalPlayer:NewKeybind("Noclip", "Noclip", Enum.KeyCode.G, function()
 local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-noclip = not noclip
-while true do
-    character = game.Players.LocalPlayer.Character
-
-    if noclip then
-        for _, v in pairs(character:GetDescendants()) do
-            pcall(function()
-                if v:IsA("BasePart") then
-                    v.CanCollide = false
-                end
-            end)
+    noclip = not noclip
+    while true do
+        if noclip then
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                pcall(function()
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false
+                    end
+                end)
+            end
         end
+        game:GetService("RunService").Stepped:wait()
     end
-
-    game:GetService("RunService").Stepped:wait()
-end
 end)
-LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
-end)
-LocalPlayer:NewButton("QuickSpeed", "Hold to Walk fast ", function()
-local CoreGui = game:GetService("StarterGui")
-
-CoreGui:SetCore("SendNotification", {
-    Title = "Raze Series X";
-    Text = "Hold C to use Quick Speed";
-    Duration = 10;
-    --Callback here
-    Button1 = "Thanks";
-    Button2 = "You Welcome";
-})
-   plr = game:GetService('Players').LocalPlayer
-
-down = true
-
-function onButton1Down(mouse)
-
-    down = true
-
-    while down do
-
-        if not down then break end
-
-        local char = plr.Character
-
-        char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.lookVector * 190
-
-        wait()
-
+CurFly = false
+Fly = true
+flyspeed = 1
+vehicleflyspeed = 1
+fly = false
+LocalPlayer:NewKeybind("Fly", "Fly Around", Enum.KeyCode.X, function()
+    if fly == false then
+        fly = not fly
+        Mouse = game.Players.LocalPlayer:GetMouse()
+        function getRoot(char)
+        	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+        	return rootPart
+        end
+        function sFLY(vfly)
+        	repeat wait() until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and getRoot(game.Players.LocalPlayer.Character) and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        	repeat wait() until Mouse
+        	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+            
+        	local T = getRoot(game.Players.LocalPlayer.Character)
+        	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        	local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        	local SPEED = 0
+        
+        	local function FLY()
+        		CurFly = true
+        		local BG = Instance.new('BodyGyro')
+        		local BV = Instance.new('BodyVelocity')
+        		BG.P = 9e4
+        		BG.Parent = T
+        		BV.Parent = T
+        		BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        		BG.cframe = T.CFrame
+        		BV.velocity = Vector3.new(0, 0, 0)
+        		BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        		task.spawn(function()
+        			repeat wait()
+        				if not vfly and game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+        					game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+        				end
+        				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
+        					SPEED = 50
+        				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
+        					SPEED = 0
+        				end
+        				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+        					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+        					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+        				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
+        					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+        				else
+        					BV.velocity = Vector3.new(0, 0, 0)
+        				end
+        				BG.cframe = workspace.CurrentCamera.CoordinateFrame
+        			until not CurFly
+        			CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        			lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        			SPEED = 0
+        			BG:Destroy()
+        			BV:Destroy()
+        			if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+        				game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+        			end
+        		end)
+        	end
+        	flyKeyDown = Mouse.KeyDown:Connect(function(KEY)
+        		if KEY:lower() == 'w' then
+        			CONTROL.F = (vfly and vehicleflyspeed or flyspeed)
+        		elseif KEY:lower() == 's' then
+        			CONTROL.B = - (vfly and vehicleflyspeed or flyspeed)
+        		elseif KEY:lower() == 'a' then
+        			CONTROL.L = - (vfly and vehicleflyspeed or flyspeed)
+        		elseif KEY:lower() == 'd' then 
+        			CONTROL.R = (vfly and vehicleflyspeed or flyspeed)
+        		elseif Fly and KEY:lower() == 'e' then
+        			CONTROL.Q = (vfly and vehicleflyspeed or flyspeed)*2
+        		elseif Fly and KEY:lower() == 'q' then
+        			CONTROL.E = -(vfly and vehicleflyspeed or flyspeed)*2
+        		end
+        		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
+        	end)
+        	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
+        		if KEY:lower() == 'w' then
+        			CONTROL.F = 0
+        		elseif KEY:lower() == 's' then
+        			CONTROL.B = 0
+        		elseif KEY:lower() == 'a' then
+        			CONTROL.L = 0
+        		elseif KEY:lower() == 'd' then
+        			CONTROL.R = 0
+        		elseif KEY:lower() == 'e' then
+        			CONTROL.Q = 0
+        		elseif KEY:lower() == 'q' then
+        			CONTROL.E = 0
+        		end
+        	end)
+        	FLY()
+        end
+        sFLY(true)
+    elseif fly == true then
+        fly = not fly
+    	CurFly = false
+    	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+    	if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+    		game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+    	end
+    	pcall(function() game.workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
     end
-
-end
-
-function onButton1Up(mouse)
-
-    down = false
-
-end
-
-function onSelected(mouse)
-
-    mouse.KeyDown:connect(function(c) if c:lower()=="c"then onButton1Down(mouse)end end)
-
-    mouse.KeyUp:connect(function(c) if c:lower()=="c"then onButton1Up(mouse)end end)
-
-end
-
-onSelected(game.Players.LocalPlayer:GetMouse())
+end)
+flinging = false
+LocalPlayer:NewKeybind("Fling", "Fling", Enum.KeyCode.M, function()
+    pcall(function()
+        if flinging ~= true then
+            function getRoot(char)
+            	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+            	return rootPart
+            end
+            function randomString()
+            	local length = math.random(10,20)
+            	local array = {}
+            	for i = 1, length do
+            		array[i] = string.char(math.random(32, 126))
+            	end
+            	return table.concat(array)
+            end
+        	flinging = false
+        	for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+        		if v:IsA("BasePart") then
+        			v.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
+        		end
+        	end
+            noclip = game:GetService("RunService").RenderStepped:Connect(function()
+                for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                    pcall(function()
+                        if v:IsA("BasePart") then
+                            v.CanCollide = false
+                        end
+                    end)
+                end
+                game:GetService("RunService").Stepped:wait()
+            end)
+        	wait(.1)
+        	local bambam = Instance.new("BodyAngularVelocity")
+        	bambam.Name = randomString()
+        	bambam.Parent = getRoot(game.Players.LocalPlayer.Character)
+        	bambam.AngularVelocity = Vector3.new(0,99999,0)
+        	bambam.MaxTorque = Vector3.new(0,math.huge,0)
+        	bambam.P = math.huge
+        	for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+        		if v:IsA("BasePart") then
+        			v.CanCollide = false
+        			v.Massless = true
+        			v.Velocity = Vector3.new(0, 0, 0)
+        		end
+        	end
+        	flinging = true
+        	local function flingDiedF()
+            	if flingDied then
+            		flingDied:Disconnect()
+            	end
+            	flinging = false
+            	wait(.1)
+            	if not game.Players.LocalPlayer.Character or not getRoot(game.Players.LocalPlayer.Character) then return end
+            	for i,v in pairs(getRoot(game.Players.LocalPlayer.Character):GetChildren()) do
+            		if v.ClassName == 'BodyAngularVelocity' then
+            			v:Destroy()
+            		end
+            	end
+            	for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            		if v.ClassName == "Part" or v.ClassName == "MeshPart" then
+            			v.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+            		end
+            	end
+        	end
+        	flingDied = game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
+        	repeat
+        		bambam.AngularVelocity = Vector3.new(0,99999,0)
+            	wait(.2)
+            	bambam.AngularVelocity = Vector3.new(0,0,0)
+            	wait(.1)
+        	until flinging == false
+        else
+            if flingDied then
+            	flingDied:Disconnect()
+            end
+            flinging = false
+            wait(.1)
+            if not game.Players.LocalPlayer.Character or not getRoot(game.Players.LocalPlayer.Character) then return end
+            for i,v in pairs(getRoot(game.Players.LocalPlayer.Character):GetChildren()) do
+            	if v.ClassName == 'BodyAngularVelocity' then
+            		v:Destroy()
+            	end
+            end
+            for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            	if v.ClassName == "Part" or v.ClassName == "MeshPart" then
+            		v.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+            	end
+            end
+        end
+    end)
+end)
+LocalPlayer:NewSlider("FlySpeed", "Changes ur Fly Speed", 20, 1, function(c)
+    vehicleflyspeed = c
 end)
 LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
 
@@ -292,15 +407,84 @@ local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
 local ts = game:GetService("TeleportService")
 local p = game:GetService("Players").LocalPlayer
-ts:Teleport(game.PlaceId, p)
+game:GetService("TeleportService"):Teleport(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
+local PlaceID = game.PlaceId
+local AllIDs = {}
+local foundAnything = ""
+local actualHour = os.date("!*t").hour
+local Deleted = false
+local File = pcall(function()
+    AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+end)
+if not File then
+    table.insert(AllIDs, actualHour)
+    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+end
+function TPReturner()
+    local Site;
+    if foundAnything == "" then
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+    else
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+    end
+    local ID = ""
+    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+        foundAnything = Site.nextPageCursor
+    end
+    local num = 0;
+    for i,v in pairs(Site.data) do
+        local Possible = true
+        ID = tostring(v.id)
+        if tonumber(v.maxPlayers) > tonumber(v.playing) then
+            for _,Existing in pairs(AllIDs) do
+                if num ~= 0 then
+                    if ID == tostring(Existing) then
+                        Possible = false
+                    end
+                else
+                    if tonumber(actualHour) ~= tonumber(Existing) then
+                        local delFile = pcall(function()
+                            delfile("NotSameServers.json")
+                            AllIDs = {}
+                            table.insert(AllIDs, actualHour)
+                        end)
+                    end
+                end
+                num = num + 1
+            end
+            if Possible == true then
+                table.insert(AllIDs, ID)
+                wait()
+                pcall(function()
+                    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                    wait()
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                end)
+                wait(4)
+            end
+        end
+    end
+end
+
+function Teleport()
+    while wait() do
+        pcall(function()
+            TPReturner()
+            if foundAnything ~= "" then
+                TPReturner()
+            end
+        end)
+    end
+end
+
+
 Teleport()
 end)
 
-    Misc:NewButton("Killer esp", "Makes u see Killers through walls", function()
-killeresp()
+Misc:NewButton("Killer esp", "Makes u see Killers through walls", function()
+    killeresp()
 end)
 
 local Settings = Window:NewTab("Settings")
@@ -308,89 +492,30 @@ local Settings = Settings:NewSection("Settings")
 Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
+
 local Credits = Window:NewTab("Credits")
 local Credits = Credits:NewSection("Credits")
 Credits:NewLabel("Made by RQZEX#9971")
 Credits:NewLabel("Credits: SkiddDev#2675")
 Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
-getgenv().DiscordInvite = "suEFpCAFaD"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+getgenv().Discord = "suEFpCAFaD"
+syn.request(
+   {
+       Url = "http://127.0.0.1:6463/rpc?v=1",
+       Method = "POST",
+       Headers = {
+           ["Content-Type"] = "application/json",
+           ["origin"] = "https://discord.com",
+       },
+       Body = game:GetService("HttpService"):JSONEncode(
+           {
+               ["args"] = {
+                   ["code"] = getgenv().Discord,
+               },
+               ["cmd"] = "INVITE_BROWSER",
+               ["nonce"] = "."
+           })
+   })
 end)
 
-
-if game.Players.LocalPlayer.Character then
-    if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
-        if game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment") then
-            game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment"):destroy()
-        end
-    end
-end
-game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
-    repeat wait() until Char 
-    repeat wait() until Char:FindFirstChild("Head")
-    repeat wait() until Char.Head:FindFirstChild("FaceCenterAttachment")
-    Char.Head:FindFirstChild("FaceCenterAttachment"):destroy()
-end)
-
-for i,v in pairs(game.Players:GetChildren()) do
-    if v ~= game.Players.LocalPlayer then
-        if v.Character ~= nil then
-            if v.Character:FindFirstChild("Humanoid") then
-                if v.Character:FindFirstChild("Head") then
-                    if v.UserId == 2910302392 or v.UserId == 886220010 then
-                        v.Character.Humanoid.DisplayName = "[⚒️] "..v.Character.Humanoid.DisplayName
-                    else
-                        if not v.Character.Head:FindFirstChild("FaceCenterAttachment") then
-                            v.Character.Humanoid.DisplayName = "[😈] "..v.Character.Humanoid.DisplayName
-                        end
-                    end
-                end
-            end
-        end
-    end
-    v.CharacterAdded:Connect(function(Char)
-        repeat wait() until Char.Name ~= nil
-        if Char.Name ~= game.Players.LocalPlayer then
-            repeat wait() until Char 
-            repeat wait() until Char:FindFirstChild("Head")
-            repeat wait() until Char:FindFirstChild("Humanoid")
-            if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
-                Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
-            else
-                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                else
-                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    if Char.Humanoid.Health == 0 then
-                    else
-                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                    end
-                end
-            end
-        end
-    end)
-end
-
-game.Players.PlayerAdded:Connect(function(plr)
-    plr.CharacterAdded:Connect(function(Char)
-        repeat wait() until Char.Name ~= nil
-        if Char.Name ~= game.Players.LocalPlayer then
-            repeat wait() until Char 
-            repeat wait() until Char:FindFirstChild("Head")
-            repeat wait() until Char:FindFirstChild("Humanoid")
-            if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
-                Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
-            else
-                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                else
-                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    if Char.Humanoid.Health == 0 then
-                    else
-                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                    end
-                end
-            end
-        end
-    end)
-end)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Premium"))()

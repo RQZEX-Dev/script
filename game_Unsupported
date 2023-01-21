@@ -506,8 +506,24 @@ local Credits = Credits:NewSection("Credits")
 Credits:NewLabel("Made by RQZEX#9971")
 Credits:NewLabel("Credits: SkiddDev#2675")
 Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
-getgenv().DiscordInvite = "suEFpCAFaD"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+getgenv().Discord = "suEFpCAFaD"
+syn.request(
+   {
+       Url = "http://127.0.0.1:6463/rpc?v=1",
+       Method = "POST",
+       Headers = {
+           ["Content-Type"] = "application/json",
+           ["origin"] = "https://discord.com",
+       },
+       Body = game:GetService("HttpService"):JSONEncode(
+           {
+               ["args"] = {
+                   ["code"] = getgenv().Discord,
+               },
+               ["cmd"] = "INVITE_BROWSER",
+               ["nonce"] = "."
+           })
+   })
 end)
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Premium"))()

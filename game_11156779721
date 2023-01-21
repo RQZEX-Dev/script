@@ -301,12 +301,14 @@ LocalPlayer:NewButton("Load Pos", "Saves Current Pos", function()
     Target = nil
 end)
 
-LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Big Stone", "Copper", "Iron", "Bluesteel"}, function(CurrentOption)
+LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Copper", "Iron", "Bluesteel"}, function(CurrentOption)
     if CurrentOption == "Coal" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Coal Ore"]:GetChildren()) do
-            if v.BigRocks.Transparency ~= 1 then
-                Target = v.BigRocks.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable:GetDescendants()) do
+            if v.Name == "Coal Ore" then
+                if v.BigRocks.Transparency ~= 1 then
+                    Target = v.BigRocks.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -314,20 +316,11 @@ LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Big Stone
         end
     end
     if CurrentOption == "Stone" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Stone"]:GetChildren()) do
-            if v.PrimaryPart.Transparency ~= 1 then
-                Target = v.PrimaryPart.CFrame
-            end
-        end
-        if Target ~= nil then
-            BoatTp()
-        end
-        Target = nil
-    end
-    if CurrentOption == "Stone" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Stone"]:GetChildren()) do
-            if v.PrimaryPart.Transparency ~= 1 then
-                Target = v.PrimaryPart.CFrame
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable:GetDescendants()) do
+            if v.Name == "Stone" then
+                if v.PrimaryPart.Transparency ~= 1 then
+                    Target = v.PrimaryPart.CFrame
+                end
             end
         end
         if Target ~= nil then
@@ -336,10 +329,12 @@ LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Big Stone
         Target = nil
     end
     if CurrentOption == "Copper" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Copper Ore"]:GetChildren()) do
-            if v.BigRocks.Transparency ~= 1 then
-                Target = v.BigRocks.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable:GetDescendants()) do
+            if v.Name == "Copper Ore" then
+                if v.BigRocks.Transparency ~= 1 then
+                    Target = v.BigRocks.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -348,10 +343,12 @@ LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Big Stone
         Target = nil
     end
     if CurrentOption == "Iron" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Iron Ore"]:GetChildren()) do
-            if v.BigRocks.Transparency ~= 1 then
-                Target = v.BigRocks.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable:GetDescendants()) do
+            if v.Name == "Iron Ore" then
+                if v.BigRocks.Transparency ~= 1 then
+                    Target = v.BigRocks.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -360,10 +357,12 @@ LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Big Stone
         Target = nil
     end
     if CurrentOption == "Bluesteel" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.mineable["Bluesteel"]:GetChildren()) do
-            if v.lid.Transparency ~= 1 then
-                Target = v.lid.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.mineable:GetDescendants()) do
+            if v.Name == "Bluesteel" then
+                if v.lid.Transparency ~= 1 then
+                    Target = v.lid.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -374,10 +373,12 @@ LocalPlayer:NewDropdown("Tp To Ore", "DropdownInf", {"Coal", "Stone", "Big Stone
 end)
 LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine", "Big Pine", "Palm", "Big Palm", "Jungle", "Big Jungle"}, function(CurrentOption)
     if CurrentOption == "Oak" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Oak Tree"]:GetChildren()) do
-            if v.Trunk.Transparency ~= 1 then
-                Target = v.Trunk.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Oak Tree" then
+                if v.Trunk.Transparency ~= 1 then
+                    Target = v.Trunk.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -386,10 +387,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
         Target = nil
     end
     if CurrentOption == "Big Oak" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Oak Tree"]:GetChildren()) do
-            if v.Trunk.Transparency ~= 1 then
-                Target = v.Trunk.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Big Oak Tree" then
+                if v.Trunk.Transparency ~= 1 then
+                    Target = v.Trunk.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -398,10 +401,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
         Target = nil
     end
     if CurrentOption == "Pine" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Pine Tree"]:GetChildren()) do
-            if v.Trunk.Transparency ~= 1 then
-                Target = v.Trunk.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Pine Tree" then
+                if v.Trunk.Transparency ~= 1 then
+                    Target = v.Trunk.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -410,10 +415,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
         Target = nil
     end
     if CurrentOption == "Big Pine" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Pine Tree"]:GetChildren()) do
-            if v.Trunk.Transparency ~= 1 then
-                Target = v.Trunk.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Big Pine Tree" then
+                if v.Trunk.Transparency ~= 1 then
+                    Target = v.Trunk.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -422,10 +429,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
         Target = nil
     end
     if CurrentOption == "Palm" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Palm Tree"]:GetChildren()) do
-            if v.Trunk.Transparency ~= 1 then
-                Target = v.Trunk.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Palm Tree" then
+                if v.Trunk.Transparency ~= 1 then
+                    Target = v.Trunk.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -434,10 +443,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
         Target = nil
     end
     if CurrentOption == "Big Palm" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Palm Tree"]:GetChildren()) do
-            if v.Trunk.Transparency ~= 1 then
-                Target = v.Trunk.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Big Palm Tree" then
+                if v.Trunk.Transparency ~= 1 then
+                    Target = v.Trunk.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -446,10 +457,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
         Target = nil
     end
     if CurrentOption == "Jungle" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Jungle Tree"]:GetChildren()) do
-            if v.Trunk.Transparency ~= 1 then
-                Target = v.Trunk.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Jungle Tree" then
+                if v.Trunk.Transparency ~= 1 then
+                    Target = v.Trunk.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -458,10 +471,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
         Target = nil
     end
     if CurrentOption == "Big Jungle" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Big Jungle Tree"]:GetChildren()) do
-            if v.Vines.Transparency ~= 1 then
-                Target = v.Vines.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Big Jungle Tree" then
+                if v.Vines.Transparency ~= 1 then
+                    Target = v.Vines.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -473,10 +488,12 @@ LocalPlayer:NewDropdown("Tp To Trees", "DropdownInf", {"Oak", "Big Oak", "Pine",
 end)
 LocalPlayer:NewDropdown("Tp To Nature", "DropdownInf", {"Mushroom", "Wheat", "Carrot (not Safe)", "Bush (not Safe)", "Berry Bush (not Safe)"}, function(CurrentOption)
     if CurrentOption == "Mushroom" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Mushroom"]:GetChildren()) do
-            if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
-                Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Mushroom" then
+                if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
+                    Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -485,10 +502,12 @@ LocalPlayer:NewDropdown("Tp To Nature", "DropdownInf", {"Mushroom", "Wheat", "Ca
         Target = nil
     end
     if CurrentOption == "Wheat" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Wheat"]:GetChildren()) do
-            if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
-                Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Wheat" then
+                if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
+                    Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -497,10 +516,12 @@ LocalPlayer:NewDropdown("Tp To Nature", "DropdownInf", {"Mushroom", "Wheat", "Ca
         Target = nil
     end
     if CurrentOption == "Carrot (not Safe)" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Carrot"]:GetChildren()) do
-            if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
-                Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Carrot" then
+                if v:FindFirstChildWhichIsA("MeshPart").Transparency ~= 1 then
+                    Target = v:FindFirstChildWhichIsA("MeshPart").CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -509,10 +530,12 @@ LocalPlayer:NewDropdown("Tp To Nature", "DropdownInf", {"Mushroom", "Wheat", "Ca
         Target = nil
     end
     if CurrentOption == "Bush (not Safe)" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Bush"]:GetChildren()) do
-            if v.Leaves.Transparency ~= 1 then
-                Target = v.Leaves.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Bush" then
+                if v.Leaves.Transparency ~= 1 then
+                    Target = v.Leaves.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then
@@ -521,10 +544,12 @@ LocalPlayer:NewDropdown("Tp To Nature", "DropdownInf", {"Mushroom", "Wheat", "Ca
         Target = nil
     end
     if CurrentOption == "Berry Bush (not Safe)" then
-        for i,v in pairs(game:GetService("Workspace").worldResources.choppable["Berry Bush"]:GetChildren()) do
-            if v.Leaves.Transparency ~= 1 then
-                Target = v.Leaves.CFrame
-                break
+        for i,v in pairs(game:GetService("Workspace").worldResources.choppable:GetDescendants()) do
+            if v.Name == "Berry Bush" then
+                if v.Leaves.Transparency ~= 1 then
+                    Target = v.Leaves.CFrame
+                    break
+                end
             end
         end
         if Target ~= nil then

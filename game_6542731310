@@ -518,14 +518,14 @@ end
 
 Teleport()
 end)
-Misc:NewButton("Complete Current Quest", "Auto Completes ur Current Quest", function()
 
-for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.QuestList.Main:GetChildren()) do
-if v.Name ~= "UIGridLayout" and v.Locked.Visible == false and v.Completed.Visible == false and v.InProgress.Visible == true then
+Misc:NewButton("Complete Current Autumn Quest", "Auto Completes ur Current Quest", function()
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.AutumnQuests.Main:GetChildren()) do
+if v.Name ~= "UIListLayout" and v.Locked.Visible == false and v.Completed.Visible == false and v.InProgress.Visible == true then
 CurrentQuest = v.Name
 end
 end
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -537,7 +537,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -549,7 +549,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -561,7 +561,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -573,7 +573,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -585,7 +585,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -597,7 +597,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -609,7 +609,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -621,7 +621,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -633,7 +633,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -645,7 +645,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -657,7 +657,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -669,7 +669,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -681,7 +681,7 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -693,7 +693,195 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
 end
 wait()
-for i=1,15 do
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 15
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+end)
+
+Misc:NewButton("Complete Normal Current Quest", "Auto Completes ur Current Quest", function()
+
+for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.QuestList.Main:GetChildren()) do
+if v.Name ~= "UIGridLayout" and v.Locked.Visible == false and v.Completed.Visible == false and v.InProgress.Visible == true then
+CurrentQuest = v.Name
+end
+end
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 1
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 2
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 3
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 4
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 5
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 6
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 7
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 8
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 9
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 10
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 11
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 12
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 13
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
+local args = {
+    [1] = "TrackProgress",
+    [2] = {
+        ["ID"] = CurrentQuest,
+        ["TaskID"] = 14
+    }
+}
+
+game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Quests:FireServer(unpack(args))
+end
+wait()
+for i=1,100 do
 local args = {
     [1] = "TrackProgress",
     [2] = {
@@ -793,23 +981,39 @@ local args = {
 game:GetService("ReplicatedStorage").SpecWork.Shared.Network.PromoCodes:FireServer(unpack(args))
 
 end)
-Misc:NewButton("Auto Exchange (at 450)", "Automaticly Exchanges Dogecoins (Close Range)", function()
-getgenv().autoexchange = false
-wait(.1)
-getgenv().autoexchange = true
-while getgenv().autoexchange == true do
-if game:GetService("Workspace")["__Locations"].Exchange.Rate.Value >= 450 then
-local args = {
-    [1] = "Exchange",
-    [2] = {
-        ["Rate"] = game:GetService("Workspace")["__Locations"].Exchange.Rate.Value
-    }
-}
+Auto = true
+getgenv().Tp = false
+getgenv().AutoExchangeValue = 400
+Misc:NewToggle("Auto Exchange", "Automaticly Exchanges Dogecoins (Close Range)", function()
+    Auto = not Auto
+    if Auto == false then
+        getgenv().AutoExchange = true
+        while getgenv().AutoExchange == true do
+            if game:GetService("Workspace")["__Locations"].Exchange.Rate.Value >= getgenv().AutoExchangeValue then
+                if getgenv().Tp == true then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["__Maps"].Starter.Locations.Bank.Part.CFrame
+                end
+                local args = {
+                    [1] = "Exchange",
+                    [2] = {
+                        ["Rate"] = game:GetService("Workspace")["__Locations"].Exchange.Rate.Value
+                    }
+                }
+                
+                game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Exchange:FireServer(unpack(args))
+            end
+            wait()
+        end
+    elseif Auto == true then
+        getgenv().AutoExchange = false
+    end
+end)
+Misc:NewToggle("Auto Tp", "Teleports u to Exchange if the rate Value is at ur desire", function()
+    getgenv().Tp = not getgenv().Tp
+end)
 
-game:GetService("ReplicatedStorage").SpecWork.Shared.Network.Exchange:FireServer(unpack(args))
-end
-wait()
-end
+Misc:NewSlider("Change Value", "Changes the Value that it starts to sell dogecoins on", 500, 200, function(a) -- 500 = max 0 = min
+    getgenv().AutoExchangeValue = a
 end)
 
 

@@ -32,12 +32,7 @@ end
 
 
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
-function SavePos()
-    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
-end
-function Tp()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
-end
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Island Tribes")
@@ -52,10 +47,42 @@ local colors = {
 
 local Window = Library.CreateLib("RAZE Series X", colors)
 
+
+
+
+
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
 local Welcome = Window:NewTab("Welcome")
 local Welcome = Welcome:NewSection("Welcome")
 Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
 Welcome:NewLabel("Thanks for using RAZE Series X")
+
+
+
+
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
 
 
 local Combat = Window:NewTab("Combat")
@@ -113,12 +140,12 @@ local function GetNearestAnimal()
     local PlayerPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
      
     for i,v in pairs(workspace:GetDescendants()) do
-        if v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("MeshPart") and v:FindFirstChild("Humanoid") and not v:FindFirstChild("Body Colors")  then
+        if v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("BasePart") and v:FindFirstChild("Humanoid") and not v:FindFirstChild("Body Colors")  then
             if Closest == nil then
-                Closest = v:FindFirstChildWhichIsA("MeshPart")
+                Closest = v:FindFirstChildWhichIsA("BasePart")
             else
-                if (PlayerPosition - v:FindFirstChildWhichIsA("MeshPart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
-                    Closest = v:FindFirstChildWhichIsA("MeshPart")
+                if (PlayerPosition - v:FindFirstChildWhichIsA("BasePart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
+                    Closest = v:FindFirstChildWhichIsA("BasePart")
                 end
             end 
         end
@@ -131,7 +158,7 @@ Combat:NewToggle("Animal Aura", "Automaticly Kills Animals", function(state)
         while getgenv().AutoAnimal == true do
             pcall(function()
                 NeareastAnimal = GetNearestAnimal()
-                Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastAnimal:FindFirstChildWhichIsA("MeshPart").Position).magnitude
+                Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastAnimal:FindFirstChildWhichIsA("BasePart").Position).magnitude
                 
                 if Mag <= 20 then
                     local args = {
@@ -149,6 +176,21 @@ Combat:NewToggle("Animal Aura", "Automaticly Kills Animals", function(state)
         getgenv().AutoAnimal = false
     end
 end)
+
+
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
+
+
 local LocalPlayer = Window:NewTab("Local Player")
 local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",function(txt)
@@ -191,10 +233,10 @@ LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", 
         return CurrentPlayer;
     end
 
-local CurrentPlayer = getFullNameFromPartial(txt)
+    local CurrentPlayer = getFullNameFromPartial(txt)
 
 
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
@@ -428,10 +470,25 @@ LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
 
 end)
+
+
+
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
+game:GetService("TeleportService"):Teleport(game.PlaceId,game.JobId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 local PlaceID = game.PlaceId
@@ -508,12 +565,12 @@ Teleport()
 end)
 Misc:NewButton("Save Pos", "Saves ur Current Position so u can go back to it", function()
     pcall(function()
-        SavePos()
+        Save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
     end)
 end)
-Misc:NewButton("Teleport to Saved Pos", "Teleports u To ur Saved Position", function()
-    if SavedPos ~= nil then
-        Tp()
+Misc:NewButton("Load Pos", "Teleports u To ur Saved Position", function()
+    if Save ~= nil then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Save
     end
 end)
 Misc:NewButton("Teleport to Tree", "Teleports u To an Existing Tree if A Tree Exists", function()
@@ -570,276 +627,52 @@ Misc:NewButton("Teleport to Diamond", "Teleports u To an Existing Diamond if A R
         end
     end)
 end)
+getgenv().AutoGoodLoot = false
+Misc:NewToggle("Auto Pick Up Good Loot", "Automaticly Picks Up Good Loot for u if something drops and is in sight range", function(state)
+    List =  {"Unrefined Ruby" , "Ruby" , "Ruby Boots" , "Ruby Legs" , "Ruby Body" , "Ruby Bag" , "Ruby Helmet" , "Ruby Harvester" , "Ruby Sword" , "Unrefined Diamond" , "Diamond" , "Diamond Boots" , "Diamond Legs" , "Diamond Body" , "Diamond Bag" , "Diamond Helmet" , "Diamond Harvester" }
+    getgenv().AutoGoodLoot = not getgenv().AutoGoodLoot
+    while getgenv().AutoGoodLoot == true do
+        for i,v in pairs(game.workspace:GetChildren()) do
+            if table.find(List,v.Name) then
+                if (v:FindFirstChildWhichIsA("BasePart").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 15 then
+                    game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(v,"Pickup")
+                else
+                    save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
+                    wait()
+                    game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(v,"Pickup")
+                    wait()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = save
+                end
+            end
+        end
+        wait()
+    end
+end)
 local function GetNearestItem()
     local Closest
     local PlayerPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
      
     for i,v in pairs(workspace:GetChildren()) do
-        if not v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("MeshPart") then
+        if not v:FindFirstChild("Health") and v:FindFirstChildWhichIsA("BasePart") then
             if Closest == nil then
-                Closest = v:FindFirstChildWhichIsA("MeshPart")
+                Closest = v:FindFirstChildWhichIsA("BasePart")
             else
-                if (PlayerPosition - v:FindFirstChildWhichIsA("MeshPart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
-                    Closest = v:FindFirstChildWhichIsA("MeshPart")
+                if (PlayerPosition - v:FindFirstChildWhichIsA("BasePart").Position).magnitude < (Closest.Position - PlayerPosition).magnitude then
+                    Closest = v:FindFirstChildWhichIsA("BasePart")
                 end
             end 
         end
     end
     return Closest.Parent
 end
-Misc:NewToggle("Auto Pick Up Good Loot", "Automaticly Picks Up Good Loot for u if something drops and is in sight range", function(state)
-    if state then
-        pcall(function()
-            POS = game.Players.LocalPlayer.Character.Head.CFrame
-            local function SavePos(POS)
-                pcall(function()
-                    POS = game.Players.LocalPlayer.Character.Head.CFrame;
-                end);
-                    SavedPosition = POS;
-                end;
-            function LoadPos()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (SavedPosition)
-            end;
-            getgenv().pickup = true
-            while getgenv().pickup == true do
-            pcall(function()
-            if game.workspace:FindFirstChild("Diamond") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Diamond.Primary.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace.Diamond,
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby Boots") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby Boots").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby Boots"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby Helmet") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby Helmet").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby Helmet"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby Legs") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby Legs").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby Legs"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby Body") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby Body").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby Body"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Diamond Boots") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Diamond Boots").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Diamond Boots"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Diamond Helmet") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Diamond Helmet").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Diamond Helmet"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Diamond Legs") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Diamond Legs").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Diamond Legs"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Diamond Body") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Diamond Body").MainWeld.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Diamond Body"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby Harvester") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby Harvester").Part.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby Harvester"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby Sword") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby Sword").Extents.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby Sword"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby").Primary.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Diamond Harvester") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Diamond Harvester").Part.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Diamond Harvester"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Diamond Bag") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Diamond Bag").Handle.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Diamond Bag"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Ruby Bag") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Ruby Bag").Handle.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Ruby Bag"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-             wait(.1)
-             LoadPos()
-            end
-            if game.workspace:FindFirstChild("Unrefined Ruby") then
-                SavePos()
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Unrefined Ruby").PrimaryPart.CFrame
-                wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Unrefined Ruby"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-            wait(.1)
-            LoadPos()
-            end
-            if game:GetService("Workspace"):FindFirstChild("Unrefined Diamond") then
-                SavePos()
-              game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild("Unrefined Diamond").PrimaryPart.CFrame
-               wait(.1)
-            local args = {
-                [1] = workspace:FindFirstChild("Unrefined Diamond"),
-                [2] = "Pickup"
-            }
-            
-            game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(unpack(args))
-            wait(.1)
-            LoadPos()
-            end
-            end)
-            wait()
-            end
-
-        end)
-    else
-        getgenv().pickup = false
-    end
-end)
 Misc:NewToggle("PickUp Aura", "Automaticly Picks Stuff Around u", function(state)
     if state then
         getgenv().AutoPickup = true
         while getgenv().AutoPickup == true do
             pcall(function()
                 NeareastItem = GetNearestItem()
-                Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastItem:FindFirstChildWhichIsA("MeshPart").Position).magnitude
+                Mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - NeareastItem:FindFirstChildWhichIsA("BasePart").Position).magnitude
                 
                 if Mag <= 30 then
                     local args = {
@@ -897,11 +730,41 @@ Misc:NewToggle("Mine Aura", "Automaticly Mines Stuff Around u", function(state)
     end
 end)
 
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
+
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
 Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
 
 local Credits = Window:NewTab("Credits")
 local Credits = Credits:NewSection("Credits")

@@ -1,3 +1,4 @@
+
 if not isfile("Server.txt") then
     writefile("Server.txt","")
 end
@@ -30,123 +31,11 @@ end
 
 
 
-POS = game.Players.LocalPlayer.Character.Head.CFrame
-local function SavePos(POS)
-    pcall(function()
-        POS = game.Players.LocalPlayer.Character.Head.CFrame;
-    end);
-        SavedPosition = POS;
-    end;
-function LoadPos()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (SavedPosition)
-end;
-local function badge()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.UltimateSecret.Platform.CFrame
-    wait(.1)
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.HelpfulKillers.Platform.CFrame
-    wait(.1)
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.TheWayOut.Platform.CFrame
-    wait(.1)
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Badges.AtomicBomb.Platform.CFrame
-    for i,v in pairs(game:GetService("Workspace").AREA51.Soldiers.WatchtowerSoldiers:GetChildren()) do
-        if v.Soldier.IsBored.Value == true then
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Soldier.Head.CFrame
-            wait()
-            local args = {
-                [1] = v.Soldier.RobloxDialogue
-            }
-            game:GetService("ReplicatedStorage").RobloxDialogue.Remotes.DialogueRequested:FireServer(unpack(args))
-            wait()
-            game:GetService("ReplicatedStorage").RobloxDialogue.Remotes.DialogueUserEnded:FireServer()
-        end
-    end
-end
-local function ammo()
-        for i, v in pairs(getgc()) do
-            if type(v) == "function" and islclosure(v) and not is_synapse_function(v) then
-                local x = debug.getconstants(v)
-                if table.find(x, "ammo") and table.find(x, "update_ammo_gui") and table.find(x, "has_scope") then
-                    debug.setconstant(v, 2, -999999)
-                end
-            end
-        end
-end
-local function killeresp()
-_G.lol = true
-        if _G.lol == true then
-        repeat
-            local function esp(player)
-                local b = Instance.new("BoxHandleAdornment", player)
-                b.AlwaysOnTop = true
-                b.ZIndex = 5
-                b.Size = player.Size
-                b.Adornee = player
-                b.Transparency = 0.8
-            end
-
-            function Main(Esp)
-                for i, v in pairs(Esp:GetChildren()) do
-                    if v:IsA("BasePart") and not v:FindFirstChild("BoxHandleAdornment") then
-                        esp(v)
-                    end
-                end
-            end
-
-            for i, v in pairs(game.Workspace:GetDescendants()) do
-                pcall(
-                    function()
-                        if v:FindFirstChild("Zombie") and v.Name ~= game.Players.LocalPlayer.Name then
-                            Main(v)
-                        end
-                    end
-                )
-            end
-            wait(7)
-        until _G.lol == false
-        if _G.lol == false then
-            for i, v in pairs(game.Workspace.Killers:GetDescendants()) do
-                if v:IsA("BoxHandleAdornment") then
-                    v:Destroy()
-                end
-            end
-        end
-    end
-
-end
-local function getguns()
-    for i,v in pairs(game:GetService("Workspace").Weapons:GetChildren()) do
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Hitbox.CFrame
-        wait()
-        fireproximityprompt(v.Hitbox.ProximityPrompt)
-        wait(.1)
-    end
-end
-local function papguns()
-    for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-        if v:IsA("Tool") then
-            if v.Name ~= "Landmine" then
-                if v.Name ~= "Energy" then
-                    if v.Name ~= "Hookshot" then
-                        if v.Name ~= "FlashLight" then
-                           local args = {
-                                [1] = v.Name
-                            }
-                            game:GetService("ReplicatedStorage"):FindFirstChild("Remote Functions"):FindFirstChild("PAP Weapon"):InvokeServer(unpack(args))
-                            game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PAPFinished:FireServer() wait ()
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
-
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
-noti("Survive and kill the killers")
-
+noti("Survive And Kill The Killers")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -158,17 +47,75 @@ local colors = {
 
 local Window = Library.CreateLib("RAZE Series X", colors)
 
+
+
+
+
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
 local Welcome = Window:NewTab("Welcome")
 local Welcome = Welcome:NewSection("Welcome")
 Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
 Welcome:NewLabel("Thanks for using RAZE Series X")
 
 
+
+
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
+
+
 local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
 Combat:NewButton("Infinite ammo", "Gives u infinite ammo", function()
-ammo()
+    for i, v in pairs(getgc()) do
+        if type(v) == "function" and islclosure(v) and not is_synapse_function(v) then
+            local x = debug.getconstants(v)
+            if table.find(x, "ammo") and table.find(x, "update_ammo_gui") and table.find(x, "has_scope") then
+                debug.setconstant(v, 2, -999999)
+            end
+        end
+    end
 end)
+Combat:NewButton("All guns", "Gives u every gun", function()
+    for i,v in pairs(game:GetService("Workspace").Weapons:GetChildren()) do
+        firetouchinterest(v.Hitbox,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,0)
+        firetouchinterest(v.Hitbox,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
+    end
+end)
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
+
+
 local LocalPlayer = Window:NewTab("Local Player")
 local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",function(txt)
@@ -211,10 +158,10 @@ LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", 
         return CurrentPlayer;
     end
 
-local CurrentPlayer = getFullNameFromPartial(txt)
+    local CurrentPlayer = getFullNameFromPartial(txt)
 
 
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
@@ -439,15 +386,34 @@ end)
 LocalPlayer:NewSlider("FlySpeed", "Changes ur Fly Speed", 20, 1, function(c)
     vehicleflyspeed = c
 end)
+LocalPlayer:NewSlider("WalkSpeed", "Changes ur Speed", 500, 16, function(a) -- 500 = max 0 = min
+
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = a
+end)
 LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
 
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
 
 end)
+
+
+
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
+game:GetService("TeleportService"):Teleport(game.PlaceId,game.JobId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 local PlaceID = game.PlaceId
@@ -522,17 +488,79 @@ end
 
 Teleport()
 end)
-Misc:NewButton("all guns", "Gives u Every gun", function()
-    SavePos()
-getguns()
-wait()
-LoadPos()
+getgenv().KillerEsp = false
+Misc:NewToggle("Killer esp", "Makes u see Killers through walls", function()
+getgenv().KillerEsp = not getgenv().KillerEsp
+    repeat
+        local function esp(player)
+            local b = Instance.new("BoxHandleAdornment", player)
+            b.AlwaysOnTop = true
+            b.ZIndex = 5
+            b.Size = player.Size
+            b.Adornee = player
+            b.Transparency = 0.8
+        end
+        function Main(Esp)
+            for i, v in pairs(Esp:GetChildren()) do
+                if v:IsA("BasePart") and not v:FindFirstChild("BoxHandleAdornment") then
+                    esp(v)
+                end
+            end
+        end
+        for i, v in pairs(game.Workspace:GetDescendants()) do
+            pcall(
+                function()
+                    if v:FindFirstChild("Zombie") and v.Name ~= game.Players.LocalPlayer.Name then
+                        Main(v)
+                    end
+                end
+            )
+        end
+        wait(7)
+    until getgenv().KillerEsp == false
+    if getgenv().KillerEsp == false then
+        for i, v in pairs(game.Workspace.Killers:GetDescendants()) do
+            if v:IsA("BoxHandleAdornment") then
+                v:Destroy()
+            end
+        end
+    end
 end)
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
+
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
 Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
 
 local Credits = Window:NewTab("Credits")
 local Credits = Credits:NewSection("Credits")

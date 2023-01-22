@@ -30,11 +30,12 @@ if data ~= nil then
 end
 
 
+
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
-noti("Terraria RPG")
+noti("Terraria Rpg")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -46,10 +47,42 @@ local colors = {
 
 local Window = Library.CreateLib("RAZE Series X", colors)
 
+
+
+
+
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
 local Welcome = Window:NewTab("Welcome")
 local Welcome = Welcome:NewSection("Welcome")
 Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
 Welcome:NewLabel("Thanks for using RAZE Series X")
+
+
+
+
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
 
 
 local Combat = Window:NewTab("Combat")
@@ -152,6 +185,21 @@ Combat:NewButton("Auto Complete", "Click to Complete the game", function()
     end
     game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Iron Broadsword");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Silver Broadsword");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Gold Broadsword");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Light's Bane");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Enchanted Sword");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Blade of Grass");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Firey Greatsword");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Muramasa");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Terra Blade");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Excalibur");game:GetService("ReplicatedStorage").GameRemotes.BuyEvent:FireServer("Wings")
 end)
+
+
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
+
+
 local LocalPlayer = Window:NewTab("Local Player")
 local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",function(txt)
@@ -194,10 +242,10 @@ LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", 
         return CurrentPlayer;
     end
 
-local CurrentPlayer = getFullNameFromPartial(txt)
+    local CurrentPlayer = getFullNameFromPartial(txt)
 
 
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
@@ -431,10 +479,25 @@ LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
 
 end)
+
+
+
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId, game.JobId , game:GetService("Players").LocalPlayer)
+game:GetService("TeleportService"):Teleport(game.PlaceId,game.JobId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 local PlaceID = game.PlaceId
@@ -512,11 +575,41 @@ end)
 Misc:NewButton("Reset stats", "Resets ur Stats", function()
     game:GetService("ReplicatedStorage").GameRemotes.ResetData:FireServer()
 end)
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
+
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
 Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
 
 local Credits = Window:NewTab("Credits")
 local Credits = Credits:NewSection("Credits")

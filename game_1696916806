@@ -1,3 +1,34 @@
+if not isfile("Server.txt") then
+    writefile("Server.txt","")
+end
+if not isfile("Game.txt") then
+    writefile("Game.txt","")
+end
+
+function LoadFile()
+    if readfile("Server.txt") ~= "" then
+        local json1 = readfile("Server.txt")
+        data1 = game:GetService("HttpService"):JSONDecode(json1)
+    end
+    if readfile("Game.txt") ~= "" then
+        local json = readfile("Game.txt")
+        data = game:GetService("HttpService"):JSONDecode(json)
+    end
+end
+
+LoadFile()
+if data1 ~= nil then
+    if game.JobId == data1.JobId then
+        game.Players.LocalPlayer:kick("Kicked. Premium User Activity: You Are Banned from this Server")
+    end
+end
+if data ~= nil then
+    if game.PlaceId == data.PlaceId then
+        game.Players.LocalPlayer:kick("Kicked. Premium User Activity: You Are Banned from this Game")
+    end
+end
+
+
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()

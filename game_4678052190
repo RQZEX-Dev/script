@@ -176,6 +176,19 @@ LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", 
 
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
+LocalPlayer:NewButton("Tp To Killer","Teleports to Killer",function()
+    if game:GetService("Workspace").Killers:FindFirstChildWhichIsA("Model") then
+        if game:GetService("Workspace").Killers:FindFirstChildWhichIsA("Model"):FindFirstChild("Torso") then
+            pcall(function()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Killers:FindFirstChildWhichIsA("Model"):FindFirstChild("Torso").CFrame
+            end)
+        elseif game:GetService("Workspace").Killers:FindFirstChildWhichIsA("Model"):FindFirstChild("HumanoidRootPart") then
+            pcall(function()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Killers:FindFirstChildWhichIsA("Model"):FindFirstChild("HumanoidRootPart").CFrame
+            end)
+        end
+    end
+end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 end)
@@ -501,7 +514,6 @@ end
 
 Teleport()
 end)
-
 
 
 

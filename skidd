@@ -17,14 +17,19 @@ local UtilityTab = win:Tab("Utility")
 --local TempTab = win:Tab("Temp")
 local Utility = UtilityTab:Section("Utility")
 
-Utility:Colorpicker("Color All", Color3.fromRGB(255,255,255),"Colorpicker", function(t)
-    for i,v in pairs(LocalTycoon.PlacedContent:GetChildren()) do
-        local args = {
-            [1] = v,
-            [2] = t
-        }
-        
-        game:GetService("ReplicatedStorage").Events.PaintItem:FireServer(unpack(args))
+Utility:Colorpicker("Choose Color", Color3.fromRGB(255,255,255),"Colorpicker", function(t)
+    Color = t
+end)
+Utility:Button("Color Everything",function()
+    if Color ~= nil then
+        for i,v in pairs(LocalTycoon.PlacedContent:GetChildren()) do
+            local args = {
+                [1] = v,
+                [2] = Color
+            }
+            
+            game:GetService("ReplicatedStorage").Events.PaintItem:FireServer(unpack(args))
+        end
     end
 end)
 Utility:Label("Credits to SkiddDev#2675")

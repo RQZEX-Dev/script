@@ -1,3 +1,4 @@
+
 if not isfile("Server.txt") then
     writefile("Server.txt","")
 end
@@ -29,12 +30,12 @@ if data ~= nil then
 end
 
 
+
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Murder Mystery 2")
-
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -46,27 +47,111 @@ local colors = {
 
 local Window = Library.CreateLib("RAZE Series X", colors)
 
+
+
+
+
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
 local Welcome = Window:NewTab("Welcome")
 local Welcome = Welcome:NewSection("Welcome")
 Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
 Welcome:NewLabel("Thanks for using RAZE Series X")
 
+
+
+
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
+
+
 local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
-    Combat:NewButton("Kill all (Requires Knife in Hand)", "Teleports to Players And Kills them", function()
-
+Combat:NewButton("Kill all (Requires Knife)", "Teleports to Players And Kills them", function()
+    if game.Players.LocalPlayer.Character:FindFirstChild("Knife") or game.Players.LocalPlayer.Backpack:FindFirstChild("Knife") then
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Knife") then
+            if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Knife"))
+            end
+        end
         for i,v in pairs(game.Players:GetPlayers()) do
-    if v ~= game.Players.LocalPlayer then
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
-wait()
-for i=1,5 do
-game:GetService("Players").LocalPlayer.Character.Knife.Stab:FireServer("Slash")
-wait()
-end
-wait(.3)
-end
-end
+            if v ~= game.Players.LocalPlayer then
+                if (game:GetService("Workspace").Lobby.MainLobby.Scenery.Grass.Position - v.Character.HumanoidRootPart.Position).magnitude >= 130 then
+                    repeat
+                        pcall(function()
+                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+                            game:GetService("Players").LocalPlayer.Character.Knife.Stab:FireServer("Slash")
+                        end)
+                        wait()
+                    until
+                    v.Character == nil or not v.Character:FindFirstChild("Humanoid") or v.Character.Humanoid.Health == 0
+                end
+            end
+        end
+    end
 end)
+Combat:NewButton("Kill Murder (Requires Gun)", "Teleports to Murder And Kill him", function()
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("Gun") or game.Players.LocalPlayer.Character:FindFirstChild("Gun") then
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Gun") then
+            if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Gun"))
+            end
+        end
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v.Character ~= nil then
+                if v.Backpack:FindFirstChild("Knife") or v.Character:FindFirstChild("Knife") then
+                    Murder = v
+                end
+            end
+        end
+        if Murder ~= nil  then
+            repeat
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Murder.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2.1)
+                wait(.05)
+                local args = {
+                    [1] = 1,
+                    [2] = Murder.Character.HumanoidRootPart.Position,
+                    [3] = "AH"
+                }
+                
+                game:GetService("Players").LocalPlayer.Character.Gun.KnifeServer.ShootGun:InvokeServer(unpack(args))
+                wait()
+            until Murder.Character.Humanoid.Health == 0 or Murder.Character == nil
+        end
+    end
+end)
+
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
 
 
 local LocalPlayer = Window:NewTab("Local Player")
@@ -91,7 +176,7 @@ LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",func
     
     local CurrentPlayer = getFullNameFromPartial(txt)
     
-    game:GetService("Workspace").Camera.CameraSubject = game.Players:FindFirstChild(CurrentPlayer).Character.Humanoid
+    game:GetService("Workspace").Camera.CameraSubject = CurrentPlayer.Character.Humanoid
     end)
 end)
 LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
@@ -111,36 +196,13 @@ LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", 
         return CurrentPlayer;
     end
 
-local CurrentPlayer = getFullNameFromPartial(txt)
+    local CurrentPlayer = getFullNameFromPartial(txt)
 
 
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
-end)
-
-LocalPlayer:NewButton("Teleport to gun", "Teleports u to the gun if dropped", function()
-if game.Workspace:FindFirstChild("GunDrop") then    
-POS = game.Players.LocalPlayer.Character.Head.CFrame
-local function SavePos(POS)
-    pcall(function()
-        POS = game.Players.LocalPlayer.Character.Head.CFrame;
-    end);
-        SavedPosition = POS;
-    end;
-function LoadPos()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (SavedPosition)
-end;
-SavePos()
-wait()
-function gun()
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GunDrop.CFrame
-end
-gun()
-wait(1)
-LoadPos()
-    end
 end)
 local noclip = false
 LocalPlayer:NewKeybind("Noclip", "Noclip", Enum.KeyCode.G, function()
@@ -267,97 +329,30 @@ LocalPlayer:NewKeybind("Fly", "Fly Around", Enum.KeyCode.X, function()
     	pcall(function() game.workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
     end
 end)
-flinging = false
-LocalPlayer:NewKeybind("Fling", "Fling", Enum.KeyCode.M, function()
-    pcall(function()
-        if flinging ~= true then
-            function getRoot(char)
-            	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
-            	return rootPart
-            end
-            function randomString()
-            	local length = math.random(10,20)
-            	local array = {}
-            	for i = 1, length do
-            		array[i] = string.char(math.random(32, 126))
-            	end
-            	return table.concat(array)
-            end
-        	flinging = false
-        	for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-        		if v:IsA("BasePart") then
-        			v.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
-        		end
-        	end
-            noclip = game:GetService("RunService").RenderStepped:Connect(function()
-                for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+gun = false
+LocalPlayer:NewToggle("Auto Get Gun","Takes Gun When Dropped",function()
+    gun = not gun
+    while gun == true do
+        if game:GetService("Workspace"):FindFirstChild("GunDrop") then
+            if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                if (game:GetService("Workspace").Lobby.MainLobby.Scenery.Grass.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude >= 130 then
                     pcall(function()
-                        if v:IsA("BasePart") then
-                            v.CanCollide = false
-                        end
+                        Save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                     end)
+                    wait()
+                    pcall(function()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GunDrop.CFrame
+                    end)
+                    wait(.1)
+                    pcall(function()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Save
+                    end)
+                    wait()
                 end
-                game:GetService("RunService").Stepped:wait()
-            end)
-        	wait(.1)
-        	local bambam = Instance.new("BodyAngularVelocity")
-        	bambam.Name = randomString()
-        	bambam.Parent = getRoot(game.Players.LocalPlayer.Character)
-        	bambam.AngularVelocity = Vector3.new(0,99999,0)
-        	bambam.MaxTorque = Vector3.new(0,math.huge,0)
-        	bambam.P = math.huge
-        	for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        		if v:IsA("BasePart") then
-        			v.CanCollide = false
-        			v.Massless = true
-        			v.Velocity = Vector3.new(0, 0, 0)
-        		end
-        	end
-        	flinging = true
-        	local function flingDiedF()
-            	if flingDied then
-            		flingDied:Disconnect()
-            	end
-            	flinging = false
-            	wait(.1)
-            	if not game.Players.LocalPlayer.Character or not getRoot(game.Players.LocalPlayer.Character) then return end
-            	for i,v in pairs(getRoot(game.Players.LocalPlayer.Character):GetChildren()) do
-            		if v.ClassName == 'BodyAngularVelocity' then
-            			v:Destroy()
-            		end
-            	end
-            	for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-            		if v.ClassName == "Part" or v.ClassName == "MeshPart" then
-            			v.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
-            		end
-            	end
-        	end
-        	flingDied = game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
-        	repeat
-        		bambam.AngularVelocity = Vector3.new(0,99999,0)
-            	wait(.2)
-            	bambam.AngularVelocity = Vector3.new(0,0,0)
-            	wait(.1)
-        	until flinging == false
-        else
-            if flingDied then
-            	flingDied:Disconnect()
-            end
-            flinging = false
-            wait(.1)
-            if not game.Players.LocalPlayer.Character or not getRoot(game.Players.LocalPlayer.Character) then return end
-            for i,v in pairs(getRoot(game.Players.LocalPlayer.Character):GetChildren()) do
-            	if v.ClassName == 'BodyAngularVelocity' then
-            		v:Destroy()
-            	end
-            end
-            for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-            	if v.ClassName == "Part" or v.ClassName == "MeshPart" then
-            		v.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
-            	end
             end
         end
-    end)
+        wait()
+    end
 end)
 LocalPlayer:NewSlider("FlySpeed", "Changes ur Fly Speed", 20, 1, function(c)
     vehicleflyspeed = c
@@ -374,10 +369,22 @@ end)
 
 
 
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId, game.JobId , game:GetService("Players").LocalPlayer)
+game:GetService("TeleportService"):Teleport(game.PlaceId,game.JobId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 local PlaceID = game.PlaceId
@@ -458,10 +465,10 @@ Misc:NewButton("Show Roles", "Gives u a notification of the Murder's and Sheriff
             local CoreGui = game:GetService("StarterGui")
             CoreGui:SetCore("SendNotification", {
                 Title = "Sherrif";
-                Text = (v.Name);
+                Text = v.Name;
                 Duration = 10; 
                 Icon = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420");
-                Button1 = "Thanks";
+                Button1 = "Got It";
             })
         end
     
@@ -470,49 +477,61 @@ Misc:NewButton("Show Roles", "Gives u a notification of the Murder's and Sheriff
             local CoreGui = game:GetService("StarterGui")
             CoreGui:SetCore("SendNotification", {
                 Title = "Murder";
-                Text = (v.Name);
+                Text = v.Name;
                 Duration = 10; 
                 Icon = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420");
-                Button1 = "Thanks";
+                Button1 = "Got It";
             })
         end
     
     end
-
 end)
 Misc:NewButton("Leak Role", "Leaks the Roles of murder and Sheriff in Chat", function()
-for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-if v ~= game.Players.LocalPlayer then
-if v.Character:FindFirstChild("Knife") or v.Backpack:FindFirstChild("Knife") then
-
-local args = {
-    [1] = v.DisplayName.." is Current Murder",
-    [2] = "normalchat"
-}
-
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-end
-wait()
-if v.Character:FindFirstChild("Gun") or v.Backpack:FindFirstChild("Gun")then
-
-local args = {
-    [1] = v.DisplayName.." is Current Sheriff",
-    [2] = "normalchat"
-}
-
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-end
-end
-end
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if v ~= game.Players.LocalPlayer then
+            if v.Character:FindFirstChild("Knife") or v.Backpack:FindFirstChild("Knife") then
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(v.DisplayName.." is Current Murder","normalchat")
+            elseif v.Character:FindFirstChild("Gun") or v.Backpack:FindFirstChild("Gun") then
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(v.DisplayName.." is Current Sheriff","normalchat")
+            end
+        end
+    end
 end)
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
 
 
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
-Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
+Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.E, function()
 	Library:ToggleUI()
 end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
 
 local Credits = Window:NewTab("Credits")
 local Credits = Credits:NewSection("Credits")

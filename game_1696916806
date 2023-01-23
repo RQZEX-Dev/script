@@ -1,3 +1,4 @@
+
 if not isfile("Server.txt") then
     writefile("Server.txt","")
 end
@@ -29,13 +30,12 @@ if data ~= nil then
 end
 
 
+
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Base Raiders")
-local CoreGui = game:GetService("StarterGui")
-
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -74,6 +74,7 @@ Welcome:NewLabel("Thanks for using RAZE Series X")
 
 
 
+
 --[[
 -------------------Combat----------------
 --]]
@@ -86,7 +87,7 @@ Welcome:NewLabel("Thanks for using RAZE Series X")
 
 local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
-Combat:NewTextBox("Raid Base", "teleports u to the base of the player and raids them", function(txt1)
+Combat:NewTextBox("Raid Base", "teleports u to the base of the player and raids them", function(txt)
  
     function getFullNameFromPartial(PartialName)
         local CurrentPlayer=nil;
@@ -103,95 +104,94 @@ Combat:NewTextBox("Raid Base", "teleports u to the base of the player and raids 
         end;
         return CurrentPlayer;
     end
-
-local CurrentPlayer = getFullNameFromPartial(txt)
-
-for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
-if v.Owner.Value == CurrentPlayer.Name then
-    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-    wait(game.Players.RespawnTime)
-    repeat wait() until game.Players.LocalPlayer.Character
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
-
-
-end
-end
-end)
-Combat:NewTextBox("loop Raid Base", "loop teleports u to the base of the player and raids them", function(txt2)
-loop = false
-loop = true
-while loop == true do
-    function getFullNameFromPartial(PartialName)
-        local CurrentPlayer=nil;
-        local Players= game.Players:GetPlayers();
-        for i=1,#Players do
-            local foundPlayer=Players[i];
-            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
-                CurrentPlayer=foundPlayer;
-                break;
-            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
-                CurrentPlayer=foundPlayer;
-                break;
-            end;
-        end;
-        return CurrentPlayer;
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
+            if v.Owner.Value == CurrentPlayer.Name then
+                game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                wait(game.Players.RespawnTime)
+                repeat wait() until game.Players.LocalPlayer.Character
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
+                game.Players.LocalPlayer.Character.Humanoid.Sit = true
+                wait(7)
+                game.Players.LocalPlayer.Character.Humanoid.Sit = false
+            end
+        end
     end
-
-local CurrentPlayer = getFullNameFromPartial(txt2)
-
-for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
-if v.Owner.Value == CurrentPlayer.Name then
-    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-    wait(game.Players.RespawnTime)
-    repeat wait() until game.Players.LocalPlayer.Character
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
-
-
-end
-end
-wait(70)
-end
+end)
+Combat:NewTextBox("loop Raid Base", "loop teleports u to the base of the player and raids them", function(txt)
+    loop = false
+    loop = true
+    while loop == true do
+        function getFullNameFromPartial(PartialName)
+            local CurrentPlayer=nil;
+            local Players= game.Players:GetPlayers();
+            for i=1,#Players do
+                local foundPlayer=Players[i];
+                if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                    CurrentPlayer=foundPlayer;
+                    break;
+                elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                    CurrentPlayer=foundPlayer;
+                    break;
+                end;
+            end;
+            return CurrentPlayer;
+        end
+        
+        local CurrentPlayer = getFullNameFromPartial(txt)
+        if CurrentPlayer ~= nil then
+            for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
+                if v.Owner.Value == CurrentPlayer.Name then
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                    wait(game.Players.RespawnTime)
+                    repeat wait() until game.Players.LocalPlayer.Character
+                    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
+                    game.Players.LocalPlayer.Character.Humanoid.Sit = true
+                    wait(7)
+                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                end
+            end
+        end
+        wait(70)
+    end
+end)
+Combat:NewButton("Stop Loop", "Stops the Loop raid", function()
+    loop = false
 end)
 Combat:NewButton("Mod guns", "Makes ur guns better", function()
-local FEmusic = true;
-local musicid = " "; --edit the id
-local shotsound = true
-local shotsoundid = " "--edit the id
- 
- 
-for i,v in pairs(game.ReplicatedStorage.WeaponScripts.WeaponConfigs:GetChildren()) do
-local gun = require(v)
-    if v ~= game.ReplicatedStorage.WeaponScripts.WeaponConfigs:FindFirstChild("Rocket Launcher") then
-        gun.magSize = 10000000
-gun.damage = 999
-gun.pellets = 30
-gun.reloadTime = 0
-gun.bulletSpeed = 100009999990
-gun.range = 200099
-gun.minSpread = 0
-gun.maxSprea = 0
-gun.RPM = 1000000000
-gun.fireMode = 1
-gun.customDamage.Head = 10000
-gun.spreadCooldown = 0
-gun.spreadAdd = 0
-end
-if shotsound == true then
-   gun.shootSound = {shotsoundid,1000000000, 1, true }
-end
-if FEmusic == true then
-       gun.equipSound = { musicid, 1000000000, 1, true }
-end
-end
+    local FEmusic = true;
+    local musicid = " "; --edit the id
+    local shotsound = true
+    local shotsoundid = " "--edit the id
+     
+     
+    for i,v in pairs(game.ReplicatedStorage.WeaponScripts.WeaponConfigs:GetChildren()) do
+        local gun = require(v)
+        if v ~= game.ReplicatedStorage.WeaponScripts.WeaponConfigs:FindFirstChild("Rocket Launcher") then
+            gun.magSize = 10000000
+            gun.damage = 999
+            gun.pellets = 30
+            gun.reloadTime = 0
+            gun.bulletSpeed = 100009999990
+            gun.range = 200099
+            gun.minSpread = 0
+            gun.maxSprea = 0
+            gun.RPM = 1000000000
+            gun.fireMode = 1
+            gun.customDamage.Head = 10000
+            gun.spreadCooldown = 0
+            gun.spreadAdd = 0
+        end
+        if shotsound == true then
+           gun.shootSound = {shotsoundid,1000000000, 1, true }
+        end
+        if FEmusic == true then
+               gun.equipSound = { musicid, 1000000000, 1, true }
+        end
+    end
 end)
-
-
-
-
-
-
-
-
 
 
 
@@ -250,51 +250,36 @@ LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", 
         return CurrentPlayer;
     end
 
-local CurrentPlayer = getFullNameFromPartial(txt)
+    local CurrentPlayer = getFullNameFromPartial(txt)
 
-
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    wait(game.Players.RespawnTime)
+    repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 end)
-local noclip = true
+local noclip = false
 LocalPlayer:NewKeybind("Noclip", "Noclip", Enum.KeyCode.G, function()
 local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-noclip = not noclip
-while true do
-    character = game.Players.LocalPlayer.Character
-
-    if noclip then
-        for _, v in pairs(character:GetDescendants()) do
-            pcall(function()
-                if v:IsA("BasePart") then
-                    v.CanCollide = false
-                end
-            end)
+    noclip = not noclip
+    while true do
+        if noclip then
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                pcall(function()
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false
+                    end
+                end)
+            end
         end
+        game:GetService("RunService").Stepped:wait()
     end
-
-    game:GetService("RunService").Stepped:wait()
-end
 end)
-LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 350, 50, function(b) -- 500 = max 0 = min
 
+LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
-
-end)
-LocalPlayer:NewButton("Anti afk", "U wont get kicked from afking more than 20 minutes", function() 
-antiafk = true
-while antiafk== true do
-	local vu = game:GetService("VirtualUser")
-	game:GetService("Players").LocalPlayer.Idled:connect(function()
-		vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-		wait(1)
-		vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-	end)
-	wait(20)
-	end
-
 end)
 
 
@@ -314,7 +299,7 @@ end)
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId, game.JobId, game:GetService("Players").LocalPlayer)
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 local PlaceID = game.PlaceId
@@ -389,141 +374,107 @@ end
 
 Teleport()
 end)
-Misc:NewButton("Paint all","Paints all building in ur base", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/skidd"))()
-end)
-Misc:NewButton("Picks up everything in ur base","Auto picks up everything like vaults", function()
-FireClickDetectors = true
-while FireClickDetectors == true do
-for i,v in pairs(game.Workspace:GetDescendants()) do
-if v:IsA("Part") then
-    if not v.Parent.Parent:FindFirstChild("NEWITEM") then
-    if v:FindFirstChild("ClickDetector") then
-    fireclickdetector(v.ClickDetector)
-end
-end
-end
-end
-wait(10)
-end
-end)
-Misc:NewButton("Repairs everything quick ","Repairs all buildings in ur base", function()
-repair = true
-while repair == true do
-for i,v in pairs(workspace.Tycoons:GetChildren()) do
-if v.Owner.Value == game.Players.LocalPlayer.Name then
-for i,b in pairs(v.PlacedContent:GetChildren()) do
-    if b:FindFirstChild("Broken") then
-local args = {
-    [1] = b
-}
-
-game:GetService("ReplicatedStorage").Events.RepairItem:InvokeServer(unpack(args))
-end
-end
-end
-end
-wait(.1)
-end
-end)
-Misc:NewButton("Auto Crates","automaticly gives u the crates that spawn", function()
-crates = true
-while crates == true do
-if game.Workspace:FindFirstChild("Base Crate") then
-    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Base Crate"].Part.CFrame
-end
-else
-print("no common")
-end
-if game.Workspace:FindFirstChild("Blazing Crate") then
-    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Blazing Crate"].Part.CFrame
-end
-else
-print("no uncommon")
-end
-if game.Workspace:FindFirstChild("Dark Matter Crate") then
-    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Dark Matter Crate"].Part.CFrame
-end
-else
-print("no rare")
-end
-if game.Workspace:FindFirstChild("Rainbow Crate") then
-    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Rainbow Crate"].Part.CFrame
-end
-else
-print("no epic")
-end
-if game.Workspace:FindFirstChild("Legendary Crate") then
-    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Legendary Crate"].Part.CFrame
-end
-else
-print("no legendary")
-end
-if game.Workspace:FindFirstChild("Godly Crate") then
-    if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Godly Crate"].Part.CFrame
-end
-else
-print("no godly")
-end
-wait(2)
-end
-
-
-end)
 Misc:NewButton("Unlock paint colors","Makes u able to use gamepass colors", function()
 for i,v in pairs(game:GetService("ReplicatedStorage").Colors:GetChildren()) do
-if v:FindFirstChild("NeedsPass") then
-v.NeedsPass:Destroy()
-end
-end
-for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Colors:GetChildren()) do
-if v:FindFirstChild("LOCK") then
-v.LOCK.Visible = false
-end
-end
+        if v:FindFirstChild("NeedsPass") then
+            v.NeedsPass:Destroy()
+        end
+    end
+    for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Colors:GetChildren()) do
+        if v:FindFirstChild("LOCK") then
+            v.LOCK.Visible = false
+        end
+    end
 end)
-Misc:NewButton("auto rewards","Automaticly claims rewards", function()
-rewards = true
-while rewards == true do
-
-local args = {
-    [1] = "Reward1"
-}
-
-game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
-
-local args = {
-    [1] = "Reward2"
-}
-
-game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
-
-local args = {
-    [1] = "Reward3"
-}
-
-game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
-
-local args = {
-    [1] = "Reward4"
-}
-
-game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
-
-local args = {
-    [1] = "Reward5"
-}
-
-game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer(unpack(args))
-wait(10)
-end
+Misc:NewButton("Paint all","Paints all building in ur base", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/skidd"))()
 end)
+FireClickDetectors = false
+Misc:NewToggle("Picks up everything in ur base","Auto picks up everything like vaults", function()
+    FireClickDetectors = not FireClickDetectors
+    for i,v in pairs(workspace.Tycoons:GetChildren()) do
+        if v.Owner.Value == game.Players.LocalPlayer.Name then
+            mytycoon = v
+        end
+    end
+    while FireClickDetectors == true do
+        for i,v in pairs(mytycoon:GetDescendants()) do
+            if v:IsA("ClickDetector") and v.Parent.Parent.Parent.Name ~= "Jukebox" then
+                fireclickdetector(v)
+            end
+        end
+        wait(10)
+    end
+end)
+game:GetService("Workspace").BulletIgnore.ChildAdded:Connect(function(v)
+    if v.Name == "CASH_BAG" then
+        repeat wait() until v:FindFirstChild("TouchInterest")
+        firetouchinterest(v,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+        firetouchinterest(v,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+    end
+end)
+repair = false
+Misc:NewToggle("Repairs everything quick ","Repairs all buildings in ur base", function()
+    repair = not repair
+    for i,v in pairs(workspace.Tycoons:GetChildren()) do
+        if v.Owner.Value == game.Players.LocalPlayer.Name then
+            mytycoon = v
+        end
+    end
+    while repair == true do
+        for i,v in pairs(mytycoon.PlacedContent:GetChildren()) do
+            if v:FindFirstChild("Broken") then
+                local args = {
+                    [1] = v
+                }
+                
+                game:GetService("ReplicatedStorage").Events.RepairItem:InvokeServer(unpack(args))
+            end
+        end
+        wait()
+    end
+end)
+crates = false
+Misc:NewToggle("Auto Crates","automaticly gives u the crates that spawn", function()
+    crates = not crates
+    while crates == true do
+        if game.Workspace:FindFirstChild("Base Crate") and game.Workspace:FindFirstChild("Base Crate"):FindFirstChild("Sphere") then
+            firetouchinterest(game:GetService("Workspace")["Base Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace")["Base Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end
+        if game.Workspace:FindFirstChild("Blazing Crate") and game.Workspace:FindFirstChild("Blazing Crate"):FindFirstChild("Sphere") then
+            firetouchinterest(game:GetService("Workspace")["Blazing Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace")["Blazing Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end
+        if game.Workspace:FindFirstChild("Dark Matter Crate") and game.Workspace:FindFirstChild("Dark Matter Crate"):FindFirstChild("Sphere") then
+            firetouchinterest(game:GetService("Workspace")["Dark Matter Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace")["Dark Matter Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end
+        if game.Workspace:FindFirstChild("Rainbow Crate") and game.Workspace:FindFirstChild("Rainbow Crate"):FindFirstChild("Sphere") then
+            firetouchinterest(game:GetService("Workspace")["Rainbow Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace")["Rainbow Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end
+        if game.Workspace:FindFirstChild("Legendary Crate") and game.Workspace:FindFirstChild("Legendary Crate"):FindFirstChild("Sphere") then
+            firetouchinterest(game:GetService("Workspace")["Legendary Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace")["Legendary Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end
+        if game.Workspace:FindFirstChild("Godly Crate") and game.Workspace:FindFirstChild("Godly Crate"):FindFirstChild("Sphere") then
+            firetouchinterest(game:GetService("Workspace")["Godly Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace")["Godly Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end
+        wait(2)
+    end
+end)
+rewards = false
+Misc:NewToggle("auto rewards","Automaticly claims rewards", function()
+    rewards = not rewards
+    while rewards == true do
+        game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer("Reward1");game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer("Reward2");game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer("Reward3");game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer("Reward4");game:GetService("ReplicatedStorage").Events.SessionRewards:FireServer("Reward5")
+        wait(10)
+    end
+end)
+
+
 
 
 --[[

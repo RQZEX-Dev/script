@@ -1,5 +1,9 @@
 
-
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+    game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	wait()
+    game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 if game.Players.LocalPlayer.Character then
     if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
         if game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment") then

@@ -96,15 +96,17 @@ Combat:NewButton("Kill all (Requires Knife)", "Teleports to Players And Kills th
         end
         for i,v in pairs(game.Players:GetPlayers()) do
             if v ~= game.Players.LocalPlayer then
-                if (game:GetService("Workspace").Lobby.MainLobby.Scenery.Grass.Position - v.Character.HumanoidRootPart.Position).magnitude >= 130 then
-                    repeat
-                        pcall(function()
-                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
-                            game:GetService("Players").LocalPlayer.Character.Knife.Stab:FireServer("Slash")
-                        end)
-                        wait()
-                    until
-                    v.Character == nil or not v.Character:FindFirstChild("Humanoid") or v.Character.Humanoid.Health == 0
+                if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") then
+                    if (game:GetService("Workspace").Lobby.MainLobby.Scenery.Grass.Position - v.Character.HumanoidRootPart.Position).magnitude >= 130 then
+                        repeat
+                            pcall(function()
+                                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1.1)
+                                game:GetService("Players").LocalPlayer.Character.Knife.Stab:FireServer("Slash")
+                            end)
+                            wait()
+                        until
+                        v.Character == nil or not v.Character:FindFirstChild("Humanoid") or v.Character.Humanoid.Health == 0
+                    end
                 end
             end
         end
@@ -342,10 +344,12 @@ LocalPlayer:NewToggle("Auto Get Gun","Takes Gun When Dropped",function()
                     wait()
                     pcall(function()
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GunDrop.CFrame
+                        game.Players.LocalPlayer.Character.Humanoid.Sit = true
                     end)
                     wait(.1)
                     pcall(function()
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Save
+                        game.Players.LocalPlayer.Character.Humanoid.Sit = false
                     end)
                     wait()
                 end
@@ -362,9 +366,7 @@ LocalPlayer:NewSlider("WalkSpeed", "Changes ur Speed", 500, 16, function(a) -- 5
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = a
 end)
 LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b) -- 500 = max 0 = min
-
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
-
 end)
 
 

@@ -83,14 +83,14 @@ function HitPlayer()
     local Closest = GetClosestTorso()
     if Closest ~= nil then
         local Player = game:GetService("Players"):GetPlayerFromCharacter(Closest.Parent)
-local args = {
-    [1] = Player.Character.Humanoid,
-    [2] = 0,
-    [3] = 1,
-    [4] = Vector3.new(0, 0, 0)
-}
-
-game:GetService("Players").LocalPlayer.Character.HitEvent:FireServer(unpack(args))
+        local args = {
+            [1] = Player.Character,
+            [2] = Vector3.new(0,0,0),
+            [3] = 0,
+            [4] = Player.Character:FindFirstChild("HumanoidRootPart")
+        }
+        
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Punch:FireServer(unpack(args))
 
 
     end
@@ -387,7 +387,7 @@ end)
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId, game.JobId game:GetService("Players").LocalPlayer)
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 local PlaceID = game.PlaceId

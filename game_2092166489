@@ -503,8 +503,6 @@ end
 Teleport()
 end)
 
-
-
 Misc:NewButton("Auto Quest", "Automaticly Complete's Quest", function()
 firetouchinterest(game:GetService("Workspace").AREA51.Outside.Hangar.Right["Zombie Morph"].TheButton,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,0)
 firetouchinterest(game:GetService("Workspace").AREA51.Outside.Hangar.Right["Zombie Morph"].TheButton,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
@@ -582,6 +580,17 @@ Misc:NewButton("Auto Badge", "Automaticly Gives Badges", function()
     wait()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = save
 end)
+getgenv().AutoArmor = false
+Misc:NewToggle("AutoArmor", "Automaticly equips Armor", function()
+    getgenv().AutoArmor = not getgenv().AutoArmor
+    while getgenv().AutoArmor == true do
+        pcall(function()
+            firetouchinterest(game:GetService("Workspace").AREA51.Amory2Room.Armory.Giver,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace").AREA51.Amory2Room.Armory.Giver,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end)
+        wait()
+    end
+end)
 getgenv().KillerEsp = false
 Misc:NewToggle("Killer esp", "Makes u see Killers through walls", function()
 getgenv().KillerEsp = not getgenv().KillerEsp
@@ -610,7 +619,7 @@ getgenv().KillerEsp = not getgenv().KillerEsp
                 end
             )
         end
-        wait(7)
+        wait(1)
     until getgenv().KillerEsp == false
     if getgenv().KillerEsp == false then
         for i, v in pairs(game.Workspace.Killers:GetDescendants()) do

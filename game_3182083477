@@ -550,6 +550,7 @@ for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
     end
 end
 end)
+
 Misc:NewButton("Auto Badge", "Automaticly Gives Badges", function()
     firetouchinterest(game:GetService("Workspace").AREA51.Badges.AtomicBomb.Platform,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,0)
     firetouchinterest(game:GetService("Workspace").AREA51.Badges.AtomicBomb.Platform,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
@@ -571,8 +572,10 @@ Misc:NewButton("Auto Badge", "Automaticly Gives Badges", function()
             game:GetService("ReplicatedStorage").RobloxDialogue.Remotes.DialogueRequested:FireServer(unpack(args))
             wait()
             game:GetService("ReplicatedStorage").RobloxDialogue.Remotes.DialogueUserEnded:FireServer()
-            game:GetService("Players").LocalPlayer.PlayerGui.RobloxDialogueScreenGui.Enabled = false
         end
+    end
+    if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("RobloxDialogueScreenGui") then
+        game:GetService("Players").LocalPlayer.PlayerGui.RobloxDialogueScreenGui.Enabled = false
     end
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Outside.Winter.Quest.StartTrigger.CFrame
     wait()

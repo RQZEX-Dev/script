@@ -559,6 +559,8 @@ Misc:NewButton("Auto Badge", "Automaticly Gives Badges", function()
     firetouchinterest(game:GetService("Workspace").AREA51.Badges.HelpfulKillers.Platform,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
     firetouchinterest(game:GetService("Workspace").AREA51.Badges.UltimateSecret.Platform,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,0)
     firetouchinterest(game:GetService("Workspace").AREA51.Badges.UltimateSecret.Platform,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
+    save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame 
+    wait()
     for i,v in pairs(game:GetService("Workspace").AREA51.Soldiers.WatchtowerSoldiers:GetChildren()) do
         if v.Soldier.IsBored.Value == true then
             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Soldier.Head.CFrame
@@ -572,6 +574,11 @@ Misc:NewButton("Auto Badge", "Automaticly Gives Badges", function()
             game:GetService("Players").LocalPlayer.PlayerGui.RobloxDialogueScreenGui.Enabled = false
         end
     end
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Outside.Winter.Quest.StartTrigger.CFrame
+    wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.Outside.Winter.Quest.EndTrigger.CFrame
+    wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = save
 end)
 getgenv().KillerEsp = false
 Misc:NewToggle("Killer esp", "Makes u see Killers through walls", function()

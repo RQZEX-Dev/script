@@ -1,3 +1,4 @@
+
 if not isfile("Server.txt") then
     writefile("Server.txt","")
 end
@@ -30,15 +31,11 @@ end
 
 
 
-
-
-
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
-noti("abbility Wars")
-
+noti("Game Name")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -50,63 +47,103 @@ local colors = {
 
 local Window = Library.CreateLib("RAZE Series X", colors)
 
+
+
+
+
+
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
 local Welcome = Window:NewTab("Welcome")
 local Welcome = Welcome:NewSection("Welcome")
 Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
 Welcome:NewLabel("Thanks for using RAZE Series X")
 
 
+
+
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
+
+
 local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
-Combat:NewToggle("Killaura", "Hits People Near u", function(state)
-    if state then
-
-_, Dis, Github ="main.git"
-
-,nil,nil;getgenv().MaxDistance=15;getgenv().KillAuraActive=true;
-
-function GetClosestTorso()
-   local closest
-   local plrtorso = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-   for _,v in pairs(game:GetService("Players"):GetPlayers()) do
-       if v.Character and v ~= game:GetService("Players").LocalPlayer then
-           local torso = v.Character:FindFirstChild("HumanoidRootPart")
-           if torso and (closest == nil or (torso.Position - plrtorso.Position).magnitude < (closest.Position - plrtorso.Position).magnitude) then
-                if (torso.Position - plrtorso.Position).magnitude <= getgenv().MaxDistance then
-                   closest = torso
-                end
+getgenv().KillAuraActive = false
+Combat:NewKeybind("KillAura", "Hits People Near U", Enum.KeyCode.K, function()
+    getgenv().MaxDistance=15;getgenv().KillAuraActive=not getgenv().KillAuraActive;
+    function GetClosestTorso()
+       local closest
+       local plrtorso = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+       for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+           if v.Character and v ~= game:GetService("Players").LocalPlayer then
+               local torso = v.Character:FindFirstChild("HumanoidRootPart")
+               if torso and (closest == nil or (torso.Position - plrtorso.Position).magnitude < (closest.Position - plrtorso.Position).magnitude) then
+                    if (torso.Position - plrtorso.Position).magnitude <= getgenv().MaxDistance then
+                       closest = torso
+                    end
+               end
            end
        end
-   end
-   wait()
-   return closest
-end
-
-function HitPlayer()
-    local Closest = GetClosestTorso()
-    if Closest ~= nil then
-        local Player = game:GetService("Players"):GetPlayerFromCharacter(Closest.Parent)
-local args = {
-    [1] = Player.Character,
-    [2] = Vector3.new(0,0,0),
-    [3] = 1,
-    [4] = Player.Character.HumanoidRootPart
-}
-
-game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Punch:FireServer(unpack(args))
-
+       wait()
+       return closest
     end
     
-end
-
-while getgenv().KillAuraActive == true do
-   HitPlayer()
-   wait() 
-end
-else
-getgenv().KillAuraActive = false
+    function HitPlayer()
+        local Closest = GetClosestTorso()
+        if Closest ~= nil then
+            local Player = game:GetService("Players"):GetPlayerFromCharacter(Closest.Parent)
+            local args = {
+                [1] = Player.Character,
+                [2] = Vector3.new(0,0,0),
+                [3] = 1,
+                [4] = Player.Character.HumanoidRootPart
+            }
+            
+            game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Punch:FireServer(unpack(args))
+    
+        end
+        
+    end
+    
+    while getgenv().KillAuraActive == true do
+       HitPlayer()
+       wait() 
     end
 end)
+
+
+
+
+
+--[[
+-------------------LocalPlayer----------------
+--]]
+
+
+
+
+
+
+
 local LocalPlayer = Window:NewTab("Local Player")
 local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",function(txt)
@@ -152,7 +189,7 @@ LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", 
     local CurrentPlayer = getFullNameFromPartial(txt)
 
 
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
@@ -386,10 +423,25 @@ LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
 
 end)
+
+
+
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
 Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId game:GetService("Players").LocalPlayer)
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
 Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
 local PlaceID = game.PlaceId
@@ -464,11 +516,43 @@ end
 
 Teleport()
 end)
+
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
+
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
 Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
+
 local Credits = Window:NewTab("Credits")
 local Credits = Credits:NewSection("Credits")
 Credits:NewLabel("Made by RQZEX#9971")

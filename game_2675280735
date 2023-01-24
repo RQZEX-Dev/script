@@ -92,7 +92,7 @@ Combat:NewButton("Infinite ammo", "Gives u infinite ammo", function()
         if type(v) == "function" and islclosure(v) and not is_synapse_function(v) then
             local x = debug.getconstants(v)
             if table.find(x, "ammo") and table.find(x, "update_ammo_gui") and table.find(x, "has_scope") then
-                debug.setconstant(v, 2, -999999)
+                debug.setconstant(v, 2, -0)
             end
         end
     end
@@ -503,7 +503,7 @@ getgenv().KillerEsp = not getgenv().KillerEsp
                 end
             end
         end
-        for i, v in pairs(game.Workspace:GetDescendants()) do
+        for i, v in pairs(game.Workspace.Killers:GetDescendants()) do
             pcall(
                 function()
                     if v:FindFirstChild("Zombie") and v.Name ~= game.Players.LocalPlayer.Name then
@@ -512,7 +512,7 @@ getgenv().KillerEsp = not getgenv().KillerEsp
                 end
             )
         end
-        wait(7)
+        wait(1)
     until getgenv().KillerEsp == false
     if getgenv().KillerEsp == false then
         for i, v in pairs(game.Workspace.Killers:GetDescendants()) do
@@ -522,10 +522,70 @@ getgenv().KillerEsp = not getgenv().KillerEsp
         end
     end
 end)
-
-
-
-
+getgenv().AutoArmor = false
+Misc:NewToggle("AutoArmor", "Automaticly equips Armor", function()
+    getgenv().AutoArmor = not getgenv().AutoArmor
+    while getgenv().AutoArmor == true do
+        pcall(function()
+            firetouchinterest(game:GetService("Workspace").AREA51.Amory2Room.Armory.Giver,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+            firetouchinterest(game:GetService("Workspace").AREA51.Amory2Room.Armory.Giver,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        end)
+        wait()
+    end
+end)
+Misc:NewButton("Get Keys", "Gives u both key cards", function()
+    pcall(function()
+        firetouchinterest(game:GetService("Workspace").AREA51.AdminRoom.Table.Card,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+        firetouchinterest(game:GetService("Workspace").AREA51.AdminRoom.Table.Card,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        firetouchinterest(game:GetService("Workspace").AREA51.JailsRoom.Jails.Left.Behind.Card,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
+        firetouchinterest(game:GetService("Workspace").AREA51.JailsRoom.Jails.Left.Behind.Card,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+    end)
+end)
+Misc:NewButton("Buy Drink 100$", "Buys U A Regenerating Drink", function()
+    pcall(function()
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(workspace.Weapons.Energy)
+    end)
+end)
+Refill = Misc:NewButton("Refill Drink 200$", "Refills ur drink", function()
+    pcall(function()
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(workspace.AREA51.CafeRoom:FindFirstChild("Coffee Machine").Energy)
+    end)
+    wait(1) Refill:UpdateButton("Refill Drink"..game:GetService("Workspace").AREA51.CafeRoom["Coffee Machine"].Energy.Cost.Value.."$")
+end)
+Misc:NewButton("Buy Chest 950$", "Buys a Random Weapon from the chest", function()
+    for i=1,2 do
+        local args = {
+            [1] = workspace:FindFirstChild("Mystery Box").Box
+        }
+        
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(unpack(args))
+        wait(7)
+    end
+end)
+Misc:NewButton("Activate Power", "Activates Power/Electricity for Perks and traps", function()
+    if game:GetService("Workspace").AREA51.ElectricityRoom.PowerManager.Interruptor.Base:FindFirstChild("ProximityPrompt") then
+        save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").AREA51.ElectricityRoom.PowerManager.Interruptor.Part.CFrame
+        wait(.1)
+        fireproximityprompt(game:GetService("Workspace").AREA51.ElectricityRoom.PowerManager.Interruptor.Base:FindFirstChild("ProximityPrompt"))
+        wait(.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = save
+    end
+end)
+Misc:NewDropdown("Buy Perk", "Buys the perk", {"Double Tap 3k$", "Jugger 2.5k$", "Stamin-Up 2k$","DeadShot 1.5k$","Quick Revive 500$"}, function(CurrentOption)
+    if CurrentOption == "Double Tap 3k$" then
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(workspace.Perks:FindFirstChild("Double Tap"));game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Throw");game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Regen")
+    elseif CurrentOption == "Jugger 2.5k$" then
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(workspace.Perks:FindFirstChild("Juggernog"));game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Throw");game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Regen")
+    elseif CurrentOption == "Stamin-Up 2k$" then
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(workspace.Perks:FindFirstChild("Stamin-Up"));game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Throw");game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Regen")
+    elseif CurrentOption == "DeadShot 1.5k$" then
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(workspace.Perks:FindFirstChild("Deadshot Daiquiri"));game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Throw");game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Regen")
+    elseif CurrentOption == "Quick Revive 500$" then
+        game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").Buy:FireServer(workspace.Perks:FindFirstChild("Quick Revive"));game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Throw");game:GetService("ReplicatedStorage"):FindFirstChild("Remote Events").PerkEvent:FireServer("Regen")
+    end
+end)
 
 --[[
 -------------------Settings----------------

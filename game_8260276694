@@ -35,7 +35,7 @@ local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('r
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
-noti("Game Name")
+noti("Abbility Wars")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),

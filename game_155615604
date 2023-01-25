@@ -1,22 +1,41 @@
-local Humr = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+if not isfile("Server.txt") then
+    writefile("Server.txt","")
+end
+if not isfile("Game.txt") then
+    writefile("Game.txt","")
+end
+
+function LoadFile()
+    if readfile("Server.txt") ~= "" then
+        local json1 = readfile("Server.txt")
+        data1 = game:GetService("HttpService"):JSONDecode(json1)
+    end
+    if readfile("Game.txt") ~= "" then
+        local json = readfile("Game.txt")
+        data = game:GetService("HttpService"):JSONDecode(json)
+    end
+end
+
+LoadFile()
+if data1 ~= nil then
+    if game.JobId == data1.JobId then
+        game.Players.LocalPlayer:kick("Kicked. Premium User Activity: You Are Banned from this Server")
+    end
+end
+if data ~= nil then
+    if game.PlaceId == data.PlaceId then
+        game.Players.LocalPlayer:kick("Kicked. Premium User Activity: You Are Banned from this Game")
+    end
+end
+
 local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('repeat wait() until game:IsLoaded() repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") wait(2)  loadstring(game:HttpGet("https://raw.githubusercontent.com/notavailable10/notavailable10/main/Loader"))()')
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
 noti("Prison Life")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/kill()"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/lk"))()
-
 local CoreGui = game:GetService("StarterGui")
 
-CoreGui:SetCore("SendNotification", {
-    Title = "Raze Series X";
-    Text = "Thanks for using RAZE Series X Do u like it?";
-    Duration = math.huge;
-    --Callback here
-    Button1 = "Yes";
-    Button2 = "Yes!!!";
-})
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -28,201 +47,1077 @@ local colors = {
 
 local Window = Library.CreateLib("RAZE Series X", colors)
 
+
+
+
+
+--[[
+-------------------Functions / Getsenv ----------------
+--]]
+
+
+
+
+
+
+
+
+
+
+
+if not game.workspace:FindFirstChild("LoopKill") then
+    Folder = Instance.new("Folder",workspace)
+    Folder.Name = "LoopKill"
+end
+if not game.workspace:FindFirstChild("LoopTK") then
+    Folder = Instance.new("Folder",workspace)
+    Folder.Name = "LoopTK"
+end
+
+if game:GetService("MarketplaceService"):UserOwnsGamePassAsync(game.Players.LocalPlayer.UserId, 96651) == true then
+    getgenv().Swat = true
+end
+
+getgenv().ChoosenTeam = "Bright orange"
+getgenv().CurrentTeam = "Bright orange"
+
+function KillPlayer(Player)
+    repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+        game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+    end
+    repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    getgenv().CurrentTeam = game.Players.LocalPlayer.TeamColor.Name
+    if Player.TeamColor == game.Players.LocalPlayer.TeamColor or game.Players.LocalPlayer.TeamColor.Name == "Bright blue" then
+        if game.Players.LocalPlayer.TeamColor.Name == "Bright orange" then
+            LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+            LCS.CanCollide = false
+            LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+            LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            LCS.Transparency = 1
+            wait(0.5)
+            LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+            LCS.Size = Vector3.new(6, 0.2, 6)
+            LCS.Transparency = 0
+            getgenv().Changed = true
+        else
+            workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+            repeat wait() until game.Players.LocalPlayer.TeamColor.Name == "Medium stone grey"
+            if Player.TeamColor == game.Players.LocalPlayer.TeamColor then
+                workspace.Remote.TeamEvent:FireServer("Bright orange")
+            end
+            getgenv().Changed = true
+        end
+    end
+    wait()
+        local args = {
+        [1]={},
+        [2] = game:GetService("Players").LocalPlayer.Backpack.M9
+    }
+    local NewTable = {
+        ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+        ["Distance"] = 0,
+        ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+        ["Hit"] = Player.Character.Head
+    }
+    table.insert(args[1], NewTable)
+    table.insert(args[1], NewTable)
+    table.insert(args[1], NewTable) 
+    table.insert(args[1], NewTable) 
+    table.insert(args[1], NewTable) 
+    table.insert(args[1], NewTable) 
+    table.insert(args[1], NewTable) 
+    table.insert(args[1], NewTable) 
+    table.insert(args[1], NewTable) 
+    table.insert(args[1], NewTable)
+    table.insert(args[1], NewTable)
+    game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+    
+    wait()
+    game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9 or game.Players.LocalPlayer.Character.M9)
+    if getgenv().Changed == true then
+        if getgenv().CurrentTeam == "Really red" then
+            LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+            LCS.CanCollide = false
+            LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+            LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            LCS.Transparency = 1
+            wait(0.5)
+            LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+            LCS.Size = Vector3.new(6, 0.2, 6)
+            LCS.Transparency = 0
+        elseif getgenv().CurrentTeam == "Bright orange" then
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+        elseif getgenv().CurrentTeam == "Bright blue" then
+            workspace.Remote.TeamEvent:FireServer("Bright blue")
+        elseif getgenv().CurrentTeam == "Medium stone grey" then
+            workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+        else 
+            local args = {
+                [1] = game:GetService("Players").LocalPlayer,
+                [2] = getgenv().CurrentTeam
+            }
+            
+            workspace.Remote.loadchar:InvokeServer(unpack(args))
+            wait()
+            repeat wait(.1) until game.Players.LocalPlayer.Character
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+        end
+    end
+    getgenv().Changed = false
+end
+
+
+
+
+function KillAll()
+    repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+        game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+    end
+    repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+    getgenv().CurrentTeam = game.Players.LocalPlayer.TeamColor.Name
+    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    local args = {
+        [1]={},
+        [2] = game:GetService("Players").LocalPlayer.Backpack.M9
+    }
+
+
+    for _, v in pairs(game:GetService("Players"):GetChildren()) do
+        if v.Character and v.Character:FindFirstChild("Head") then
+            local NewTable = {
+                ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+                ["Distance"] = 0,
+                ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+                ["Hit"] = v.Character.Head
+            }
+            table.insert(args[1], NewTable)
+            table.insert(args[1], NewTable)
+            table.insert(args[1], NewTable) 
+            table.insert(args[1], NewTable) 
+            table.insert(args[1], NewTable) 
+            table.insert(args[1], NewTable) 
+            table.insert(args[1], NewTable) 
+            table.insert(args[1], NewTable) 
+            table.insert(args[1], NewTable) 
+            table.insert(args[1], NewTable)
+            table.insert(args[1], NewTable)
+        end
+    end
+    game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+    wait()
+    if game.Players.LocalPlayer.TeamColor == "Medium stone grey" then
+        workspace.Remote.TeamEvent:FireServer("Bright orange")
+    else
+        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+    end
+    wait()
+    for _, v in pairs(game:GetService("Players"):GetChildren()) do
+        local NewTable = {
+            ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+            ["Distance"] = 0,
+            ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+            ["Hit"] = v.Character.Head
+        }
+       table.insert(args[1], NewTable)
+       table.insert(args[1], NewTable)
+       table.insert(args[1], NewTable) 
+       table.insert(args[1], NewTable) 
+       table.insert(args[1], NewTable) 
+       table.insert(args[1], NewTable) 
+       table.insert(args[1], NewTable) 
+       table.insert(args[1], NewTable) 
+       table.insert(args[1], NewTable) 
+       table.insert(args[1], NewTable)
+       table.insert(args[1], NewTable)
+    end
+    game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+    wait()
+    game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9 or game.Players.LocalPlayer.Character.M9)
+        if getgenv().CurrentTeam == "Really red" then
+        LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+        LCS.CanCollide = false
+        LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+        LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        LCS.Transparency = 1
+        wait(0.5)
+        LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+        LCS.Size = Vector3.new(6, 0.2, 6)
+        LCS.Transparency = 0
+    elseif getgenv().CurrentTeam == "Bright orange" then
+        workspace.Remote.TeamEvent:FireServer("Bright orange")
+    elseif getgenv().CurrentTeam == "Bright blue" then
+        workspace.Remote.TeamEvent:FireServer("Bright blue")
+    elseif getgenv().CurrentTeam == "Medium stone grey" then
+        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+    else 
+        local args = {
+            [1] = game:GetService("Players").LocalPlayer,
+            [2] = getgenv().CurrentTeam
+        }
+        
+        workspace.Remote.loadchar:InvokeServer(unpack(args))
+        wait()
+        repeat wait(.1) until game.Players.LocalPlayer.Character
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+    end
+end
+
+function TeleportKill(Player)
+    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    repeat 
+    for i=1,20 do
+        if game.Players.LocalPlayer.Character.Humanoid.Sit == true then
+            game.Players.LocalPlayer.Character.Humanoid.Sit = false
+        end
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+        local args = {
+            [1] = Player
+        }
+        
+        game:GetService("ReplicatedStorage").meleeEvent:FireServer(unpack(args))
+    end
+    wait()
+    until Player.Character.Humanoid.Health == 0
+    wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+end
+
+function LoopTK(Player)
+    ins = Instance.new("IntValue",Workspace.LoopTK)
+    ins.Name = Player.Name
+    while game.Workspace.LoopTK:FindFirstChild(Player.Name) do
+        pcall(function()
+            repeat wait() until not Player.Character:FindFirstChild("ForceField")
+            if Player.Character.Humanoid.Health ~= 0 then
+                SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                repeat 
+                for i=1,20 do
+                    if game.Players.LocalPlayer.Character.Humanoid.Sit == true then
+                        game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                    end
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                    local args = {
+                        [1] = Player
+                    }
+                    
+                    game:GetService("ReplicatedStorage").meleeEvent:FireServer(unpack(args))
+                end
+                wait()
+                until Player.Character.Humanoid.Health == 0
+                wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+            end
+        end)
+        wait()
+    end
+end
+
+function LoopKill(Player)
+    ins = Instance.new("IntValue",Workspace.LoopKill)
+    ins.Name = Player.Name
+    while game.Workspace.LoopKill:FindFirstChild(Player.Name) do
+        pcall(function()
+            if game.Players:FindFirstChild(Player.Name) and Player.Character then
+                repeat wait() until not Player.Character:FindFirstChild("ForceField")
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+                    game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                end
+                repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+                if Player.Character.Humanoid.Health ~= 0 then
+                    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                    getgenv().CurrentTeam = game.Players.LocalPlayer.TeamColor.Name
+                    if Player.TeamColor == game.Players.LocalPlayer.TeamColor or game.Players.LocalPlayer.TeamColor.Name == "Bright blue" then
+                        if game.Players.LocalPlayer.TeamColor.Name == "Bright orange" then
+                            LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+                            LCS.CanCollide = false
+                            LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+                            LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                            LCS.Transparency = 1
+                            wait(0.5)
+                            LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+                            LCS.Size = Vector3.new(6, 0.2, 6)
+                            LCS.Transparency = 0
+                            getgenv().Changed = true
+                        else
+                            workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                            repeat wait() until game.Players.LocalPlayer.TeamColor.Name == "Medium stone grey"
+                            if Player.TeamColor == game.Players.LocalPlayer.TeamColor then
+                                workspace.Remote.TeamEvent:FireServer("Bright orange")
+                            end
+                            getgenv().Changed = true
+                        end
+                    end
+                    wait()
+                    local args = {
+                        [1]={},
+                        [2] = game:GetService("Players").LocalPlayer.Backpack.M9
+                    }
+                    local NewTable = {
+                        ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+                        ["Distance"] = 0,
+                        ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+                        ["Hit"] = Player.Character.Head
+                    }
+                    table.insert(args[1], NewTable)
+                    table.insert(args[1], NewTable)
+                    table.insert(args[1], NewTable) 
+                    table.insert(args[1], NewTable) 
+                    table.insert(args[1], NewTable) 
+                    table.insert(args[1], NewTable) 
+                    table.insert(args[1], NewTable) 
+                    table.insert(args[1], NewTable) 
+                    table.insert(args[1], NewTable) 
+                    table.insert(args[1], NewTable)
+                    table.insert(args[1], NewTable)
+                    game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+                    
+                    wait()
+                    game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9)
+                    game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9 or game.Players.LocalPlayer.Character.M9)
+                    if getgenv().Changed == true then
+                        if getgenv().CurrentTeam == "Really red" then
+                            LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+                            LCS.CanCollide = false
+                            LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+                            LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                            LCS.Transparency = 1
+                            wait(0.5)
+                            LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+                            LCS.Size = Vector3.new(6, 0.2, 6)
+                            LCS.Transparency = 0
+                        elseif getgenv().CurrentTeam == "Bright orange" then
+                            workspace.Remote.TeamEvent:FireServer("Bright orange")
+                        elseif getgenv().CurrentTeam == "Bright blue" then
+                            workspace.Remote.TeamEvent:FireServer("Bright blue")
+                        elseif getgenv().CurrentTeam == "Medium stone grey" then
+                            workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        else 
+                            local args = {
+                                [1] = game:GetService("Players").LocalPlayer,
+                                [2] = getgenv().CurrentTeam
+                            }
+                            
+                            workspace.Remote.loadchar:InvokeServer(unpack(args))
+                            wait()
+                            repeat wait(.1) until game.Players.LocalPlayer.Character
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                        end
+                    end
+                    getgenv().Changed = false
+                end
+                wait()
+            else
+                repeat wait() until game.Players:FindFirstChild(Player.Name) 
+            end
+        end)
+    end
+end
+
+function LoopAll()
+    getgenv().LoopAll = true
+    while getgenv().LoopAll == true do
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+                game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+            end
+            repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+            local args = {
+                [1]={},
+                [2] = game:GetService("Players").LocalPlayer.Backpack.M9
+            }
+            for _, v in pairs(game:GetService("Players"):GetChildren()) do
+                if not v.Character:FindFirstChild("ForceField") then
+                    if v.Character.Humanoid.Health ~= 0 then
+                        if v.TeamColor ~= game.Players.LocalPlayer.TeamColor then
+                            local NewTable = {
+                                ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+                                ["Distance"] = 0,
+                                ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+                                ["Hit"] = v.Character.Head
+                            }
+                            table.insert(args[1], NewTable)
+                            table.insert(args[1], NewTable)
+                            table.insert(args[1], NewTable) 
+                            table.insert(args[1], NewTable) 
+                            table.insert(args[1], NewTable) 
+                            table.insert(args[1], NewTable) 
+                            table.insert(args[1], NewTable) 
+                            table.insert(args[1], NewTable) 
+                            table.insert(args[1], NewTable) 
+                            table.insert(args[1], NewTable)
+                            table.insert(args[1], NewTable)
+                        end
+                    end
+                end
+            end
+            if unpack(args)[1] ~= nil then
+            game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+            wait()
+            game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9)
+            end
+        end)
+        wait()
+    end
+end
+--[[
+-------------------Welcome----------------
+--]]
+
+
+
+
+
+
+
 local Welcome = Window:NewTab("Welcome")
 local Welcome = Welcome:NewSection("Welcome")
 Welcome:NewLabel("Welcome "..game.Players.LocalPlayer.Name)
 Welcome:NewLabel("Thanks for using RAZE Series X")
 
 
-local Guis = Window:NewTab("Guis")
-local Guis = Guis:NewSection("Guis")
-Guis:NewButton("Esp", "U can see people through walls", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/joemuma/everything-inside/main/unnamed-esp'))()
-end)
-Guis:NewButton("Aimbot", "Aims ur mouse on a player's body", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/Miscellaneous/main/UNIVERSAL.lua"))()
-end)
+
+
+
+
+
+--[[
+-------------------Combat----------------
+--]]
+
+
+
+
+
+
+
 local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
 
-
-Combat:NewTextBox("Kill", "Type the name of the player u wanna kill", function(txt2)
-function getFullNameFromPartial(PartialName)
-local CurrentPlayer=nil;
-local Players= game.Players:GetPlayers();
-for i=1,#Players do
- local foundPlayer=Players[i];
-if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
-  break;
-elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
-  break;
-end;
-end;
-return CurrentPlayer ;
-end
-
-local CurrentPlayer = getFullNameFromPartial(txt2)
-  
-    workspace.Remote.TeamEvent:FireServer("Medium stone grey")
-wait(.1)
-    local args = {
-    [1]={},
-    [2] = game:GetService("Players").LocalPlayer.Backpack.M9
-}
-print(CurrentPlayer)
-
-
-    local NewTable = {
-        ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
-        ["Distance"] = 0,
-        ["Cframe"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
-        ["Hit"] = game.Players:FindFirstChild(CurrentPlayer).Character.Head
-    }
-    print(CurrentPlayer)
-   table.insert(args[1], NewTable)
-   table.insert(args[1], NewTable)
-   table.insert(args[1], NewTable) 
-   table.insert(args[1], NewTable) 
-   table.insert(args[1], NewTable) 
-   table.insert(args[1], NewTable) 
-   table.insert(args[1], NewTable) 
-   table.insert(args[1], NewTable) 
-   table.insert(args[1], NewTable) 
-   table.insert(args[1], NewTable)
-   table.insert(args[1], NewTable)
-
-game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
-wait(.1)
-	LCS = game.Workspace["Criminals Spawn"].SpawnLocation
-
-LCS.CanCollide = false
-LCS.Size = Vector3.new(51.05, 24.12, 54.76)
-LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-LCS.Transparency = 1
-wait(0.5)
-LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
-LCS.Size = Vector3.new(6, 0.2, 6)
-LCS.Transparency = 0
+Combat:NewDropdown("Kill Team","Kills The Team U Select", {"Prisioners","Guards","Neutral","Criminals"} ,function(Team)
+    if Team == "Prisioners" then
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+        end
+        repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+        local args = {
+            [1]={},
+            [2] = game:GetService("Players").LocalPlayer.Backpack.M9 or game.Players.LocalPlayer.Character:FindFirstChild("M9")
+        }
+        if game.Players.LocalPlayer.TeamColor.Name == "Bright orange" then
+            getgenv().Changed = true
+            workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+            repeat wait() until game.Players.LocalPlayer.TeamColor.Name == "Medium stone grey"
+        end
+        for _, v in pairs(game:GetService("Teams").Inmates:GetPlayers()) do
+            local NewTable = {
+                ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+                ["Distance"] = 0,
+                ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+                ["Hit"] = v.Character.Head
+            }
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+        end
+        game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+        wait(.5)
+        game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9)
+        if getgenv().Changed == true then
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+            getgenv().Changed = false
+        end
+    elseif Team == "Guards" then
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+        end
+        repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+        local args = {
+            [1]={},
+            [2] = game:GetService("Players").LocalPlayer.Backpack.M9 or game.Players.LocalPlayer.Character:FindFirstChild("M9")
+        }
+        if game.Players.LocalPlayer.TeamColor.Name == "Bright blue" then
+            getgenv().Changed = true
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+            repeat wait() until game.Players.LocalPlayer.TeamColor.Name == "Bright orange"
+        end
+        wait(.5)
+        for _, v in pairs(game:GetService("Teams").Guards:GetPlayers()) do
+            local NewTable = {
+                ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+                ["Distance"] = 0,
+                ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+                ["Hit"] = v.Character.Head
+            }
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+        end
+        game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+        wait(.5)
+        game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9)
+        if getgenv().Changed == true then
+            workspace.Remote.TeamEvent:FireServer("Bright blue")
+            getgenv().Changed = false
+        end
+    elseif Team == "Neutral" then
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+        end
+        repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+        local args = {
+            [1]={},
+            [2] = game:GetService("Players").LocalPlayer.Backpack.M9 or game.Players.LocalPlayer.Character:FindFirstChild("M9")
+        }
+        if game.Players.LocalPlayer.TeamColor.Name == "Medium stone grey" then
+            getgenv().Changed = true
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+            repeat wait() until game.Players.LocalPlayer.TeamColor.Name == "Bright orange"
+        end
+        wait(.5)
+        for _, v in pairs(game:GetService("Teams").Neutral:GetPlayers()) do
+            local NewTable = {
+                ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+                ["Distance"] = 0,
+                ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+                ["Hit"] = v.Character.Head
+            }
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+        end
+        game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+        wait(.5)
+        game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9)
+        if getgenv().Changed == true then
+            workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+            getgenv().Changed = false
+        end
+    elseif Team == "Criminals" then
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("M9") then
+            game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+        end
+        repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("M9")
+        local args = {
+            [1]={},
+            [2] = game:GetService("Players").LocalPlayer.Backpack.M9 or game.Players.LocalPlayer.Character:FindFirstChild("M9")
+        }
+        if game.Players.LocalPlayer.TeamColor.Name == "Really red" then
+            getgenv().Changed = true
+            workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+            repeat wait() until game.Players.LocalPlayer.TeamColor.Name == "Medium stone grey"
+        end
+        wait(.5)
+        for _, v in pairs(game:GetService("Teams").Criminals:GetPlayers()) do
+            local NewTable = {
+                ["RayObject"] = Ray.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)),
+                ["Distance"] = 0,
+                ["CFrame"] = CFrame.new(0, 0, 0) * CFrame.Angles(-0, 0, -0),
+                ["Hit"] = v.Character.Head
+            }
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable) 
+           table.insert(args[1], NewTable)
+           table.insert(args[1], NewTable)
+        end
+        game:GetService("ReplicatedStorage").ShootEvent:FireServer(unpack(args))
+        wait(.5)
+        game:GetService("ReplicatedStorage").ReloadEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.M9)
+        if getgenv().Changed == true then
+            LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+            LCS.CanCollide = false
+            LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+            LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            LCS.Transparency = 1
+            wait(0.5)
+            LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+            LCS.Size = Vector3.new(6, 0.2, 6)
+            LCS.Transparency = 0
+            getgenv().Changed = false
+        end
+    end
+end)
+Combat:NewTextBox("Kill", "Type the name of the player u wanna kill", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        KillPlayer(CurrentPlayer)
+    end
+    CurrentPlayer = nil
+end)
+Combat:NewTextBox("LoopKill", "Type the name of the player u wanna LoopKill", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        LoopKill(CurrentPlayer)
+    end
+    CurrentPlayer = nil
 end)
 
-    Combat:NewButton("Kill all", "Kills Everyone in the game", function()
-kill()
+Combat:NewTextBox("UnLoopKill", "Type the name of the player u wanna dont want to be loopKilled Anymore", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        if game.workspace.LoopKill:FindFirstChild(CurrentPlayer.Name) then
+            game.workspace.LoopKill:FindFirstChild(CurrentPlayer.Name):destroy()
+        end
+    end
+    CurrentPlayer = nil
 end)
-    Combat:NewButton("One Punch", "One Hits People", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/One_Punch_Prison"))()
-    end)
-    Combat:NewToggle("Killaura", "Hits People Near u", function(state)
-    if state then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/killaura_prison"))()
+
+Combat:NewTextBox("Tp kill", "Teleports to the Target and Kills It", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        TeleportKill(CurrentPlayer)
+    end
+    CurrentPlayer = nil
+end)
+Combat:NewTextBox("LoopTp kill", "Loop Teleports to the Target and Kills It", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        LoopTK(CurrentPlayer)
+    end
+    CurrentPlayer = nil
+end)
+Combat:NewTextBox("UnLoopTp kill", "Loop Teleports to the Target and Kills It", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        if game.workspace.LoopTK:FindFirstChild(CurrentPlayer.Name) then
+            game.workspace.LoopTK:FindFirstChild(CurrentPlayer.Name):destroy()
+        end
+    end
+    CurrentPlayer = nil
+end)
+getgenv().SingelNuke = true
+Combat:NewTextBox("Nuke", "Type Someones Name To Make Him A Nuke", function(Nuked)
+    if getgenv().SingelNuke == true then
+        function getFullNameFromPartial(PartialName)
+            local CurrentPlayer=nil;
+            local Players= game.Players:GetPlayers();
+            for i=1,#Players do
+                local foundPlayer=Players[i];
+                if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                    CurrentPlayer=foundPlayer;
+                    break;
+                elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                    CurrentPlayer=foundPlayer;
+                    break;
+                end;
+            end;
+            return CurrentPlayer;
+        end
+        
+        local Nuked = getFullNameFromPartial(Nuked)
+        getgenv().SingelNuke = false
+        local args = {
+            [1] = " -----------------------Nuke Alert--------------------------------",
+            [2] = "All"
+        }
+        
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+        local args = {
+            [1] = Nuked.Name.." Now Turned into a Nuke if He Dies Everyone will ",
+            [2] = "All"
+        }
+        
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+        local args = {
+            [1] = " -----------------------Nuke Alert--------------------------------",
+            [2] = "All"
+        }
+        
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+        getgenv().ActiveNuke = true
+        while getgenv().ActiveNuke == true do
+            if Nuked.Character:FindFirstChild("Humanoid").Health == 0 then
+                local args = {
+                    [1] = " -----------------------Nuke Alert--------------------------------",
+                    [2] = "All"
+                }
+                
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+                local args = {
+                    [1] = Nuked.Name.." Died, so Everyone else will too ",
+                    [2] = "All"
+                }
+                
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+                wait(.1)
+                    local args = {
+                    [1] = "3...",
+                    [2] = "All"
+                }
+                
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+                wait(1)
+                    local args = {
+                    [1] = "2..",
+                    [2] = "All"
+                }
+                
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+                wait(1)
+                    local args = {
+                    [1] = "1.",
+                    [2] = "All"
+                }
+                
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+                wait(1)
+                KillAll()
+                wait(4)
+            end
+            wait()
+        end
+    elseif getgenv().SingelNuke == false then
+        local AnnGUI = Instance.new("Frame")
+        local background = Instance.new("Frame")
+        local TextBox = Instance.new("TextLabel")
+        local shadow = Instance.new("Frame")
+        local PopupText = Instance.new("TextLabel")
+        local Exit = Instance.new("ImageButton")
+         
+        screenGui = Instance.new("ScreenGui",game.CoreGui)
+         
+        AnnGUI.Name = 'Boomer'
+        AnnGUI.Parent = screenGui
+        AnnGUI.Active = true
+        AnnGUI.BackgroundTransparency = 1
+        AnnGUI.Position = UDim2.new(0.5, -180, 0, -400)
+        AnnGUI.Size = UDim2.new(0, 360, 0, 20)
+        AnnGUI.ZIndex = 4
+         
+        background.Name = "background"
+        background.Parent = AnnGUI
+        background.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
+        background.BorderSizePixel = 0
+        background.Position = UDim2.new(0, 0, 0, 20)
+        background.Size = UDim2.new(0, 360, 0, 135)
+         
+        TextBox.Parent = background
+        TextBox.BackgroundTransparency = 1
+        TextBox.Position = UDim2.new(0.017, 0, 0.06, 0)
+        TextBox.Size = UDim2.new(0, 348, 0, 120)
+        TextBox.Font = Enum.Font.SourceSans
+        TextBox.TextSize = 18
+        TextBox.TextWrapped = true
+        TextBox.Text = 'You Already Made Someone A Nuke\n\nDisable The Nuke to make someone else a Nuke'
+        TextBox.TextColor3 = Color3.new(1, 1, 1)
+        TextBox.TextXAlignment = Enum.TextXAlignment.Left
+        TextBox.TextYAlignment = Enum.TextYAlignment.Top
+         
+        shadow.Name = "shadow"
+        shadow.Parent = AnnGUI
+        shadow.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+        shadow.BorderSizePixel = 0
+        shadow.Size = UDim2.new(0, 360, 0, 20)
+        shadow.ZIndex = 4
+         
+        PopupText.Name = "PopupText"
+        PopupText.Parent = shadow
+        PopupText.BackgroundTransparency = 1
+        PopupText.Position = UDim2.new(0, 51, 0, 0)
+        PopupText.Size = UDim2.new(0.76, -16, 0.95, 0)
+        PopupText.ZIndex = 4
+        PopupText.Font = Enum.Font.SourceSans
+        PopupText.TextSize = 14
+        PopupText.Text = "Server Announcement"
+        PopupText.TextColor3 = Color3.new(1, 1, 1)
+        PopupText.TextWrapped = true
+         
+        Exit.Name = "Exit"
+        Exit.Parent = shadow
+        Exit.BackgroundTransparency = 1
+        Exit.Size = UDim2.new(0, 20, 0, 20)
+        Exit.ZIndex = 4
+        Exit.Image = "rbxassetid://2132544126"
+         
+        wait(1)
+        AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, 150), "InOut", "Quart", 0.5, true, nil)
+         
+        Exit.MouseButton1Click:Connect(function()
+            AnnGUI:TweenPosition(UDim2.new(0.5, -180, 0, -400), "InOut", "Quart", 0.5, true, nil)
+            wait(0.6)
+            AnnGUI:Destroy()
+        end)
+        wait(3)
+        pcall(function()
+        AnnGUI:Destroy()
+        end)
+    end
+    Nuked = nil
+end)
+Combat:NewButton("Disable Nuke", "Disables ongoing Nuke", function(txt1)
+    getgenv().SingelNuke = true
+    getgenv().ActiveNuke = false
+end)
+
+Combat:NewButton("Clear Loops", "Clears Every Kill Loop", function()
+    for i,v in pairs(game.workspace.LoopKill:GetChildren()) do
+        v:destroy()
+    end
+    for i,v in pairs(game.workspace.LoopTK:GetChildren()) do
+        v:destroy()
+    end
+end)
+Combat:NewButton("Kill all", "Kills Everyone in the game", function()
+    KillAll()
+end)
+
+Combat:NewToggle("Loop KillAll", "Kills Everyone In A Loop", function(state)
+    if state == true then
+        LoopAll()
+    else
+        getgenv().LoopAll = false
+    end
+end)
+
+
+
+Combat:NewToggle("One Punch", "Kills Everyone With 1 Punch", function(toggle)
+    if toggle == true then
+        getgenv().OnePunch = true
+        if getgenv().AlreadyExecuted1 == nil then
+            getgenv().AlreadyExecuted1 = true
+            mainRemotes = game.ReplicatedStorage
+            meleeRemote = mainRemotes['meleeEvent']
+            mouse = game.Players.LocalPlayer:GetMouse()
+            punching = false
+            cooldown = false
+            
+            function punch()
+                cooldown = true
+                local part = Instance.new("Part", game.Players.LocalPlayer.Character)
+                part.Transparency = 1
+                part.Size = Vector3.new(5, 2, 3)
+                part.CanCollide = false
+                local w1 = Instance.new("Weld", part)
+                w1.Part0 = game.Players.LocalPlayer.Character.Torso
+                w1.Part1 = part
+                w1.C1 = CFrame.new(0,0,2)
+                part.Touched:connect(function(hit)
+                    if game.Players:FindFirstChild(hit.Parent.Name) then
+                        local plr = game.Players:FindFirstChild(hit.Parent.Name)
+                        if plr.Name ~= game.Players.LocalPlayer.Name then
+                            part:Destroy()
+                            
+                            for i = 1,100 do
+                                meleeRemote:FireServer(plr)
+                            end
+                        end
+                    end
+                end)
+                
+                wait(1)
+                cooldown = false
+                part:Destroy()
+            end
+            
+            
+            mouse.KeyDown:connect(function(key)
+                if cooldown == false then
+                    if key:lower() == "f" then
+                        if getgenv().OnePunch == true then
+                            punch()
+                        end
+                    end
+                end
+            end)
+        end
+    else
+        getgenv().OnePunch = false
+    end
+end)
+Combat:NewToggle("KillAura", "Hits Players Near u", function(toggle)
+    if toggle == true then
+        getgenv().MaxDistance=15;getgenv().KillAuraActive=true;
+        
+        function GetClosestTorso()
+            local closest
+            local plrtorso = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+                if v.Character and v ~= game:GetService("Players").LocalPlayer then
+                    if v.Character.Humanoid.Health ~= 0 then
+                        local torso = v.Character:FindFirstChild("HumanoidRootPart")
+                        if torso and (closest == nil or (torso.Position - plrtorso.Position).magnitude < (closest.Position - plrtorso.Position).magnitude) then
+                            if (torso.Position - plrtorso.Position).magnitude <= getgenv().MaxDistance then
+                               closest = torso
+                            end
+                        end
+                    end
+                end
+            end
+            wait()
+            return closest
+        end
+        
+        function HitPlayer()
+            pcall(function()
+                local Closest = GetClosestTorso()
+                if Closest ~= nil then
+                    local Player = game:GetService("Players"):GetPlayerFromCharacter(Closest.Parent)
+                    for i=1,10 do
+                        local args = {
+                            [1] = Player
+                        }
+                        
+                        game:GetService("ReplicatedStorage").meleeEvent:FireServer(unpack(args))
+                    end
+                end
+            end)
+        end
+        
+        while KillAuraActive == true do
+                HitPlayer()
+            wait() 
+        end
+        
     else
         getgenv().KillAuraActive = false
     end
 end)
-    Combat:NewToggle("LoopKill all", "Kills Everyone in a loop", function(state)
-    if state then
-    lk()
-    else
-        getgenv().lk = false
-    end
-end)
-abd = true
-Combat:NewTextBox("Nuke", "Type Someones Name To Make Him A Nuke", function(txt1)
-    if abd == true then
-function getFullNameFromPartial(PartialName)
-local CurrentPlayer=nil;
-local Players= game.Players:GetPlayers();
-for i=1,#Players do
- local foundPlayer=Players[i];
-if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
-  break;
-elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
-  break;
-end;
-end;
-return CurrentPlayer ;
-end
 
-local CurrentPlayer = getFullNameFromPartial(txt1)
 
-local args = {
-    [1] = " -----------------------Nuke Alert--------------------------------",
-    [2] = "All"
-}
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-local args = {
-    [1] = ". -- ."..(CurrentPlayer)..". -- .Now Turned into a Nuke if He Dies Everyone will ",
-    [2] = "All"
-}
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-local args = {
-    [1] = " -----------------------Nuke Alert--------------------------------",
-    [2] = "All"
-}
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-getgenv().a = true
-while getgenv().a == true do
-if game.Players:FindFirstChild(CurrentPlayer).Character:FindFirstChild("Humanoid").Health == 0 then
-local args = {
-    [1] = " -----------------------Nuke Alert--------------------------------",
-    [2] = "All"
-}
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-local args = {
-    [1] = (CurrentPlayer)..". -- .-------------- Died, so Everyone else will too -------------------------------------------Nuke Alert-------------------------------------------------",
-    [2] = "All"
-}
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-wait(.1)
-    local args = {
-    [1] = "3...",
-    [2] = "All"
-}
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-wait(1)
-    local args = {
-    [1] = "2..",
-    [2] = "All"
-}
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-wait(1)
-    local args = {
-    [1] = "1.",
-    [2] = "All"
-}
+--[[
+-------------------LocalPlayer----------------
+--]]
 
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-wait(1)
-    kill()
-wait(2)
-else
-    print(txt1)
-    print("Alive")
-    
-end
-wait()
-end
 
-end
-abd = false
-if abd == false then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Nuke1"))()
-end
-end)
-Combat:NewButton("Disable Nuke", "Disables ongoing Nuke", function(txt1)
-abd = true
-getgenv().a = false
-end)
+
+
 
 
 
@@ -231,277 +1126,236 @@ local LocalPlayer = LocalPlayer:NewSection("Local Player")
 LocalPlayer:NewTextBox("View Player","Views The Player Of The Name u Write",function(txt)
     pcall(function()
     function getFullNameFromPartial(PartialName)
-    local CurrentPlayer=nil;
-    local Players= game.Players:GetPlayers();
-    for i=1,#Players do
-     local foundPlayer=Players[i];
-    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
-     CurrentPlayer=foundPlayer.Name;
-      break;
-    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
-     CurrentPlayer=foundPlayer.Name;
-      break;
-    end;
-    end;
-    return CurrentPlayer ;
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
     end
     
     local CurrentPlayer = getFullNameFromPartial(txt)
-    
     game:GetService("Workspace").Camera.CameraSubject = game.Players:FindFirstChild(CurrentPlayer).Character.Humanoid
     end)
 end)
+LocalPlayer:NewTextBox("Bring Player", "Teleports A Player to u", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
+    
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        if game.Players.LocalPlayer.Character then
+            if game.Players.LocalPlayer.Character.HumanoidRootPart then
+                function bring(Player , Position)
+                    if Player == nil or Position == nil then return end
+                    local savedcf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                    workspace.Remote.loadchar:InvokeServer()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
+                    repeat wait() until game.Players.LocalPlayer.Backpack:FindFirstChild("Hammer")
+                    local CHAR = game.Players.LocalPlayer.Character
+                    CHAR.Humanoid.Name = "1"
+                    local c = CHAR["1"]:Clone()
+                    c.Name = "Humanoid"
+                    c.Parent = CHAR
+                    CHAR["1"]:Destroy()
+                    game.Workspace.CurrentCamera.CameraSubject = CHAR
+                    CHAR.Animate.Disabled = true
+                    wait()
+                    CHAR.Animate.Disabled = false
+                    CHAR.Humanoid.DisplayDistanceType = "None"
+                    game.Players.LocalPlayer:FindFirstChild("Backpack"):FindFirstChild("Hammer").Parent = CHAR
+                    local STOP = 0
+                    repeat wait(.1)
+                        STOP = STOP + 1
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0.75)
+                    until (not game.Players.LocalPlayer.Character:FindFirstChild("Hammer") or not game.Players.LocalPlayer.Character.HumanoidRootPart or not Player.Character.HumanoidRootPart or not game.Players.LocalPlayer.Character.HumanoidRootPart.Parent or not Player.Character.HumanoidRootPart.Parent or STOP > 500) and STOP > 3
+                    local STOP_2 = 0
+                    repeat wait()
+                        STOP_2 = STOP_2 + 1
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Position
+                    until STOP_2 > 10
+                    workspace.Remote.loadchar:InvokeServer()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
+                end
+                bring(CurrentPlayer, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+            end
+        end
+    end
+    CurrentPlayer = nil
+end)
 LocalPlayer:NewTextBox("Teleport to Player", "Type name of Player to teleport", function(txt)
- function getFullNameFromPartial(PartialName)
-local CurrentPlayer=nil;
-local Players= game.Players:GetPlayers();
-for i=1,#Players do
- local foundPlayer=Players[i];
-if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
-  break;
-elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
- CurrentPlayer=foundPlayer.Name;
-  break;
-end;
-end;
-return CurrentPlayer ;
-end
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
 
-local CurrentPlayer = getFullNameFromPartial(txt)
-
-
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(CurrentPlayer).Character.HumanoidRootPart.CFrame
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentPlayer.Character.HumanoidRootPart.CFrame
+    end
+    CurrentPlayer = nil
 end)
 LocalPlayer:NewButton("Fix View", "Views Urself", function()
     game:GetService("Workspace").Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 end)
-LocalPlayer:NewButton("Click-Tp (Ctrl)", "Teleports u where u click", function()
-
-
-local player = game:GetService("Players").LocalPlayer
-local char = player.Character
-local mouse = player:GetMouse()
-local uis = game:GetService("UserInputService")
-
-local shifthold  = false
-
-mouse.Button1Down:Connect(function()
-    if shifthold then
-        char:MoveTo(mouse.Hit.p)
-    end
-end)
-
-uis.InputBegan:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = true
-    end
-end)
-
-uis.InputEnded:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = false
-    end
-end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function()
-
-local player = game:GetService("Players").LocalPlayer
-local char = player.Character
-local mouse = player:GetMouse()
-local uis = game:GetService("UserInputService")
-
-local shifthold  = false
-
-mouse.Button1Down:Connect(function()
-    if shifthold then
-        char:MoveTo(mouse.Hit.p)
-    end
-end)
-
-uis.InputBegan:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = true
-    end
-end)
-
-uis.InputEnded:Connect(function(input, process)
-    if input.KeyCode == Enum.KeyCode.LeftControl then
-        shifthold = false
-    end
-end) 
-end)
-end)
-LocalPlayer:NewButton("FullBright", "Makes u see everything brighter", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/fullbright"))()
-end)
-LocalPlayer:NewButton("Xray (X)", "U can see through walls", function()
-
-local t=false
-
-local function scan(z,t)
-for _,i in pairs(z:GetChildren()) do
-if i:IsA("BasePart") and not i.Parent:FindFirstChild("Humanoid") and not i.Parent.Parent:FindFirstChild("Humanoid") then
-i.LocalTransparencyModifier=t
-end
-
-scan(i,t)
-end
-end
-
-function x(v)
-if v then
-scan(workspace,0.5)
-else
-scan(workspace,0)
-end
-end
-
-game:GetService("UserInputService").InputBegan:connect(function (input)
-if input.UserInputType==Enum.UserInputType.Keyboard and input.KeyCode==Enum.KeyCode.X then
-t=not t
-x(t)
-end
-end)
-end)
-    LocalPlayer:NewButton("Taser Bypass", "U cant Get Tased", function()
-	game.Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
-	game.Players.LocalPlayer.CharacterAdded:connect(function()
-	game.Workspace:WaitForChild(game.Players.LocalPlayer.Name)
-	game.Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
-	end)
-end)
-LocalPlayer:NewButton("Auto Quick Spawn", "Automaticly Respawns", function()
-if crim == true then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Crim"))()
-end
-if guard == true then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Cop"))()
-end
-if neutral == true then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Neutral"))()
-end
-if prisioner == true then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Prisioner"))()
-end
-if neutral1 == true then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/exploit%20neutral"))()
-end
-if neutral~=true then
-if neutral1~=true then
-if prisioner~=true then
-if guard~=true then
-if crim~=true then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Team%20Select"))()
-end
-end
-end
-end
-end
-end)
-    LocalPlayer:NewDropdown("Choose team to Spawn as", "DropdownInf", {"Prisioner", "Crim", "Guard", "Neutral", "exploit Neutral"}, function(currentOption)
-    if currentOption == ("Prisioner") then
-    crim = false
-    guard = false
-    neutral = false
-    prisioner = true
-    neutral1 = false
-    getgenv().c = false
-    wait()
-    getgenv().c = true
-    end
-    if currentOption == ("Crim") then
-    crim = true
-    guard = false
-    neutral = false
-    prisioner = false
-    neutral1 = false
-    getgenv().c = false
-    wait()
-    getgenv().c = true
-    end
-    if currentOption == ("Guard") then
-    crim = false
-    guard = true
-    neutral = false
-    prisioner = false
-    neutral1 = false
-    getgenv().c = false
-    wait()
-    getgenv().c = true
-    end
-    if currentOption == ("Neutral") then
-    crim = false
-    guard = false
-    neutral = true
-    prisioner = false
-    neutral1 = false
-    getgenv().c = false
-    wait()
-    getgenv().c = true
-    end
-    if currentOption == ("exploit Neutral") then
-    crim = false
-    guard = false
-    neutral = false
-    prisioner = false
-    neutral1 = true
-    getgenv().c = false
-    wait()
-    getgenv().c = true
-    end
-    end)
-    LocalPlayer:NewDropdown("teleport", "Teleport to specific places", {"Crim Base", "Police Station", "Prison", "Yard"}, function(CurrentOption)
-    if CurrentOption == ("Crim Base") then
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-929, 94, 2065)
-    end
-    if CurrentOption == ("Police Station") then
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(835, 100, 2265)
-    end
-    if CurrentOption == ("Prison") then
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(918, 100, 2391)
-    end
-    if CurrentOption == ("Yard") then
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(794, 98, 2550)
-    end
-    end)
-LocalPlayer:NewButton("Arrest Criminals", "Teleports U To Criminals And Arrests them", function()
-	wait(0.1)
-	Player = game.Players.LocalPlayer
-	Pcf = Player.Character.HumanoidRootPart.CFrame
-	for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
-	if v.Name ~= Player.Name then
-	local i = 10
-    repeat
-    wait()
-    i = i-1
-    game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
-    Player.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
-    until i == 0
-end
-end
-end)
-local noclip = true
+local noclip = false
 LocalPlayer:NewKeybind("Noclip", "Noclip", Enum.KeyCode.G, function()
 local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-noclip = not noclip
-while true do
-    character = game.Players.LocalPlayer.Character
-
-    if noclip then
-        for _, v in pairs(character:GetDescendants()) do
-            pcall(function()
-                if v:IsA("BasePart") then
-                    v.CanCollide = false
-                end
-            end)
+    noclip = not noclip
+    while true do
+        if noclip then
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                pcall(function()
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false
+                    end
+                end)
+            end
         end
+        game:GetService("RunService").Stepped:wait()
     end
-
-    game:GetService("RunService").Stepped:wait()
-end
 end)
-LocalPlayer:NewButton("AirWalk", "Click X to Toggle Walking On Air", function() 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Air_walk"))()
+CurFly = false
+Fly = true
+flyspeed = 1
+vehicleflyspeed = 1
+fly = false
+LocalPlayer:NewKeybind("Fly", "Fly Around", Enum.KeyCode.X, function()
+    if fly == false then
+        fly = not fly
+        Mouse = game.Players.LocalPlayer:GetMouse()
+        function getRoot(char)
+        	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+        	return rootPart
+        end
+        function sFLY(vfly)
+        	repeat wait() until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and getRoot(game.Players.LocalPlayer.Character) and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        	repeat wait() until Mouse
+        	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+            
+        	local T = getRoot(game.Players.LocalPlayer.Character)
+        	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        	local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        	local SPEED = 0
+        
+        	local function FLY()
+        		CurFly = true
+        		local BG = Instance.new('BodyGyro')
+        		local BV = Instance.new('BodyVelocity')
+        		BG.P = 9e4
+        		BG.Parent = T
+        		BV.Parent = T
+        		BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+        		BG.cframe = T.CFrame
+        		BV.velocity = Vector3.new(0, 0, 0)
+        		BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+        		task.spawn(function()
+        			repeat wait()
+        				if not vfly and game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+        					game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+        				end
+        				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
+        					SPEED = 50
+        				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
+        					SPEED = 0
+        				end
+        				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+        					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+        					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+        				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
+        					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+        				else
+        					BV.velocity = Vector3.new(0, 0, 0)
+        				end
+        				BG.cframe = workspace.CurrentCamera.CoordinateFrame
+        			until not CurFly
+        			CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        			lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        			SPEED = 0
+        			BG:Destroy()
+        			BV:Destroy()
+        			if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+        				game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+        			end
+        		end)
+        	end
+        	flyKeyDown = Mouse.KeyDown:Connect(function(KEY)
+        		if KEY:lower() == 'w' then
+        			CONTROL.F = (vfly and vehicleflyspeed or flyspeed)
+        		elseif KEY:lower() == 's' then
+        			CONTROL.B = - (vfly and vehicleflyspeed or flyspeed)
+        		elseif KEY:lower() == 'a' then
+        			CONTROL.L = - (vfly and vehicleflyspeed or flyspeed)
+        		elseif KEY:lower() == 'd' then 
+        			CONTROL.R = (vfly and vehicleflyspeed or flyspeed)
+        		elseif Fly and KEY:lower() == 'e' then
+        			CONTROL.Q = (vfly and vehicleflyspeed or flyspeed)*2
+        		elseif Fly and KEY:lower() == 'q' then
+        			CONTROL.E = -(vfly and vehicleflyspeed or flyspeed)*2
+        		end
+        		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
+        	end)
+        	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
+        		if KEY:lower() == 'w' then
+        			CONTROL.F = 0
+        		elseif KEY:lower() == 's' then
+        			CONTROL.B = 0
+        		elseif KEY:lower() == 'a' then
+        			CONTROL.L = 0
+        		elseif KEY:lower() == 'd' then
+        			CONTROL.R = 0
+        		elseif KEY:lower() == 'e' then
+        			CONTROL.Q = 0
+        		elseif KEY:lower() == 'q' then
+        			CONTROL.E = 0
+        		end
+        	end)
+        	FLY()
+        end
+        sFLY(true)
+    elseif fly == true then
+        fly = not fly
+    	CurFly = false
+    	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+    	if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+    		game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+    	end
+    	pcall(function() game.workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
+    end
+end)
+LocalPlayer:NewSlider("FlySpeed", "Changes ur Fly Speed", 20, 1, function(c)
+    vehicleflyspeed = c
 end)
 LocalPlayer:NewSlider("WalkSpeed", "Changes ur Speed", 500, 16, function(a) -- 500 = max 0 = min
 
@@ -512,160 +1366,995 @@ LocalPlayer:NewSlider("JumpHeight", "Changes ur Jump Power", 500, 50, function(b
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = b
 
 end)
+
+
+
+
+
+
+--[[
+-------------------Misc----------------
+--]]
+
+
+
+
+
+
+
 local Misc = Window:NewTab("Misc")
 local Misc = Misc:NewSection("Misc")
-Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
-local ts = game:GetService("TeleportService")
-local p = game:GetService("Players").LocalPlayer
-ts:Teleport(game.PlaceId, p)
+Misc:NewDropdown("Change Team", "Changes ur Team to That Specific Team / Color", {"Bright orange","Bright blue","Medium stone grey","Criminals","Really black","Light blue","Bright green","Bright yellow","Hot pink","Royal purple","Br. reddish orange","White"}, function(CurrentOption)
+    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    if CurrentOption == "Criminals" then
+        if game.Players.LocalPlayer.TeamColor.Name == "Bright blue" then
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+            repeat wait() until game.Players.LocalPlayer.TeamColor.Name == "Bright orange"
+            LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+            LCS.CanCollide = false
+            LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+            LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            LCS.Transparency = 1
+            wait(0.5)
+            LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+            LCS.Size = Vector3.new(6, 0.2, 6)
+            LCS.Transparency = 0
+        else
+            
+            LCS = game.Workspace["Criminals Spawn"].SpawnLocation
+            LCS.CanCollide = false
+            LCS.Size = Vector3.new(51.05, 24.12, 54.76)
+            LCS.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            LCS.Transparency = 1
+            wait(0.5)
+            LCS.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+            LCS.Size = Vector3.new(6, 0.2, 6)
+            LCS.Transparency = 0
+        end
+        getgenv().CurrentTeam = "Really red"
+        wait()
+        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+    elseif CurrentOption == "Bright orange" then
+        workspace.Remote.TeamEvent:FireServer("Bright orange")
+        getgenv().CurrentTeam = "Bright orange"
+    elseif CurrentOption == "Bright blue" then
+        workspace.Remote.TeamEvent:FireServer("Bright blue")
+        getgenv().CurrentTeam = "Bright blue"
+    elseif CurrentOption == "Medium stone grey" then
+        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+        getgenv().CurrentTeam = "Medium stone grey"
+    else
+        local args = {
+            [1] = game:GetService("Players").LocalPlayer,
+            [2] = CurrentOption
+        }
+        
+        workspace.Remote.loadchar:InvokeServer(unpack(args))
+        wait()
+        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+        getgenv().CurrentTeam = CurrentOption
+    end
 end)
-Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Server_Hop"))()
-Teleport()
-end)
-    Misc:NewButton("Infinite Stamina", "U can jump without cooldown", function()
-    for i,v in next, getgc() do 
-    if type(v) == "function" and getfenv(v).script and getfenv(v).script == game:GetService("Players").LocalPlayer.Character.ClientInputHandler then 
-        for i2,v2 in next, debug.getupvalues(v) do 
-            if type(v2) == "number" then 
-                debug.setupvalue(v, i2, math.huge)
-                end
+Misc:NewDropdown("Change QuickSpawn Team", "Changes The Team u QuickSpawn As", {"Bright orange","Bright blue","Medium stone grey","Criminals","Really black","Light blue","Bright green","Bright yellow","Hot pink","Royal purple","Br. reddish orange","White"}, function(CurrentOption)
+    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    if CurrentOption == "Criminals" then
+        getgenv().ChoosenTeam = "Really red"
+        getgenv().CurrentTeam = "Really red"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = not getgenv().QuickRespawn
+            wait()
+            getgenv().QuickRespawn = not getgenv().QuickRespawn
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Bright orange" then
+        getgenv().ChoosenTeam = "Bright orange"
+        getgenv().CurrentTeam = "Bright orange"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Bright blue" then
+        getgenv().ChoosenTeam = "Bright blue"
+        getgenv().CurrentTeam = "Bright blue"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Light blue" then
+        getgenv().ChoosenTeam = "Light blue"
+        getgenv().CurrentTeam = "Light blue"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Really black" then
+        getgenv().ChoosenTeam = "Really black"
+        getgenv().CurrentTeam = "Really black"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Bright green" then
+        getgenv().ChoosenTeam = "Bright green"
+        getgenv().CurrentTeam = "Bright green"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Bright yellow" then
+        getgenv().ChoosenTeam = "Bright yellow"
+        getgenv().CurrentTeam = "Bright yellow"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Hot pink" then
+        getgenv().ChoosenTeam = "Hot pink"
+        getgenv().CurrentTeam = "Hot pink"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Royal purple" then
+        getgenv().ChoosenTeam = "Royal purple"
+        getgenv().CurrentTeam = "Royal purple"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Br. reddish orange" then
+        getgenv().ChoosenTeam = "Br. reddish orange"
+        getgenv().CurrentTeam = "Br. reddish orange"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "White" then
+        getgenv().ChoosenTeam = "White"
+        getgenv().CurrentTeam = "White"        
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
+            end
+        end
+    elseif CurrentOption == "Medium stone grey" then
+        getgenv().ChoosenTeam = "Medium stone grey"
+        getgenv().CurrentTeam = "Medium stone grey"
+        if getgenv().QuickRespawn == true then
+            getgenv().QuickRespawn = false
+            wait()
+            getgenv().QuickRespawn = true            
+            while getgenv().QuickRespawn == true do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character:destroy()
+                        if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = getgenv().ChoosenTeam
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Really black"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                        end
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                    end
+                end)
+                wait()
             end
         end
     end
 end)
+Misc:NewTextBox("Change Team", "Type the Name of the Player u wanna be team of", function(txt)
+    function getFullNameFromPartial(PartialName)
+        local CurrentPlayer=nil;
+        local Players= game.Players:GetPlayers();
+        for i=1,#Players do
+            local foundPlayer=Players[i];
+            if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                CurrentPlayer=foundPlayer;
+                break;
+            end;
+        end;
+        return CurrentPlayer;
+    end
 
-Misc:NewButton("Destroy Doors", "Destroys Doors Inside the Prison", function()
-				Workspace.Prison_Cellblock.doors:Destroy()
-			
-			for i,v in pairs(workspace:GetChildren())do
-					if v.Name == "Doors" then
-				v:Destroy()
-			end
-	end
+    local CurrentPlayer = getFullNameFromPartial(txt)
+    if CurrentPlayer ~= nil then
+        if game.Players.LocalPlayer.TeamColor.Name ~= CurrentPlayer.TeamColor.Name then
+            SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            if CurrentPlayer.TeamColor.Name == "Medium stone grey" then
+                local args = {
+                    [1] = game:GetService("Players").LocalPlayer,
+                    [2] = "Bright orange"
+                }
+                
+                workspace.Remote.loadchar:InvokeServer(unpack(args))
+                repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.TeamColor.Name == "Bright orange"
+                workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+            else
+                local args = {
+                    [1] = game:GetService("Players").LocalPlayer,
+                    [2] = CurrentPlayer.TeamColor.Name
+                }
+                
+                workspace.Remote.loadchar:InvokeServer(unpack(args))
+            end
+            wait()
+            repeat wait(.1) until game.Players.LocalPlayer.Character
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+        end
+    end
 end)
+Misc:NewTextBox("Loop Change Team", "Type the Name of the Player u wanna be team of", function(txt)
+    if getgenv().AutoChange ~= true then
+        function getFullNameFromPartial(PartialName)
+            local CurrentPlayer=nil;
+            local Players= game.Players:GetPlayers();
+            for i=1,#Players do
+                local foundPlayer=Players[i];
+                if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
+                    CurrentPlayer=foundPlayer;
+                    break;
+                elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
+                    CurrentPlayer=foundPlayer;
+                    break;
+                end;
+            end;
+            return CurrentPlayer;
+        end
+    
+        local CurrentPlayer = getFullNameFromPartial(txt)
+        if CurrentPlayer ~= nil then
+            getgenv().AutoChange = true
+            while getgenv().AutoChange == true do
+                if game.Players.LocalPlayer.TeamColor.Name ~= CurrentPlayer.TeamColor.Name then
+                    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                    if CurrentPlayer.TeamColor.Name == "Medium stone grey" then
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = "Bright orange"
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                        repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.TeamColor.Name == "Bright orange"
+                        workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                    else
+                        local args = {
+                            [1] = game:GetService("Players").LocalPlayer,
+                            [2] = CurrentPlayer.TeamColor.Name
+                        }
+                        
+                        workspace.Remote.loadchar:InvokeServer(unpack(args))
+                    end
+                    wait()
+                    repeat wait(.1) until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+                end
+                wait(.2)
+            end
+        end
+    end
+end)
+Misc:NewButton("Stop Loop Change", "Stops The Auto Change Loop", function()
+    getgenv().AutoChange = false
+end)
+Misc:NewButton("Arrest Criminals", "Arrests all Current Criminals", function()
+    SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+	    pcall(function()
+            if v ~= game.Players.LocalPlayer then
+                repeat
+                    if game.Players.LocalPlayer.Character.Humanoid.Sit == true then
+                        game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                    end
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1) 
+                    game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+                    wait()
+                until v.Character.Head:FindFirstChild("handcuffedGui")
+            end
+        end)
+	end
+    wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+end)
+getgenv().QuickRespawn = false
+Misc:NewToggle("QuickSpawn","Respawns fast on death automaticly",function()
+    getgenv().QuickRespawn = not getgenv().QuickRespawn
+    while getgenv().QuickRespawn == true do
+        pcall(function()
+            if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                SavedPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                game.Players.LocalPlayer.Character:destroy()
+                if getgenv().ChoosenTeam ~= "Medium stone grey" then
+                    local args = {
+                        [1] = game:GetService("Players").LocalPlayer,
+                        [2] = getgenv().ChoosenTeam
+                    }
+                    
+                    workspace.Remote.loadchar:InvokeServer(unpack(args))
+                else
+                    local args = {
+                        [1] = game:GetService("Players").LocalPlayer,
+                        [2] = "Really black"
+                    }
+                    
+                    workspace.Remote.loadchar:InvokeServer(unpack(args))
+                repeat wait() until game.Players.LocalPlayer.Character
+                workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+                end
+                repeat wait() until game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = SavedPos
+            end
+        end)
+        wait()
+    end
+end)
+Misc:NewButton("Rejoin", "Teleports u into the same server again", function()
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+Misc:NewButton("Server Hop", "Teleports u into the Another Server of the game", function()
+local PlaceID = game.PlaceId
+local AllIDs = {}
+local foundAnything = ""
+local actualHour = os.date("!*t").hour
+local Deleted = false
+local File = pcall(function()
+    AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+end)
+if not File then
+    table.insert(AllIDs, actualHour)
+    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+end
+function TPReturner()
+    local Site;
+    if foundAnything == "" then
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+    else
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+    end
+    local ID = ""
+    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+        foundAnything = Site.nextPageCursor
+    end
+    local num = 0;
+    for i,v in pairs(Site.data) do
+        local Possible = true
+        ID = tostring(v.id)
+        if tonumber(v.maxPlayers) > tonumber(v.playing) then
+            for _,Existing in pairs(AllIDs) do
+                if num ~= 0 then
+                    if ID == tostring(Existing) then
+                        Possible = false
+                    end
+                else
+                    if tonumber(actualHour) ~= tonumber(Existing) then
+                        local delFile = pcall(function()
+                            delfile("NotSameServers.json")
+                            AllIDs = {}
+                            table.insert(AllIDs, actualHour)
+                        end)
+                    end
+                end
+                num = num + 1
+            end
+            if Possible == true then
+                table.insert(AllIDs, ID)
+                wait()
+                pcall(function()
+                    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                    wait()
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                end)
+                wait(4)
+            end
+        end
+    end
+end
+
+function Teleport()
+    while wait() do
+        pcall(function()
+            TPReturner()
+            if foundAnything ~= "" then
+                TPReturner()
+            end
+        end)
+    end
+end
+Teleport()
+end)
+
+
+
+
+
+
+--[[
+-------------------Settings----------------
+--]]
+
+
+
+
+
+
 
 local Settings = Window:NewTab("Settings")
 local Settings = Settings:NewSection("Settings")
-Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.F, function()
+Settings:NewKeybind("Toggle Gui", "Press This Key To Toggle The Gui", Enum.KeyCode.E, function()
 	Library:ToggleUI()
 end)
+
+
+
+
+
+
+--[[
+-------------------Credits----------------
+--]]
+
+
+
+
+
+
+
 local Credits = Window:NewTab("Credits")
 local Credits = Credits:NewSection("Credits")
 Credits:NewLabel("Made by RQZEX#9971")
 Credits:NewLabel("Credits: SkiddDev#2675")
 Credits:NewButton("Join Discord", "Copy's The Link of the Discord", function()
-getgenv().DiscordInvite = "suEFpCAFaD"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/everything-inside/main/Join_Discord"))()
+getgenv().Discord = "suEFpCAFaD"
+syn.request(
+   {
+       Url = "http://127.0.0.1:6463/rpc?v=1",
+       Method = "POST",
+       Headers = {
+           ["Content-Type"] = "application/json",
+           ["origin"] = "https://discord.com",
+       },
+       Body = game:GetService("HttpService"):JSONEncode(
+           {
+               ["args"] = {
+                   ["code"] = getgenv().Discord,
+               },
+               ["cmd"] = "INVITE_BROWSER",
+               ["nonce"] = "."
+           })
+   })
 end)
- Giveguns = true
-    game.Players.LocalPlayer.CharacterAdded:Connect(function()
-        local args = {
-            [1] = workspace.Prison_ITEMS.giver:FindFirstChild("Remington 870").ITEMPICKUP
-        }
-        workspace.Remote.ItemHandler:InvokeServer(unpack(args))
-        local args = {
-            [1] = workspace.Prison_ITEMS.giver:FindFirstChild("M9").ITEMPICKUP
-        }
-        workspace.Remote.ItemHandler:InvokeServer(unpack(args))
-        local args = {
-            [1] = workspace.Prison_ITEMS.giver:FindFirstChild("AK-47").ITEMPICKUP
-        }
-        workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+
+if getgenv().AlreadyExecuted2 == nil then
+game:GetService("Players").LocalPlayer.PlayerGui.Home.intro.Content.menus.teamsGui.Guards.Button.Activated:Connect(function()
+    getgenv().ChoosenTeam = "Bright blue"
+end)
+game:GetService("Players").LocalPlayer.PlayerGui.Home.intro.Content.menus.teamsGui.Prisoners.Button.Activated:Connect(function()
+    getgenv().ChoosenTeam = "Bright orange"
+end)
+    getgenv().AlreadyExecuted2 = true
+    if getgenv().Swat == true then
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver.M4A1.ITEMPICKUP)
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver:FindFirstChild("Remington 870").ITEMPICKUP)
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver:FindFirstChild("AK-47").ITEMPICKUP)
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver.M9.ITEMPICKUP)
         if game.Players.LocalPlayer.Team == game.Teams.Guards then
-        workspace.Remote.TeamEvent:FireServer("Bright orange")
-        local args = {
-        [1] = workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP
-        }
-        workspace.Remote.ItemHandler:InvokeServer(unpack(args))
-        workspace.Remote.TeamEvent:FireServer("Bright blue")
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+            workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
+            game:GetService("ReplicatedStorage").weldEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.Hammer)
+            workspace.Remote.TeamEvent:FireServer("Bright blue")
         else
-        local args = {
-        [1] = workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP
-        }
-        workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+            workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
+            game:GetService("ReplicatedStorage").weldEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.Hammer)
         end
-        if swat == true then
-        local args = {
-        [1] = workspace.Prison_ITEMS.giver.M4A1.ITEMPICKUP
-        }
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs") then
+            game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs"):destroy()
+        elseif game.Players.LocalPlayer.Character:FindFirstChild("Handcuffs") then
+            game.Players.LocalPlayer.Character:FindFirstChild("Handcuffs"):destroy()
+            cha = true
+        end
+        if cha == true then
+            Cuffs = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+        cha = false
+        else 
+            Cuffs = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+        end
+        Cuffs.CanBeDropped = false
+        Cuffs.Grip = CFrame.new(0.122703709, 0.0123490095, -0.0835170895, 0.466911942, -0.443511456, -0.76504302, 0.676811218, -0.377575785, 0.631951809, -0.56913954, -0.812855601, 0.123878755)
+        Cuffs.GripForward = Vector3.new(0.765043, -0.631952, -0.123879)
+        Cuffs.GripPos = Vector3.new(0.122704, 0.012349, -0.0835171)
+        Cuffs.GripRight = Vector3.new(0.466912, 0.676811, -0.56914)
+        Cuffs.GripUp = Vector3.new(-0.443511, -0.377576, -0.812856)
+        Cuffs.Name = "HandCuffs"
+        Handle = Instance.new("Part",Cuffs)
+        Handle.CanCollide = false
+        Handle.CFrame = CFrame.new(-8, -1.08949387, -102, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+        Handle.Size = Vector3.new(1, 1.2, 1)
+        Handle.Velocity = Vector3.new(0, -25.3425, 0)
+        Handle.Name = "Handle"
+        Mesh = Instance.new("SpecialMesh",Handle)
+        Mesh.MeshId = "rbxassetid://88046657"
+        Mesh.MeshType = "FileMesh"
+        Mesh.Scale = Vector3.new(1.1,1.1,1.1)
+        Mesh.TextureId = "rbxassetid://88046679"
         
-        workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+        local mouse = game.Players.LocalPlayer:GetMouse()
+        
+        Cuffs.Activated:Connect(function()
+        
+        	local mouseTarget = mouse.Target
+        
+        	print(mouseTarget.Name)
+        	if mouseTarget then 
+        		if mouseTarget.Parent:FindFirstChild("Humanoid") then
+        			local char = mouseTarget.Parent
+        			game:GetService("Workspace").Remote.arrest:InvokeServer(char.HumanoidRootPart)
+        		elseif mouseTarget.Parent.Parent:FindFirstChild("Humanoid") then
+        			local char = mouseTarget.Parent.Parent
+        			game:GetService("Workspace").Remote.arrest:InvokeServer(char.HumanoidRootPart)
+        		end
+        	end
+        end)
+    else
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver:FindFirstChild("AK-47").ITEMPICKUP)
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver:FindFirstChild("Remington 870").ITEMPICKUP)
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver.M9.ITEMPICKUP)
+        if game.Players.LocalPlayer.Team == game.Teams.Guards then
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+            workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
+            game:GetService("ReplicatedStorage").weldEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.Hammer)
+            workspace.Remote.TeamEvent:FireServer("Bright blue")
+        else
+            workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
+            game:GetService("ReplicatedStorage").weldEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.Hammer)
+        end
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs") then
+            game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs"):destroy()
+        elseif game.Players.LocalPlayer.Character:FindFirstChild("Handcuffs") then
+            game.Players.LocalPlayer.Character:FindFirstChild("Handcuffs"):destroy()
+            cha = true
+        end
+        if cha == true then
+            Cuffs = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+        cha = false
+        else 
+            Cuffs = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+        end
+        Cuffs.CanBeDropped = false
+        Cuffs.Grip = CFrame.new(0.122703709, 0.0123490095, -0.0835170895, 0.466911942, -0.443511456, -0.76504302, 0.676811218, -0.377575785, 0.631951809, -0.56913954, -0.812855601, 0.123878755)
+        Cuffs.GripForward = Vector3.new(0.765043, -0.631952, -0.123879)
+        Cuffs.GripPos = Vector3.new(0.122704, 0.012349, -0.0835171)
+        Cuffs.GripRight = Vector3.new(0.466912, 0.676811, -0.56914)
+        Cuffs.GripUp = Vector3.new(-0.443511, -0.377576, -0.812856)
+        Cuffs.Name = "HandCuffs"
+        Handle = Instance.new("Part",Cuffs)
+        Handle.CanCollide = false
+        Handle.CFrame = CFrame.new(-8, -1.08949387, -102, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+        Handle.Size = Vector3.new(1, 1.2, 1)
+        Handle.Velocity = Vector3.new(0, -25.3425, 0)
+        Handle.Name = "Handle"
+        Mesh = Instance.new("SpecialMesh",Handle)
+        Mesh.MeshId = "rbxassetid://88046657"
+        Mesh.MeshType = "FileMesh"
+        Mesh.Scale = Vector3.new(1.1,1.1,1.1)
+        Mesh.TextureId = "rbxassetid://88046679"
+        
+        local mouse = game.Players.LocalPlayer:GetMouse()
+        
+        Cuffs.Activated:Connect(function()
+        
+        	local mouseTarget = mouse.Target
+        
+        	print(mouseTarget.Name)
+        	if mouseTarget then 
+        		if mouseTarget.Parent:FindFirstChild("Humanoid") then
+        			local char = mouseTarget.Parent
+        			game:GetService("Workspace").Remote.arrest:InvokeServer(char.HumanoidRootPart)
+        		elseif mouseTarget.Parent.Parent:FindFirstChild("Humanoid") then
+        			local char = mouseTarget.Parent.Parent
+        			game:GetService("Workspace").Remote.arrest:InvokeServer(char.HumanoidRootPart)
+        		end
+        	end
+        end)
     end
-end)
-if Giveguns == true then
-    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-Giveguns = false
-end
 
 
-if game.Players.LocalPlayer.Character then
-    if game.Players.LocalPlayer.Character:FindFirstChild("Head") then
-        if game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment") then
-            game.Players.LocalPlayer.Character.Head:FindFirstChild("FaceCenterAttachment"):destroy()
+    game.Players.LocalPlayer.CharacterAdded:Connect(function()
+        if getgenv().Swat == true then
+            workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver.M4A1.ITEMPICKUP)
         end
-    end
-end
-game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
-    repeat wait() until Char 
-    repeat wait() until Char:FindFirstChild("Head")
-    repeat wait() until Char.Head:FindFirstChild("FaceCenterAttachment")
-    Char.Head:FindFirstChild("FaceCenterAttachment"):destroy()
-end)
-
-for i,v in pairs(game.Players:GetChildren()) do
-    if v ~= game.Players.LocalPlayer then
-        if v.Character ~= nil then
-            if v.Character:FindFirstChild("Humanoid") then
-                if v.Character:FindFirstChild("Head") then
-                    if v.UserId == 2910302392 or v.UserId == 886220010 then
-                        v.Character.Humanoid.DisplayName = "[⚒️] "..v.Character.Humanoid.DisplayName
-                    else
-                        if not v.Character.Head:FindFirstChild("FaceCenterAttachment") then
-                            v.Character.Humanoid.DisplayName = "[😈] "..v.Character.Humanoid.DisplayName
-                        end
-                    end
-                end
-            end
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver:FindFirstChild("Remington 870").ITEMPICKUP)
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver:FindFirstChild("AK-47").ITEMPICKUP)
+        workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver.M9.ITEMPICKUP)
+        if game.Players.LocalPlayer.Team == game.Teams.Guards then
+            workspace.Remote.TeamEvent:FireServer("Bright orange")
+            workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
+            game:GetService("ReplicatedStorage").weldEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.Hammer)
+            workspace.Remote.TeamEvent:FireServer("Bright blue")
+        else
+            workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
+            game:GetService("ReplicatedStorage").weldEvent:FireServer(game:GetService("Players").LocalPlayer.Backpack.Hammer)
         end
-    end
-    v.CharacterAdded:Connect(function(Char)
-        repeat wait() until Char.Name ~= nil
-        if Char.Name ~= game.Players.LocalPlayer then
-            repeat wait() until Char 
-            repeat wait() until Char:FindFirstChild("Head")
-            repeat wait() until Char:FindFirstChild("Humanoid")
-            if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
-                Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
-            else
-                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                else
-                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                end
-            end
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs") then
+            game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs"):destroy()
+        elseif game.Players.LocalPlayer.Character:FindFirstChild("Handcuffs") then
+            game.Players.LocalPlayer.Character:FindFirstChild("Handcuffs"):destroy()
+            cha = true
         end
+        if cha == true then
+            Cuffs = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+        cha = false
+        else 
+            Cuffs = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+        end
+        Cuffs.CanBeDropped = false
+        Cuffs.Grip = CFrame.new(0.122703709, 0.0123490095, -0.0835170895, 0.466911942, -0.443511456, -0.76504302, 0.676811218, -0.377575785, 0.631951809, -0.56913954, -0.812855601, 0.123878755)
+        Cuffs.GripForward = Vector3.new(0.765043, -0.631952, -0.123879)
+        Cuffs.GripPos = Vector3.new(0.122704, 0.012349, -0.0835171)
+        Cuffs.GripRight = Vector3.new(0.466912, 0.676811, -0.56914)
+        Cuffs.GripUp = Vector3.new(-0.443511, -0.377576, -0.812856)
+        Cuffs.Name = "HandCuffs"
+        Handle = Instance.new("Part",Cuffs)
+        Handle.CanCollide = false
+        Handle.CFrame = CFrame.new(-8, -1.08949387, -102, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+        Handle.Size = Vector3.new(1, 1.2, 1)
+        Handle.Velocity = Vector3.new(0, -25.3425, 0)
+        Handle.Name = "Handle"
+        Mesh = Instance.new("SpecialMesh",Handle)
+        Mesh.MeshId = "rbxassetid://88046657"
+        Mesh.MeshType = "FileMesh"
+        Mesh.Scale = Vector3.new(1.1,1.1,1.1)
+        Mesh.TextureId = "rbxassetid://88046679"
+        
+        local mouse = game.Players.LocalPlayer:GetMouse()
+        
+        Cuffs.Activated:Connect(function()
+        
+        	local mouseTarget = mouse.Target
+        
+        	print(mouseTarget.Name)
+        	if mouseTarget then 
+        		if mouseTarget.Parent:FindFirstChild("Humanoid") then
+        			local char = mouseTarget.Parent
+        			game:GetService("Workspace").Remote.arrest:InvokeServer(char.HumanoidRootPart)
+        		elseif mouseTarget.Parent.Parent:FindFirstChild("Humanoid") then
+        			local char = mouseTarget.Parent.Parent
+        			game:GetService("Workspace").Remote.arrest:InvokeServer(char.HumanoidRootPart)
+        		end
+        	end
+        end)
     end)
 end
-
-game.Players.PlayerAdded:Connect(function(plr)
-    plr.CharacterAdded:Connect(function(Char)
-        repeat wait() until Char.Name ~= nil
-        if Char.Name ~= game.Players.LocalPlayer then
-            repeat wait() until Char 
-            repeat wait() until Char:FindFirstChild("Head")
-            repeat wait() until Char:FindFirstChild("Humanoid")
-            if game.Players:FindFirstChild(Char.Name).UserId == 2910302392 or game.Players:FindFirstChild(Char.Name).UserId == 886220010 then
-                Char.Humanoid.DisplayName = "[⚒️] "..Char.Humanoid.DisplayName
-            else
-                if not Char.Head:FindFirstChild("FaceCenterAttachment") then
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                else
-                    repeat wait() until not Char.Head:FindFirstChild("FaceCenterAttachment") or Char.Humanoid.Health == 0
-                    Char.Humanoid.DisplayName = "[😈] "..Char.Humanoid.DisplayName
-                end
-            end
-        end
-    end)
-end)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Premium"))()

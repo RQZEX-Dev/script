@@ -167,7 +167,7 @@ local TextLabel = Instance.new("TextLabel")
 local Exit = Instance.new("ImageButton")
 
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = game:WaitForChild("CoreGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 

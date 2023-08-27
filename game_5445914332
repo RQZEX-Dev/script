@@ -1,4 +1,3 @@
-
 if not isfile("Server.txt") then
     writefile("Server.txt","")
 end
@@ -576,7 +575,7 @@ end)
 Misc:NewButton("Teleport to Tree", "Teleports u To an Existing Tree if A Tree Exists", function()
     pcall(function()
         for i,v in pairs(game.workspace:GetChildren()) do
-            if v.Name == "Conifer" then
+            if v.Name == "Conifer" and v:FindFirstChildWhichIsA("BasePart") then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
                 break
             end
@@ -586,7 +585,7 @@ end)
 Misc:NewButton("Teleport to Stone", "Teleports u To an Existing Stone if A Stone Exists", function()
     pcall(function()
         for i,v in pairs(game.workspace:GetChildren()) do
-            if v.Name == "Rock" then
+            if v.Name == "Rock" and v:FindFirstChildWhichIsA("BasePart") then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
                 break
             end
@@ -596,7 +595,7 @@ end)
 Misc:NewButton("Teleport to Iron", "Teleports u To an Existing Silver if A Silver Exists", function()
     pcall(function()
         for i,v in pairs(game.workspace:GetChildren()) do
-            if v.Name == "Silver Rock" then
+            if v.Name == "Silver Rock" and v:FindFirstChildWhichIsA("BasePart") then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
                 break
             end
@@ -606,7 +605,7 @@ end)
 Misc:NewButton("Teleport to Gold", "Teleports u To an Existing Gold if A Gold Exists", function()
     pcall(function()
         for i,v in pairs(game.workspace:GetChildren()) do
-            if v.Name == "Gold Rock" then
+            if v.Name == "Gold Rock" and v:FindFirstChildWhichIsA("BasePart") then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
                 break
             end
@@ -616,7 +615,7 @@ end)
 Misc:NewButton("Teleport to Ruby", "Teleports u To an Existing Ruby if A Ruby Exists", function()
     pcall(function()
         for i,v in pairs(game.workspace:GetChildren()) do
-            if v.Name == "Ruby Rock" then
+            if v.Name == "Ruby Rock" and v:FindFirstChildWhichIsA("BasePart") then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
                 break
             end
@@ -626,7 +625,7 @@ end)
 Misc:NewButton("Teleport to Diamond", "Teleports u To an Existing Diamond if A Ruby Exists", function()
     pcall(function()
         for i,v in pairs(game.workspace:GetChildren()) do
-            if v.Name == "Diamond Rock" then
+            if v.Name == "Diamond Rock" and v:FindFirstChildWhichIsA("BasePart") then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
                 break
             end

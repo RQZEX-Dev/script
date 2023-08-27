@@ -1,35 +1,232 @@
-local LocalTycoon = nil
+local Oldred = 0
+local Oldgreen = 0
+local Oldblue = 0
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local blue = Instance.new("TextBox")
+local UICorner = Instance.new("UICorner")
+local color = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local green = Instance.new("TextBox")
+local UICorner_3 = Instance.new("UICorner")
+local red = Instance.new("TextBox")
+local UICorner_4 = Instance.new("UICorner")
+local UICorner_5 = Instance.new("UICorner")
+local Close = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 
-for i, v in pairs(workspace.Tycoons:GetChildren()) do
-    if v.Owner.Value == game:GetService("Players").LocalPlayer.Name then
-        LocalTycoon = v
-    end
+ScreenGui.Parent = game:GetService("CoreGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+Frame.Parent = ScreenGui
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.899999976, 0, 0.25, 0)
+Frame.Size = UDim2.new(0.150000006, 0, 0.400000006, 0)
+
+blue.Name = "blue"
+blue.Parent = Frame
+blue.Active = false
+blue.AnchorPoint = Vector2.new(0.5, 0.5)
+blue.BackgroundColor3 = Color3.fromRGB(11, 152, 239)
+blue.BorderColor3 = Color3.fromRGB(0, 0, 0)
+blue.BorderSizePixel = 0
+blue.Position = UDim2.new(0.5, 0, 0.574999988, 0)
+blue.Selectable = false
+blue.Size = UDim2.new(0.699999988, 0, 0.189999998, 0)
+blue.ClearTextOnFocus = false
+blue.Font = Enum.Font.Unknown
+blue.PlaceholderColor3 = Color3.fromRGB(227, 227, 227)
+blue.PlaceholderText = "0-255"
+blue.Text = ""
+blue.TextColor3 = Color3.fromRGB(0, 0, 0)
+blue.TextSize = 22.000
+blue:GetPropertyChangedSignal("Text"):Connect(function()
+	if not tonumber(blue.Text) then
+		if blue.Text ~= "" then
+			blue.Text = Oldblue
+		else
+			Oldblue = 0
+		end
+	elseif (tonumber(blue.Text) and tonumber(blue.Text) > 255) then
+		Oldblue = 255
+		blue.Text = 255
+	else
+		Oldblue = blue.Text
+	end
+	color.BackgroundColor3 = Color3.fromRGB(red.Text,green.Text,blue.Text)
+end)
+
+UICorner.CornerRadius = UDim.new(0, 6)
+UICorner.Parent = blue
+
+color.Name = "color"
+color.Parent = Frame
+color.Active = false
+color.AnchorPoint = Vector2.new(0.5, 0.5)
+color.BackgroundColor3 = Color3.fromRGB(234, 189, 85)
+color.BorderColor3 = Color3.fromRGB(0, 0, 0)
+color.BorderSizePixel = 0
+color.Position = UDim2.new(0.5, 0, 0.850000024, 0)
+color.Selectable = false
+color.Size = UDim2.new(0.699999988, 0, 0.189999998, 0)
+color.Font = Enum.Font.Unknown
+color.Text = "Color All"
+color.TextColor3 = Color3.fromRGB(239, 239, 239)
+color.TextSize = 22.000
+color.MouseButton1Down:Connect(function()
+	local LocalTycoon = nil
+	for i, v in pairs(workspace.Tycoons:GetChildren()) do
+		if v.Owner.Value == game:GetService("Players").LocalPlayer.Name then
+			LocalTycoon = v
+			break
+		end
+	end
+	for i,v in pairs(LocalTycoon.PlacedContent:GetChildren()) do
+		local args = {
+			[1] = v,
+			[2] = color.BackgroundColor3
+		}
+
+		game:GetService("ReplicatedStorage").Events.PaintItem:FireServer(unpack(args))
+	end
+end)
+
+UICorner_2.CornerRadius = UDim.new(0, 6)
+UICorner_2.Parent = color
+
+green.Name = "green"
+green.Parent = Frame
+green.Active = false
+green.AnchorPoint = Vector2.new(0.5, 0.5)
+green.BackgroundColor3 = Color3.fromRGB(0, 202, 91)
+green.BorderColor3 = Color3.fromRGB(0, 0, 0)
+green.BorderSizePixel = 0
+green.Position = UDim2.new(0.5, 0, 0.349999994, 0)
+green.Selectable = false
+green.Size = UDim2.new(0.699999988, 0, 0.189999998, 0)
+green.ClearTextOnFocus = false
+green.Font = Enum.Font.Unknown
+green.PlaceholderColor3 = Color3.fromRGB(227, 227, 227)
+green.PlaceholderText = "0-255"
+green.Text = ""
+green.TextColor3 = Color3.fromRGB(0, 0, 0)
+green.TextSize = 22.000
+green:GetPropertyChangedSignal("Text"):Connect(function()
+	if not tonumber(green.Text) then
+		if green.Text ~= "" then
+			green.Text = Oldgreen
+		else
+			Oldgreen = 0
+		end
+	elseif (tonumber(green.Text) and tonumber(green.Text) > 255) then
+		Oldgreen = 255
+		green.Text = 255
+	else
+		Oldgreen = green.Text
+		color.BackgroundColor3 = Color3.fromRGB(red.Text,green.Text,blue.Text)
+	end
+	color.BackgroundColor3 = Color3.fromRGB(red.Text,green.Text,blue.Text)
+end)
+
+UICorner_3.CornerRadius = UDim.new(0, 6)
+UICorner_3.Parent = green
+
+red.Name = "red"
+red.Parent = Frame
+red.Active = false
+red.AnchorPoint = Vector2.new(0.5, 0.5)
+red.BackgroundColor3 = Color3.fromRGB(230, 60, 60)
+red.BorderColor3 = Color3.fromRGB(0, 0, 0)
+red.BorderSizePixel = 0
+red.Position = UDim2.new(0.5, 0, 0.125, 0)
+red.Selectable = false
+red.Size = UDim2.new(0.699999988, 0, 0.189999998, 0)
+red.ClearTextOnFocus = false
+red.Font = Enum.Font.Unknown
+red.PlaceholderColor3 = Color3.fromRGB(227, 227, 227)
+red.PlaceholderText = "0-255"
+red.Text = ""
+red.TextColor3 = Color3.fromRGB(0, 0, 0)
+red.TextSize = 22.000
+red:GetPropertyChangedSignal("Text"):Connect(function()
+	if not tonumber(red.Text) then
+		if red.Text ~= "" then
+			red.Text = Oldred
+		else
+			Oldred = 0
+		end
+	elseif (tonumber(red.Text) and tonumber(red.Text) > 255) then
+		Oldred = 255
+		red.Text = 255
+	else
+		Oldred = red.Text
+		color.BackgroundColor3 = Color3.fromRGB(red.Text,green.Text,blue.Text)
+	end
+	color.BackgroundColor3 = Color3.fromRGB(red.Text,green.Text,blue.Text)
+end)
+
+UICorner_4.CornerRadius = UDim.new(0, 6)
+UICorner_4.Parent = red
+
+UICorner_5.Parent = Frame
+
+Close.Name = "Close"
+Close.Parent = Frame
+Close.AnchorPoint = Vector2.new(0, 0.5)
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BackgroundTransparency = 1.000
+Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0.925000012, 0, 0, 0)
+Close.Size = UDim2.new(0.150000006, 0, 0.400000006, 0)
+Close.AutoButtonColor = false
+Close.Font = Enum.Font.Unknown
+Close.Text = "x"
+Close.TextColor3 = Color3.fromRGB(255, 131, 131)
+Close.TextSize = 34.000
+Close.MouseButton1Click:Connect(function()
+    ScreenGui:destroy()
+end)
+
+UICorner_6.CornerRadius = UDim.new(0, 4)
+UICorner_6.Parent = Close
+
+UIAspectRatioConstraint.Parent = Close
+local UserInputService = game:GetService("UserInputService")
+local dragInput
+local dragStart
+local startPos
+local function update(input)
+	local delta = input.Position - dragStart
+	game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)}):Play()
 end
-local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/PullingUp/x/main/cc"))()
 
-local win = SolarisLib:New({
-  Name = "SkiddHub | Base Raiders",
-  FolderToSave = "SkiddHub_BaseRaiders"
-})
-
---win:Tab(title <string>)
-local UtilityTab = win:Tab("Utility")
---local TempTab = win:Tab("Temp")
-local Utility = UtilityTab:Section("Utility")
-
-Utility:Colorpicker("Choose Color", Color3.fromRGB(255,255,255),"Colorpicker", function(t)
-    Color = t
+Frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		_G.dragging = true
+		dragStart = input.Position
+		startPos = Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				_G.dragging = false
+			end
+		end)
+	end
 end)
-Utility:Button("Color Everything",function()
-    if Color ~= nil then
-        for i,v in pairs(LocalTycoon.PlacedContent:GetChildren()) do
-            local args = {
-                [1] = v,
-                [2] = Color
-            }
-            
-            game:GetService("ReplicatedStorage").Events.PaintItem:FireServer(unpack(args))
-        end
-    end
+
+Frame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
 end)
-Utility:Label("Credits to SkiddDev#2675")
+
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and _G.dragging then
+		update(input)
+	end
+end)

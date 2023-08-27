@@ -636,22 +636,23 @@ getgenv().AutoGoodLoot = false
 Misc:NewToggle("Auto Pick Up Good Loot", "Automaticly Picks Up Good Loot for u if something drops and is in sight range", function(state)
     List =  {"Unrefined Ruby" , "Ruby" , "Ruby Boots" , "Ruby Legs" , "Ruby Body" , "Ruby Bag" , "Ruby Helmet" , "Ruby Harvester" , "Ruby Sword" , "Unrefined Diamond" , "Diamond" , "Diamond Boots" , "Diamond Legs" , "Diamond Body" , "Diamond Bag" , "Diamond Helmet" , "Diamond Harvester" }
     getgenv().AutoGoodLoot = not getgenv().AutoGoodLoot
-    while getgenv().AutoGoodLoot == true do
-        for i,v in pairs(game.workspace:GetChildren()) do
-            if table.find(List,v.Name) then
-                if (v:FindFirstChildWhichIsA("BasePart").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 15 then
-                    game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(v,"Pickup")
-                else
-                    save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
-                    wait()
-                    game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(v,"Pickup")
-                    wait()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = save
+    while wait() do
+        if getgenv().AutoGoodLoot then
+            for i,v in pairs(game.workspace:GetChildren()) do
+                if table.find(List,v.Name) then
+                    if (v:FindFirstChildWhichIsA("BasePart").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 15 then
+                        game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(v,"Pickup")
+                    else
+                        save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildWhichIsA("BasePart").CFrame
+                        wait()
+                        game:GetService("ReplicatedStorage").References.Comm.Events.ItemInteracted:FireServer(v,"Pickup")
+                        wait()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = save
+                    end
                 end
             end
         end
-        wait()
     end
 end)
 local function GetNearestItem()

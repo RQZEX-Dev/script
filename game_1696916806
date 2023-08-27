@@ -1,4 +1,48 @@
-
+function HasProperty(Instance,Property)
+    if Instance and Property then
+        if typeof(Instance) == "Instance" and typeof(Property) == "string" then
+            return pcall(function()
+                s = Instance[Property]
+            end)
+        end
+    end
+    return false
+end
+function GetRootPart(Player)
+    if Player then
+        if typeof(Player) == "Instance" then
+            if HasProperty(Player,"Parent") and Player.Parent == game:GetService("Players") then
+                if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character.Humanoid.Health > 0 then
+                    if Player.Character:FindFirstChild("HumanoidRootPart") then
+                        return Player.Character:FindFirstChild("HumanoidRootPart")
+                    elseif Player.Character:FindFirstChild("Torso") then
+                        return Player.Character:FindFirstChild("Torso")
+                    elseif Player.Character:FindFirstChild("UpperTorso") then
+                        return Player.Character:FindFirstChild("UpperTorso")
+                    elseif Player.Character:FindFirstChild("LowerTorso") then
+                        return Player.Character:FindFirstChild("LowerTorso")
+                    end
+                end
+            end
+        elseif typeof(Player) == "string" then
+            if game.Players:FindFirstChild(Player) then
+                Player = game.Players:FindFirstChild(Player)
+                if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character.Humanoid.Health > 0 then
+                    if Player.Character:FindFirstChild("HumanoidRootPart") then
+                        return Player.Character:FindFirstChild("HumanoidRootPart")
+                    elseif Player.Character:FindFirstChild("Torso") then
+                        return Player.Character:FindFirstChild("Torso")
+                    elseif Player.Character:FindFirstChild("UpperTorso") then
+                        return Player.Character:FindFirstChild("UpperTorso")
+                    elseif Player.Character:FindFirstChild("LowerTorso") then
+                        return Player.Character:FindFirstChild("LowerTorso")
+                    end
+                end
+            end
+        end
+    end
+    return nil
+end
 if not isfile("Server.txt") then
     writefile("Server.txt","")
 end
@@ -389,28 +433,11 @@ end)
 Misc:NewButton("Paint all","Paints all building in ur base", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/skidd"))()
 end)
-FireClickDetectors = false
-Misc:NewToggle("Picks up everything in ur base","Auto picks up everything like vaults", function()
-    FireClickDetectors = not FireClickDetectors
-    for i,v in pairs(workspace.Tycoons:GetChildren()) do
-        if v.Owner.Value == game.Players.LocalPlayer.Name then
-            mytycoon = v
-        end
-    end
-    while FireClickDetectors == true do
-        for i,v in pairs(mytycoon:GetDescendants()) do
-            if v:IsA("ClickDetector") and v.Parent.Parent.Parent.Name ~= "Jukebox" then
-                fireclickdetector(v)
-            end
-        end
-        wait(10)
-    end
-end)
 game:GetService("Workspace").BulletIgnore.ChildAdded:Connect(function(v)
     if v.Name == "CASH_BAG" then
         repeat wait() until v:FindFirstChild("TouchInterest")
-        firetouchinterest(v,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-        firetouchinterest(v,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+        firetouchinterest(v,GetRootPart(game:GetService("Players").LocalPlayer),0)
+        firetouchinterest(v,GetRootPart(game:GetService("Players").LocalPlayer),1)
     end
 end)
 repair = false
@@ -439,28 +466,28 @@ Misc:NewToggle("Auto Crates","automaticly gives u the crates that spawn", functi
     crates = not crates
     while crates == true do
         if game.Workspace:FindFirstChild("Base Crate") and game.Workspace:FindFirstChild("Base Crate"):FindFirstChild("Sphere") then
-            firetouchinterest(game:GetService("Workspace")["Base Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-            firetouchinterest(game:GetService("Workspace")["Base Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+            firetouchinterest(game:GetService("Workspace")["Base Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),0)
+            firetouchinterest(game:GetService("Workspace")["Base Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),1)
         end
         if game.Workspace:FindFirstChild("Blazing Crate") and game.Workspace:FindFirstChild("Blazing Crate"):FindFirstChild("Sphere") then
-            firetouchinterest(game:GetService("Workspace")["Blazing Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-            firetouchinterest(game:GetService("Workspace")["Blazing Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+            firetouchinterest(game:GetService("Workspace")["Blazing Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),0)
+            firetouchinterest(game:GetService("Workspace")["Blazing Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),1)
         end
         if game.Workspace:FindFirstChild("Dark Matter Crate") and game.Workspace:FindFirstChild("Dark Matter Crate"):FindFirstChild("Sphere") then
-            firetouchinterest(game:GetService("Workspace")["Dark Matter Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-            firetouchinterest(game:GetService("Workspace")["Dark Matter Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+            firetouchinterest(game:GetService("Workspace")["Dark Matter Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),0)
+            firetouchinterest(game:GetService("Workspace")["Dark Matter Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),1)
         end
         if game.Workspace:FindFirstChild("Rainbow Crate") and game.Workspace:FindFirstChild("Rainbow Crate"):FindFirstChild("Sphere") then
-            firetouchinterest(game:GetService("Workspace")["Rainbow Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-            firetouchinterest(game:GetService("Workspace")["Rainbow Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+            firetouchinterest(game:GetService("Workspace")["Rainbow Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),0)
+            firetouchinterest(game:GetService("Workspace")["Rainbow Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),1)
         end
         if game.Workspace:FindFirstChild("Legendary Crate") and game.Workspace:FindFirstChild("Legendary Crate"):FindFirstChild("Sphere") then
-            firetouchinterest(game:GetService("Workspace")["Legendary Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-            firetouchinterest(game:GetService("Workspace")["Legendary Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+            firetouchinterest(game:GetService("Workspace")["Legendary Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),0)
+            firetouchinterest(game:GetService("Workspace")["Legendary Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),1)
         end
         if game.Workspace:FindFirstChild("Godly Crate") and game.Workspace:FindFirstChild("Godly Crate"):FindFirstChild("Sphere") then
-            firetouchinterest(game:GetService("Workspace")["Godly Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-            firetouchinterest(game:GetService("Workspace")["Godly Crate"].Sphere,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+            firetouchinterest(game:GetService("Workspace")["Godly Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),0)
+            firetouchinterest(game:GetService("Workspace")["Godly Crate"].Sphere,GetRootPart(game:GetService("Players").LocalPlayer),1)
         end
         wait(2)
     end

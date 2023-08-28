@@ -131,11 +131,43 @@ Welcome:NewLabel("Thanks for using RAZE Series X")
 
 local Combat = Window:NewTab("Combat")
 local Combat = Combat:NewSection("Combat")
+local function pressKey(key)
+    game:GetService('VirtualInputManager'):SendKeyEvent(true, key, false, game)
+end
+local function releaseKey(key)
+    game:GetService('VirtualInputManager'):SendKeyEvent(false, key, false, game)
+end
+function Raid(Player)
+    local Part
+    local Tycoon
+    for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
+        if v.Owner.Value == Player.Name then
+            Tycoon = v
+            repeat wait() until v:FindFirstChild("Raiding Statue") and v:FindFirstChild("Raiding Statue"):FindFirstChild("Model") and v:FindFirstChild("Raiding Statue"):FindFirstChild("Model"):FindFirstChild("Model")
+            for i,V in pairs(v:FindFirstChild("Raiding Statue").Model.Model:GetChildren()) do
+                if V.Name == "Part" and V:FindFirstChild("ParticleEmitter") then
+                    Part = V
+                    break
+                end
+            end
+            if Part then break end
+        end
+    end
+    if Tycoon and Part and not Player:FindFirstChild("BuildMode") and Tycoon:FindFirstChild("Raiding Statue").Model.COUNTER.Transparency == 0 then
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0
+        lol = game.Players.LocalPlayer.Character
+        repeat wait() until not lol.Parent and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character.Humanoid.Health > 0
+        wait(2)
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Part.CFrame
+        game.Players.LocalPlayer.Character.Humanoid.Sit = true
+        wait(7)
+        game.Players.LocalPlayer.Character.Humanoid.Sit = false
+    end
+end
 Combat:NewTextBox("Raid Base", "teleports u to the base of the player and raids them", function(txt)
- 
     function getFullNameFromPartial(PartialName)
         local CurrentPlayer=nil;
-        local Players= game.Players:GetPlayers();
+        local Players = game.Players:GetPlayers();
         for i=1,#Players do
             local foundPlayer=Players[i];
             if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
@@ -151,58 +183,40 @@ Combat:NewTextBox("Raid Base", "teleports u to the base of the player and raids 
     
     local CurrentPlayer = getFullNameFromPartial(txt)
     if CurrentPlayer ~= nil then
-        for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
-            if v.Owner.Value == CurrentPlayer.Name then
-                game.Players.LocalPlayer.Character.Humanoid.Health = 0
-                wait(game.Players.RespawnTime)
-                repeat wait() until game.Players.LocalPlayer.Character
-                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
-                game.Players.LocalPlayer.Character.Humanoid.Sit = true
-                wait(7)
-                game.Players.LocalPlayer.Character.Humanoid.Sit = false
+        Raid(CurrentPlayer)
+    end
+end)
+spawn(function()
+    while wait() do
+        if _G.Player then
+            function getFullNameFromPartial(PartialName)
+                local CurrentPlayer=nil;
+                local Players= game.Players:GetPlayers();
+                for i=1,#Players do
+                    local foundPlayer=Players[i];
+                    if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName) then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName) then
+                        CurrentPlayer=foundPlayer;
+                        break;
+                    end;
+                end;
+                return CurrentPlayer;
+            end
+        
+            local CurrentPlayer = getFullNameFromPartial(_G.Player)
+            if CurrentPlayer ~= nil then
+                Raid(CurrentPlayer)
             end
         end
     end
 end)
 Combat:NewTextBox("loop Raid Base", "loop teleports u to the base of the player and raids them", function(txt)
-    loop = false
-    loop = true
-    while loop == true do
-        function getFullNameFromPartial(PartialName)
-            local CurrentPlayer=nil;
-            local Players= game.Players:GetPlayers();
-            for i=1,#Players do
-                local foundPlayer=Players[i];
-                if string.lower(foundPlayer.DisplayName):sub(1,#PartialName)==string.lower(PartialName)then
-                    CurrentPlayer=foundPlayer;
-                    break;
-                elseif string.lower(foundPlayer.Name):sub(1,#PartialName)==string.lower(PartialName)then
-                    CurrentPlayer=foundPlayer;
-                    break;
-                end;
-            end;
-            return CurrentPlayer;
-        end
-        
-        local CurrentPlayer = getFullNameFromPartial(txt)
-        if CurrentPlayer ~= nil then
-            for i,v in pairs(game:GetService("Workspace").Tycoons:GetChildren()) do
-                if v.Owner.Value == CurrentPlayer.Name then
-                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-                    wait(game.Players.RespawnTime)
-                    repeat wait() until game.Players.LocalPlayer.Character
-                    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Raiding Statue").Model.COLLIDER.CFrame
-                    game.Players.LocalPlayer.Character.Humanoid.Sit = true
-                    wait(7)
-                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
-                end
-            end
-        end
-        wait(70)
-    end
+    _G.Player = txt
 end)
 Combat:NewButton("Stop Loop", "Stops the Loop raid", function()
-    loop = false
+    _G.Player = nil
 end)
 Combat:NewButton("Mod guns", "Makes ur guns better", function()
     local FEmusic = true;
@@ -419,7 +433,7 @@ end
 Teleport()
 end)
 Misc:NewButton("Unlock paint colors","Makes u able to use gamepass colors", function()
-for i,v in pairs(game:GetService("ReplicatedStorage").Colors:GetChildren()) do
+    for i,v in pairs(game:GetService("ReplicatedStorage").Colors:GetChildren()) do
         if v:FindFirstChild("NeedsPass") then
             v.NeedsPass:Destroy()
         end
@@ -429,6 +443,52 @@ for i,v in pairs(game:GetService("ReplicatedStorage").Colors:GetChildren()) do
             v.LOCK.Visible = false
         end
     end
+    if game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced:FindFirstChild("LOCK") then
+        game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced:FindFirstChild("LOCK"):destroy()
+    end
+    cloned = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced:clone()
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced:Destroy()
+    cloned.Parent = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker
+    cloned.MouseButton1Down:Connect(function()
+        if game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced.Text == "Advanced..." then
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced.Text = "Back"
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Colors.Visible = false
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.EraseMode.Visible = false
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Adv.Visible = true
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Previous.Visible = true
+        else
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced.Text = "Advanced..."
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Colors.Visible = true
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.EraseMode.Visible = true
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Adv.Visible = false
+            game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Previous.Visible = false
+        end
+    end)
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Tabs.Incorporated.PaintMode.MouseButton1Down:Connect(function()
+        game:GetService("TweenService"):create(game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Tabs.Incorporated,TweenInfo.new(.5),{["Position"] = UDim2.new(.5,0,1.9,0)}):play()
+        game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Position = UDim2.new(0.5,0,.55,0)
+        for _,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker:GetDescendants()) do
+            if v.Name == "Folder" then
+                for _,V in pairs(game:GetService("ReplicatedStorage").BorderInside:GetChildren()) do
+                    clone1 = V:clone()
+                    clone1.Parent = v
+                    clone1.ImageColor3 = v.Parent.BackgroundColor3
+                    if v.Parent.Parent.Name == "Colors" or v.Parent.Name == "Previous" or v.Parent.Name == "EraseMode" then
+                        clone1.ZIndex = 32
+                    elseif v.Parent.Parent.Name == "Adv" then
+                        clone1.ZIndex = 23
+                    elseif v.Parent.Parent.Name == "Advanced" or v.Parent.Name == "Cancel" then
+                        clone1.ZIndex = 24
+                    end
+                end
+            end
+        end
+        game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Advanced.Text = "Advanced..."
+        game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Colors.Visible = true
+        game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.EraseMode.Visible = true
+        game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Adv.Visible = false
+        game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.ColorPicker.Previous.Visible = false
+    end)
 end)
 Misc:NewButton("Paint all","Paints all building in ur base", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/skidd"))()

@@ -507,26 +507,30 @@ game:GetService("Workspace").BulletIgnore.ChildAdded:Connect(function(v)
         firetouchinterest(v,GetRootPart(game:GetService("Players").LocalPlayer),1)
     end
 end)
-repair = false
-Misc:NewToggle("Repairs everything quick ","Repairs all buildings in ur base", function()
-    repair = not repair
+local repair = false
+spawn(function()
     for i,v in pairs(workspace.Tycoons:GetChildren()) do
         if v.Owner.Value == game.Players.LocalPlayer.Name then
             mytycoon = v
         end
     end
-    while repair == true do
+    while true do
         for i,v in pairs(mytycoon.PlacedContent:GetChildren()) do
             if v:FindFirstChild("Broken") then
-                local args = {
-                    [1] = v
-                }
-                
-                game:GetService("ReplicatedStorage").Events.RepairItem:InvokeServer(unpack(args))
+                spawn(function()
+                    local args = {
+                        [1] = v
+                    }
+                    
+                    game:GetService("ReplicatedStorage").Events.RepairItem:InvokeServer(unpack(args))
+                end)
             end
         end
         wait()
     end
+end)
+Misc:NewToggle("Repairs everything quick ","Repairs all buildings in ur base", function()
+    repair = not repair
 end)
 crates = false
 Misc:NewToggle("Auto Crates","automaticly gives u the crates that spawn", function()

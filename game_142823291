@@ -1,4 +1,42 @@
-
+function GetRootPart(Player)
+    if Player then
+        if typeof(Player) == "Instance" then
+            if Player.Parent == game:GetService("Players") then
+                if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character.Humanoid.Health > 0 then
+                    if Player.Character:FindFirstChild("HumanoidRootPart") then
+                        return Player.Character:FindFirstChild("HumanoidRootPart")
+                    elseif Player.Character:FindFirstChild("Torso") then
+                        return Player.Character:FindFirstChild("Torso")
+                    elseif Player.Character:FindFirstChild("UpperTorso") then
+                        return Player.Character:FindFirstChild("UpperTorso")
+                    elseif Player.Character:FindFirstChild("LowerTorso") then
+                        return Player.Character:FindFirstChild("LowerTorso")
+                    elseif Player.Character.PrimaryPart then
+                        return Player.Character.PrimaryPart
+                    end
+                end
+            end
+        elseif typeof(Player) == "string" then
+            if game.Players:FindFirstChild(Player) then
+                Player = game.Players:FindFirstChild(Player)
+                if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character.Humanoid.Health > 0 then
+                    if Player.Character:FindFirstChild("HumanoidRootPart") then
+                        return Player.Character:FindFirstChild("HumanoidRootPart")
+                    elseif Player.Character:FindFirstChild("Torso") then
+                        return Player.Character:FindFirstChild("Torso")
+                    elseif Player.Character:FindFirstChild("UpperTorso") then
+                        return Player.Character:FindFirstChild("UpperTorso")
+                    elseif Player.Character:FindFirstChild("LowerTorso") then
+                        return Player.Character:FindFirstChild("LowerTorso")
+                    elseif Player.Character.PrimaryPart then
+                        return Player.Character.PrimaryPart
+                    end
+                end
+            end
+        end
+    end
+    return nil
+end
 if not isfile("Server.txt") then
     writefile("Server.txt","")
 end
@@ -339,32 +377,31 @@ LocalPlayer:NewKeybind("Fly", "Fly Around", Enum.KeyCode.X, function()
     	pcall(function() game.workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
     end
 end)
-gun = false
-LocalPlayer:NewToggle("Auto Get Gun","Takes Gun When Dropped",function()
-    gun = not gun
-    while gun == true do
-        if game:GetService("Workspace"):FindFirstChild("GunDrop") then
-            if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                if (game:GetService("Workspace").Lobby.MainLobby.Scenery.Grass.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude >= 130 then
-                    pcall(function()
-                        Save = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                    end)
-                    wait()
-                    pcall(function()
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GunDrop.CFrame
-                        game.Players.LocalPlayer.Character.Humanoid.Sit = true
-                    end)
-                    wait(.1)
-                    pcall(function()
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Save
-                        game.Players.LocalPlayer.Character.Humanoid.Sit = false
-                    end)
-                    wait()
+local gun = nil
+spawn(function()
+    while wait() do
+        if gun and game:GetService("Workspace"):FindFirstChild("GunDrop") and GetRootPart(game.Players.LocalPlayer) then
+            local Part 
+            for i,v in pairs(game.workspace.Lobby:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    Part = v
+                    break
                 end
             end
+            if (Part.Position - GetRootPart(game.Players.LocalPlayer).Position).magnitude > 500 then
+                CF = GetRootPart(game.Players.LocalPlayer).CFrame 
+                GunDrop = game:GetService("Workspace"):FindFirstChild("GunDrop")
+                repeat wait()
+                GetRootPart(game.Players.LocalPlayer).CFrame = GunDrop.CFrame + Vector3.new(0,math.random(-20, 20)/10,0)
+                until not GunDrop.Parent or not gun
+                wait()
+                GetRootPart(game.Players.LocalPlayer).CFrame = CF
+            end
         end
-        wait()
     end
+end)
+LocalPlayer:NewToggle("Auto Get Gun","Takes Gun When Dropped",function()
+    gun = not gun
 end)
 LocalPlayer:NewSlider("FlySpeed", "Changes ur Fly Speed", 20, 1, function(c)
     vehicleflyspeed = c
@@ -469,45 +506,201 @@ end
 
 Teleport()
 end)
-Misc:NewButton("Show Roles", "Gives u a notification of the Murder's and Sheriff's Role", function()
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        if v.Backpack:FindFirstChild("Gun") or v.Character:FindFirstChild("Gun") then
-            local CoreGui = game:GetService("StarterGui")
-            CoreGui:SetCore("SendNotification", {
-                Title = "Sherrif";
-                Text = v.Name;
-                Duration = 10; 
-                Icon = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420");
-                Button1 = "Got It";
-            })
+Misc:NewButton("Roles", "Shows you Sheriff and Murder", function()
+    local S = Instance.new("ScreenGui")
+    local Main = Instance.new("Frame")
+    local Header = Instance.new("TextButton")
+    local ISHERIFF = Instance.new("ImageLabel")
+    local SHERIFF = Instance.new("TextLabel")
+    local UIARCS = Instance.new("UIAspectRatioConstraint")
+    local UICS = Instance.new("UICorner")
+    local IMURDER = Instance.new("ImageLabel")
+    local MURDER = Instance.new("TextLabel")
+    local UIARCM = Instance.new("UIAspectRatioConstraint")
+    local UICM = Instance.new("UICorner")
+    local UIG = Instance.new("UIGradient")
+    local Close = Instance.new("TextButton")
+
+    local open = true
+    S.Name = "S"
+    S.Parent = game:GetService("CoreGui")
+    S.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    S.ResetOnSpawn = false
+
+    Main.Name = "Main"
+    Main.Parent = S
+    Main.AnchorPoint = Vector2.new(0.5, 0.5)
+    Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Main.BorderSizePixel = 0
+    Main.Position = UDim2.new(0.8, 0, 0.93, 0)
+    Main.Size = UDim2.new(0, 281, 0, 139)
+
+    Header.Name = "Header"
+    Header.Parent = Main
+    Header.Active = false
+    Header.BackgroundColor3 = Color3.fromRGB(91, 48, 184)
+    Header.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Header.BorderSizePixel = 0
+    Header.Position = UDim2.new(0, 0, -0.150000006, 0)
+    Header.Selectable = false
+    Header.Size = UDim2.new(1, 0, 0.150000006, 0)
+    Header.AutoButtonColor = false
+    Header.Font = Enum.Font.ArialBold
+    Header.Text = "Roles"
+    Header.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Header.TextSize = 14.000
+    Header.MouseButton1Down:Connect(function()
+        if open then
+            tween = game:GetService("TweenService"):Create(Main,TweenInfo.new(.4),{Position = UDim2.new(0.8, 0, 1.08, 0)})
+            tween:play()
+            tween.Completed:Wait()
+            open = false
+        else
+            tween = game:GetService("TweenService"):Create(Main,TweenInfo.new(.4),{Position = UDim2.new(0.8, 0, .93, 0)})
+            tween:play()
+            tween.Completed:Wait()
+            open = true
         end
-    
-    wait()
-    if v.Backpack:FindFirstChild("Knife") or v.Character:FindFirstChild("Knife") then
-            local CoreGui = game:GetService("StarterGui")
-            CoreGui:SetCore("SendNotification", {
-                Title = "Murder";
-                Text = v.Name;
-                Duration = 10; 
-                Icon = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420");
-                Button1 = "Got It";
-            })
-        end
-    
-    end
-end)
-Misc:NewButton("Leak Role", "Leaks the Roles of murder and Sheriff in Chat", function()
-    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-        if v ~= game.Players.LocalPlayer then
-            if v.Character:FindFirstChild("Knife") or v.Backpack:FindFirstChild("Knife") then
-                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(v.DisplayName.." is Current Murder","normalchat")
-            elseif v.Character:FindFirstChild("Gun") or v.Backpack:FindFirstChild("Gun") then
-                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(v.DisplayName.." is Current Sheriff","normalchat")
+    end)
+
+    ISHERIFF.Name = "ISHERIFF"
+    ISHERIFF.Parent = Main
+    ISHERIFF.AnchorPoint = Vector2.new(0.5, 0)
+    ISHERIFF.BackgroundColor3 = Color3.fromRGB(94, 94, 94)
+    ISHERIFF.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    ISHERIFF.BorderSizePixel = 0
+    ISHERIFF.Position = UDim2.new(0.25, 0, 0.075000003, 0)
+    ISHERIFF.Size = UDim2.new(0.800000012, 0, 0.699999988, 0)
+    ISHERIFF.Image = "http://www.roblox.com/Thumbs/Asset.ashx?format=png&width=250&height=250&assetId=5877089721&bust=9296"
+
+    SHERIFF.Name = "SHERIFF"
+    SHERIFF.Parent = ISHERIFF
+    SHERIFF.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SHERIFF.BackgroundTransparency = 1.000
+    SHERIFF.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    SHERIFF.BorderSizePixel = 0
+    SHERIFF.Position = UDim2.new(0, 0, 1, 0)
+    SHERIFF.Size = UDim2.new(1, 0, 0.300000012, 0)
+    SHERIFF.Font = Enum.Font.ArialBold
+    SHERIFF.Text = "Sheriff"
+    SHERIFF.TextColor3 = Color3.fromRGB(0, 0, 255)
+    SHERIFF.TextSize = 14.000
+
+    UIARCS.Name = "UIARCS"
+    UIARCS.Parent = ISHERIFF
+
+    UICS.CornerRadius = UDim.new(1, 0)
+    UICS.Name = "UICS"
+    UICS.Parent = ISHERIFF
+
+    IMURDER.Name = "IMURDER"
+    IMURDER.Parent = Main
+    IMURDER.AnchorPoint = Vector2.new(0.5, 0)
+    IMURDER.BackgroundColor3 = Color3.fromRGB(94, 94, 94)
+    IMURDER.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    IMURDER.BorderSizePixel = 0
+    IMURDER.Position = UDim2.new(0.75, 0, 0.075000003, 0)
+    IMURDER.Size = UDim2.new(0.800000012, 0, 0.699999988, 0)
+    IMURDER.Image = "http://www.roblox.com/Thumbs/Asset.ashx?format=png&width=250&height=250&assetId=4528268775&bust=9242"
+
+    MURDER.Name = "MURDER"
+    MURDER.Parent = IMURDER
+    MURDER.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    MURDER.BackgroundTransparency = 1.000
+    MURDER.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    MURDER.BorderSizePixel = 0
+    MURDER.Position = UDim2.new(0, 0, 1, 0)
+    MURDER.Size = UDim2.new(1, 0, 0.300000012, 0)
+    MURDER.Font = Enum.Font.ArialBold
+    MURDER.Text = "Murder"
+    MURDER.TextColor3 = Color3.fromRGB(255, 0, 4)
+    MURDER.TextSize = 14.000
+
+    UIARCM.Name = "UIARCM"
+    UIARCM.Parent = IMURDER
+
+    UICM.CornerRadius = UDim.new(1, 0)
+    UICM.Name = "UICM"
+    UICM.Parent = IMURDER
+
+    UIG.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(54, 54, 54)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(80, 80, 80))}
+    UIG.Rotation = -25
+    UIG.Name = "UIG"
+    UIG.Parent = Main
+
+    Close.Name = "Close"
+    Close.Parent = Main
+    Close.AnchorPoint = Vector2.new(0, 0.5)
+    Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Close.BackgroundTransparency = 1.000
+    Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Close.BorderSizePixel = 0
+    Close.Position = UDim2.new(0.939999998, 0, -0.165000007, 0)
+    Close.Size = UDim2.new(0, 43, 0, 34)
+    Close.Font = Enum.Font.ArialBold
+    Close.Text = "X"
+    Close.TextColor3 = Color3.fromRGB(255, 131, 131)
+    Close.TextSize = 34.000
+    Close.MouseButton1Down:Connect(function()
+        S:destroy()
+    end)
+
+    function GameActive()
+        for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+            if v:FindFirstChild("IconSq") then
+                return true
             end
         end
     end
+    while wait() do
+        if not S.Parent then
+            break
+        end
+        if GameActive() then
+            local FoundSheriff = false
+            local FoundMurder = false
+            for i,v in pairs(game:GetService("Players"):GetChildren()) do
+                if v:FindFirstChild("Backpack") then
+                    if v:FindFirstChild("Backpack"):FindFirstChild("Gun") then
+                        SHERIFF.Text = v.Name
+                        ISHERIFF.Image = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420")
+                        FoundSheriff = true
+                    elseif v:FindFirstChild("Backpack"):FindFirstChild("Knife") then
+                        MURDER.Text = v.Name
+                        IMURDER.Image = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420")
+                        FoundMurder = true
+                    end
+                end
+                if v.Character then
+                    if v.Character:FindFirstChild("Gun") then
+                        SHERIFF.Text = v.Name
+                        ISHERIFF.Image = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420")
+                        FoundSheriff = true
+                    elseif v.Character:FindFirstChild("Knife") then
+                        MURDER.Text = v.Name
+                        IMURDER.Image = game.Players:GetUserThumbnailAsync(v.UserId, "HeadShot", "Size420x420")
+                        FoundMurder = true
+                    end
+                end
+            end
+            if not FoundSheriff then
+                SHERIFF.Text = 'None'
+                ISHERIFF.Image = 'rbxassetid://7813100299'
+            end
+            if not FoundMurder then
+                MURDER.Text = 'None'
+                IMURDER.Image = 'rbxassetid://7813100299'
+            end
+        else
+            SHERIFF.Text = 'Sheriff'
+            ISHERIFF.Image = 'http://www.roblox.com/Thumbs/Asset.ashx?format=png&width=250&height=250&assetId=5877089721&bust=9296'
+            MURDER.Text = 'Murder'
+            IMURDER.Image = 'http://www.roblox.com/Thumbs/Asset.ashx?format=png&width=250&height=250&assetId=4528268775&bust=9242'
+        end
+        wait()
+    end
 end)
-
 
 
 

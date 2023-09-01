@@ -35,7 +35,7 @@ local queue_on_teleport = queue_on_teleport or syn and syn.queue_on_teleport ('r
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/joemuma/script/main/Notification"))()
 
-noti("Murder Mystery 2")
+--noti("Murder Mystery 2")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local colors = {
     SchemeColor = Color3.fromRGB(225,60,60),
@@ -94,10 +94,17 @@ Combat:NewButton("Kill all (Requires Knife)", "Teleports to Players And Kills th
                 game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Knife"))
             end
         end
+        local Part 
+        for i,v in pairs(game.workspace.Lobby:GetDescendants()) do
+            if v:IsA("BasePart") then
+                Part = v
+                break
+            end
+        end
         for i,v in pairs(game.Players:GetPlayers()) do
             if v ~= game.Players.LocalPlayer then
                 if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") then
-                    if (game:GetService("Workspace").Lobby:FindFirstAncestorWhichIsA("BasePart").Position - v.Character.HumanoidRootPart.Position).magnitude > 500 then
+                    if (Part.Position - v.Character.HumanoidRootPart.Position).magnitude > 500 then
                         repeat
                             pcall(function()
                                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1.1)

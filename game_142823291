@@ -97,7 +97,7 @@ Combat:NewButton("Kill all (Requires Knife)", "Teleports to Players And Kills th
         for i,v in pairs(game.Players:GetPlayers()) do
             if v ~= game.Players.LocalPlayer then
                 if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") then
-                    if (game:GetService("Workspace").Lobby.MainLobby.Scenery.Grass.Position - v.Character.HumanoidRootPart.Position).magnitude >= 130 then
+                    if (game:GetService("Workspace").Lobby:FindFirstAncestorWhichIsA("BasePart").Position - v.Character.HumanoidRootPart.Position).magnitude >= 130 then
                         repeat
                             pcall(function()
                                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1.1)
@@ -110,6 +110,7 @@ Combat:NewButton("Kill all (Requires Knife)", "Teleports to Players And Kills th
                 end
             end
         end
+        print("Gay Niggers ontop")
     end
 end)
 Combat:NewButton("Kill Murder (Requires Gun)", "Teleports to Murder And Kill him", function()

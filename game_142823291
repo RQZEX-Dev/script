@@ -97,7 +97,7 @@ Combat:NewButton("Kill all (Requires Knife)", "Teleports to Players And Kills th
         for i,v in pairs(game.Players:GetPlayers()) do
             if v ~= game.Players.LocalPlayer then
                 if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") then
-                    if (game:GetService("Workspace").Lobby:FindFirstAncestorWhichIsA("BasePart").Position - v.Character.HumanoidRootPart.Position).magnitude > 350 then
+                    if (game:GetService("Workspace").Lobby:FindFirstAncestorWhichIsA("BasePart").Position - v.Character.HumanoidRootPart.Position).magnitude > 450 then
                         repeat
                             pcall(function()
                                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1.1)

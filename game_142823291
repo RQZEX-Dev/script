@@ -110,8 +110,8 @@ Combat:NewButton("Kill all (Requires Knife)", "Teleports to Players And Kills th
                 end
             end
         end
-        print("Gay Niggers ontop1232")
     end
+	print("Gay Niggers ontop1232")
 end)
 Combat:NewButton("Kill Murder (Requires Gun)", "Teleports to Murder And Kill him", function()
     if game.Players.LocalPlayer.Backpack:FindFirstChild("Gun") or game.Players.LocalPlayer.Character:FindFirstChild("Gun") then

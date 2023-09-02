@@ -1,0 +1,322 @@
+function HasProperty(Instance,Property)
+    if Instance and Property then
+        if typeof(Instance) == "Instance" and typeof(Property) == "string" then
+            return pcall(function()
+                s = Instance[Property]
+            end)
+        end
+    end
+    return false
+end
+function GetRootPart(Player)
+    if Player then
+        if typeof(Player) == "Instance" then
+            if Player.Parent == game:GetService("Players") then
+                if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character.Humanoid.Health > 0 then
+                    if Player.Character:FindFirstChild("HumanoidRootPart") then
+                        return Player.Character:FindFirstChild("HumanoidRootPart")
+                    elseif Player.Character:FindFirstChild("Torso") then
+                        return Player.Character:FindFirstChild("Torso")
+                    elseif Player.Character:FindFirstChild("UpperTorso") then
+                        return Player.Character:FindFirstChild("UpperTorso")
+                    elseif Player.Character:FindFirstChild("LowerTorso") then
+                        return Player.Character:FindFirstChild("LowerTorso")
+                    elseif Player.Character.PrimaryPart then
+                        return Player.Character.PrimaryPart
+                    end
+                end
+            end
+        elseif typeof(Player) == "string" then
+            if game.Players:FindFirstChild(Player) then
+                Player = game.Players:FindFirstChild(Player)
+                if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character.Humanoid.Health > 0 then
+                    if Player.Character:FindFirstChild("HumanoidRootPart") then
+                        return Player.Character:FindFirstChild("HumanoidRootPart")
+                    elseif Player.Character:FindFirstChild("Torso") then
+                        return Player.Character:FindFirstChild("Torso")
+                    elseif Player.Character:FindFirstChild("UpperTorso") then
+                        return Player.Character:FindFirstChild("UpperTorso")
+                    elseif Player.Character:FindFirstChild("LowerTorso") then
+                        return Player.Character:FindFirstChild("LowerTorso")
+                    elseif Player.Character.PrimaryPart then
+                        return Player.Character.PrimaryPart
+                    end
+                end
+            end
+        end
+    end
+    return nil
+end
+function PressKey(Key)
+    if Key and table.find(Enum.KeyCode:GetEnumItems(),Key) then
+        game:GetService('VirtualInputManager'):SendKeyEvent(true, Key, false, game)
+        game:GetService('VirtualInputManager'):SendKeyEvent(false, Key, false, game)
+    end
+end
+function HoldKey(Key,Time,Wait)
+    if Key and table.find(Enum.KeyCode:GetEnumItems(),Key) then
+        if Wait then
+            spawn(function()
+                game:GetService('VirtualInputManager'):SendKeyEvent(true, Key, false, game)
+                wait(Time)
+                game:GetService('VirtualInputManager'):SendKeyEvent(false, Key, false, game)
+            end)
+        else
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Key, false, game)
+            wait(Time)
+            game:GetService('VirtualInputManager'):SendKeyEvent(false, Key, false, game)
+        end
+    end
+end
+function Click()
+    local Mouse = setmetatable({}, {
+        __index = function(table, index)
+            return game:GetService("UserInputService"):GetMouseLocation()[index]
+        end
+    })
+    for i = 1, 2 do
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(Mouse.X, Mouse.Y, false and 1 or 0, i == 1, nil, 0)
+    end
+end
+function Touch(Part, TouchInterest)
+    if TouchInterest:IsA('TouchInterest') and TouchInterest.Parent:IsA('BasePart') then
+        firetouchinterest(Part, obj.Parent, 0)
+        firetouchinterest(Part, obj.Parent, 1)
+    elseif TouchInterest:IsA('BasePart') and TouchInterest:FindFirstChildWhichIsA('TouchInterest') then
+        firetouchinterest(Part, obj, 0)
+        firetouchinterest(Part, obj, 1)
+    end
+end
+function View(ViewPart)
+    if game:GetService("Workspace").CurrentCamera then
+        if ViewPart:IsA("Model") or v:IsA("BasePart") or v:IsA("Humanoid") then
+            game:GetService("Workspace").CurrentCamera.CameraSubject = ViewPart
+        else
+            game:GetService("Workspace").CurrentCamera.CameraSubject = ViewPart
+        end
+    end
+end
+function IsVisible(Part,Ignore)
+    local ignore = {}
+    if typeof(Ignore) == "table" then
+        for i,v in pairs(Ignore) do
+            table.insert(ignore,v)
+        end
+    end
+    for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+        table.insert(ignore, v.Character)
+    end
+    raycastParams.FilterDescendantsInstances = ignore
+    raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
+    if typeof(Part) == "Instance" then
+        if Part:IsA("Model") then
+            return game:GetService("Workspace"):Raycast(game:GetService("Workspace").CurrentCamera.CFrame.Position, (Part:GetPivot().Position - game:GetService("Workspace").CurrentCamera.CFrame.Position), RaycastParams.new()) == nil
+        elseif Part:IsA("BasePart") then
+            return game:GetService("Workspace"):Raycast(game:GetService("Workspace").CurrentCamera.CFrame.Position, (Part.Position - game:GetService("Workspace").CurrentCamera.CFrame.Position), RaycastParams.new()) == nil
+        end
+    elseif typeof(Part) == "Vector3" then
+        return game:GetService("Workspace"):Raycast(game:GetService("Workspace").CurrentCamera.CFrame.Position, (Part - game:GetService("Workspace").CurrentCamera.CFrame.Position), RaycastParams.new()) == nil
+    elseif typeof(Part) == "CFrame" then
+        return game:GetService("Workspace"):Raycast(game:GetService("Workspace").CurrentCamera.CFrame.Position, (Part.Position - game:GetService("Workspace").CurrentCamera.CFrame.Position), RaycastParams.new()) == nil
+    end
+end
+function GetPlayerFromPartial(Partial)
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if string.sub(v.Name,1,#Partial):lower() == Partial:lower() or string.sub(v.DisplayName,1,#Partial):lower() == Partial:lower() then
+            return v
+        end
+    end
+end
+function Walk(Destination,PathFinding,SpawnFunction,Balls)
+    function DisableMovement()
+        local w = 0
+        local a = 0
+        local s = 0
+        local d = 0
+        local jumping = false
+        for i,v in pairs(game:GetService("ContextActionService"):GetAllBoundActionInfo()) do
+            if i == "jumpAction" or i == "moveForwardAction" or i == "moveLeftAction" or i == "moveBackwardAction" or i == "moveRightAction" then
+                game:GetService("ContextActionService"):UnbindAction(i)
+            end
+        end
+        pcall(function()
+            game:GetService("RunService"):UnbindFromRenderStep("Move")
+        end)
+    end
+    function EnableMovement()
+        local w = 0
+        local a = 0
+        local s = 0
+        local d = 0
+        local jumping = false
+        game:GetService("ContextActionService"):BindActionAtPriority("jumpAction",function(_,b,_) if b == Enum.UserInputState.Begin then jumping = true else jumping = false end end,false,2000,Enum.PlayerActions.CharacterJump)
+        game:GetService("ContextActionService"):BindActionAtPriority("moveForwardAction",function(_,b,_) if b == Enum.UserInputState.Begin then w = 1 else w = 0 end end,false,2000,Enum.PlayerActions.CharacterForward)
+        game:GetService("ContextActionService"):BindActionAtPriority("moveLeftAction",function(_,b,_) if b == Enum.UserInputState.Begin then a = 1 else a = 0 end end,false,2000,Enum.PlayerActions.CharacterLeft)
+        game:GetService("ContextActionService"):BindActionAtPriority("moveBackwardAction",function(_,b,_) if b == Enum.UserInputState.Begin then s = 1 else s = 0 end end,false,2000,Enum.PlayerActions.CharacterBackward)
+        game:GetService("ContextActionService"):BindActionAtPriority("moveRightAction",function(_,b,_) if b == Enum.UserInputState.Begin then d = 1 else d = 0 end end,false,2000,Enum.PlayerActions.CharacterRight)
+        function CalculateDirection()
+            return Vector3.new(d-a,0,s-w)
+        end
+        pcall(function()
+            game:GetService("RunService"):UnbindFromRenderStep("Move")
+        end)
+        game:GetService("RunService"):BindToRenderStep("Move", Enum.RenderPriority.Character.Value + 1, function()
+            if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Dead then
+                Vector = CalculateDirection()
+                Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid
+                if Vector ~= Vector3.new(0,0,0) then
+                    Humanoid:Move(Vector,true)
+                end
+                if jumping then
+                    if Humanoid.FloorMaterial ~= Enum.Material.Air then
+                        Humanoid.Jump = true
+                    end
+                end
+            end
+        end)
+    end
+    function ActualWalk(Position)
+        if PathFinding then
+            local Path = game:GetService("PathfindingService"):CreatePath()
+            Path:ComputeAsync(game.Players.LocalPlayer.Character.HumanoidRootPart.Position, Position)
+            local Waypoints = Path:GetWaypoints()
+            local Folder = Instance.new("Folder",game:GetService("Workspace").CurrentCamera)
+            for i=1,#Waypoints do
+                Part = Instance.new("Part",Folder)
+                Part.Anchored = true
+                Part.CanCollide = false
+                Part.CFrame = CFrame.new(Vector3.new(Waypoints[i].Position.X,Waypoints[i].Position.Y + 2.5,Waypoints[i].Position.Z))
+                if Waypoints[i].Action == Enum.PathWaypointAction.Jump then
+                    Part.Color = Color3.fromRGB(255,0,0)
+                else
+                    Part.Color = Color3.fromRGB(255,123,0)
+                end
+                Part.Material = Enum.Material.Neon
+                Part.Name = i
+                Part.Shape = "Ball"
+                if not Balls then
+                    Part.Visible = false
+                end
+                Part.Size = Vector3.new(.75,.75,.75)
+            end
+            local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+            DisableMovement()
+            local Finished
+            Humanoid.StateChanged:Connect(function()
+                Finished = true
+            end)
+            for i=1,#Waypoints do
+                if Folder:FindFirstChild(i-1) then
+                    Folder:FindFirstChild(i-1):destroy()
+                end
+                Folder:FindFirstChild(i).Color = Color3.fromRGB(0,255,0)
+                if Humanoid.FloorMaterial == Enum.Material.Air then
+                    repeat wait() until Humanoid.FloorMaterial ~= Enum.Material.Air
+                end
+                if Waypoints[i].Action == Enum.PathWaypointAction.Jump then
+                   if Waypoints[i+1].Action == Enum.PathWaypointAction.Jump then
+                        Part = Folder:FindFirstChild(i)
+                    else
+                        Part = Folder:FindFirstChild(i+1 or i)
+                    end
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position, Vector3.new(Part.Position.X,game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y,Part.Position.Z))
+                    wait()
+                    Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+                    wait()
+                    if Waypoints[i+1].Action == Enum.PathWaypointAction.Jump then
+                        Humanoid:MoveTo(Waypoints[i].Position)
+                    else
+                        Humanoid:MoveTo((Waypoints[i+1] or Waypoints[i]).Position)
+                    end
+                else
+                    if i>1 then
+                        Part = Folder:FindFirstChild(i)
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.lookAt(game.Players.LocalPlayer.Character.HumanoidRootPart.Position, Vector3.new(Part.Position.X,game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y,Part.Position.Z))
+                    end
+                    Humanoid:MoveTo(Waypoints[i].Position)
+                end
+                if game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Dead then
+                    break
+                end
+                Humanoid.MoveToFinished:Connect(function()
+                    Value = true
+                end)
+                repeat wait() until Value
+                Value = false
+                if game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Dead then
+                    break
+                end
+            end
+            EnableMovement()
+            Folder:destroy()
+        else
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):MoveTo(Position)
+        end
+    end
+    if not SpawnFunction then
+        if typeof(Destination) == "Vector3" then
+            ActualWalk(Destination)
+        elseif typeof(Destination) == "CFrame" then
+            ActualWalk(Destination.Position)
+        elseif typeof(Destination) == "Instance" and Destination:IsA("BasePart") then
+            ActualWalk(Destination.Position)
+        end
+    else
+        spawn(function()
+            if typeof(Destination) == "Vector3" then
+                ActualWalk(Destination)
+            elseif typeof(Destination) == "CFrame" then
+                ActualWalk(Destination.Position)
+            elseif typeof(Destination) == "Instance" and Destination:IsA("BasePart") then
+                ActualWalk(Destination.Position)
+            end
+        end)
+    end
+end
+function DisableMovement()
+    local w = 0
+    local a = 0
+    local s = 0
+    local d = 0
+    local jumping = false
+    for i,v in pairs(game:GetService("ContextActionService"):GetAllBoundActionInfo()) do
+        if i == "jumpAction" or i == "moveForwardAction" or i == "moveLeftAction" or i == "moveBackwardAction" or i == "moveRightAction" then
+            game:GetService("ContextActionService"):UnbindAction(i)
+        end
+    end
+    pcall(function()
+        game:GetService("RunService"):UnbindFromRenderStep("Move")
+    end)
+end
+function EnableMovement()
+    local w = 0
+    local a = 0
+    local s = 0
+    local d = 0
+    local jumping = false
+    game:GetService("ContextActionService"):BindActionAtPriority("jumpAction",function(_,b,_) if b == Enum.UserInputState.Begin then jumping = true else jumping = false end end,false,2000,Enum.PlayerActions.CharacterJump)
+    game:GetService("ContextActionService"):BindActionAtPriority("moveForwardAction",function(_,b,_) if b == Enum.UserInputState.Begin then w = 1 else w = 0 end end,false,2000,Enum.PlayerActions.CharacterForward)
+    game:GetService("ContextActionService"):BindActionAtPriority("moveLeftAction",function(_,b,_) if b == Enum.UserInputState.Begin then a = 1 else a = 0 end end,false,2000,Enum.PlayerActions.CharacterLeft)
+    game:GetService("ContextActionService"):BindActionAtPriority("moveBackwardAction",function(_,b,_) if b == Enum.UserInputState.Begin then s = 1 else s = 0 end end,false,2000,Enum.PlayerActions.CharacterBackward)
+    game:GetService("ContextActionService"):BindActionAtPriority("moveRightAction",function(_,b,_) if b == Enum.UserInputState.Begin then d = 1 else d = 0 end end,false,2000,Enum.PlayerActions.CharacterRight)
+    function CalculateDirection()
+        return Vector3.new(d-a,0,s-w)
+    end
+    pcall(function()
+        game:GetService("RunService"):UnbindFromRenderStep("Move")
+    end)
+    game:GetService("RunService"):BindToRenderStep("Move", Enum.RenderPriority.Character.Value + 1, function()
+        if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Dead then
+            Vector = CalculateDirection()
+            Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid
+            if Vector ~= Vector3.new(0,0,0) then
+                Humanoid:Move(Vector,true)
+            end
+            if jumping then
+                if Humanoid.FloorMaterial ~= Enum.Material.Air then
+                    Humanoid.Jump = true
+                end
+            end
+        end
+    end)
+end

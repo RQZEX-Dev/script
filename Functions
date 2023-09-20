@@ -320,3 +320,92 @@ function EnableMovement()
         end
     end)
 end
+function IsInArea(Table)
+	if typeof(Table) == "table" then
+		if Table["V1"] and typeof(Table["V1"]) == "Vector3" and Table["V2"] and typeof(Table["V2"]) == "Vector3"  then
+			if Table["Position"] then
+				local MinX
+				local MinY
+				local MinZ
+				local MaxX
+				local MaxY
+				local MaxZ
+				if Table["V1"].X > Table["V2"].X then
+					MinX = Table["V2"].X
+					MaxX = Table["V1"].X
+				else
+					MinX = Table["V1"].X
+					MaxX = Table["V2"].X
+				end
+				if Table["V1"].Y > Table["V2"].Y then
+					MinY = Table["V2"].Y
+					MaxY = Table["V1"].Y
+				else
+					MinY = Table["V1"].Y
+					MaxY = Table["V2"].Y
+				end
+				if Table["V1"].Z > Table["V2"].Z then
+					MinZ = Table["V2"].Z
+					MaxZ = Table["V1"].Z
+				else
+					MinZ = Table["V1"].Z
+					MaxZ = Table["V2"].Z
+				end
+				if typeof(Table["Position"]) == "Instance" and Table["Position"]:IsA("BasePart") then
+					if Table["Position"].Position.X > MinX and Table["Position"].Position.X < MaxX then
+						if Table["Position"].Position.Y > MinY and Table["Position"].Position.Y < MaxY then
+							if Table["Position"].Position.Z > MinZ and Table["Position"].Position.Z < MaxZ then
+								return true
+							end
+						end
+					end
+				elseif typeof(Table["Position"]) == "Vector3" then
+					if Table["Position"].X > MinX and Table["Position"].X < MaxX then
+						if Table["Position"].Y > MinY and Table["Position"].Y < MaxY then
+							if Table["Position"].Z > MinZ and Table["Position"].Z < MaxZ then
+								return true
+							end
+						end
+					end
+				end
+			end
+		elseif Table["Zone"] and typeof(Table["Zone"]) == "Instance" and Table["Zone"]:IsA("BasePart") then
+			if Table["Position"] then
+				local MinX = Table["Zone"].Position.X-Table["Zone"].Size.X/2
+				local MinY = Table["Zone"].Position.Y-Table["Zone"].Size.Y/2
+				local MinZ = Table["Zone"].Position.Z-Table["Zone"].Size.Z/2
+				local MaxX = Table["Zone"].Position.X+Table["Zone"].Size.X/2
+				local MaxY = Table["Zone"].Position.Y+Table["Zone"].Size.Y/2
+				local MaxZ = Table["Zone"].Position.Z+Table["Zone"].Size.Z/2
+				if typeof(Table["Position"]) == "Instance" and Table["Position"]:IsA("BasePart") then
+					if Table["Position"].Position.X > MinX and Table["Position"].Position.X < MaxX then
+						if Table["Position"].Position.Y > MinY and Table["Position"].Position.Y < MaxY then
+							if Table["Position"].Position.Z > MinZ and Table["Position"].Position.Z < MaxZ then
+								return true
+							end
+						end
+					end
+				elseif typeof(Table["Position"]) == "Vector3" then
+					if Table["Position"].X > MinX and Table["Position"].X < MaxX then
+						if Table["Position"].Y > MinY and Table["Position"].Y < MaxY then
+							if Table["Position"].Z > MinZ and Table["Position"].Z < MaxZ then
+								return true
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	return false
+end
+function CheckUrl(Url)
+	local OldUrl = Url
+	pcall(function()
+		Url = game:GetService("HttpService"):GetAsync(Url)
+	end)
+	if Url ~= OldUrl then
+		return true
+	end
+	return false
+end

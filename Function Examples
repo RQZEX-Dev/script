@@ -1,0 +1,171 @@
+-- Examples for using the functions
+
+-- HasProperty
+
+for i,v in pairs(workspace:GetDescendants()) do
+	if HasProperty(v,"Color3") then
+		v.Color3 = Color3.new(255,255,0)
+	end
+end
+
+--GetRootPart
+
+GetRootPart(game.Players.LocalPlayer).CFrame = GetRootPart("RealPlayer").CFrame
+
+-- PressKey
+
+local Cooldown = nil
+while wait() do
+	if not Cooldown and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-game.Players.RealPlayer.Character.HumanoidRootPart.Position).magnitude < 10 then
+		PressKey("F")
+		Cooldown = true
+		wait(3)
+		Cooldown = false
+	end
+end
+
+-- HoldKey / ReleaseKey
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Key.CFrame
+HoldKey("E")
+wait(2)
+ReleaseKey("E")
+
+-- Click
+
+local AutoClicking = not AutoClicking
+while wait() do
+	if AutoClicking then
+		Click()
+	end
+end
+
+-- Touch
+
+for i,v in pairs(workspace.Chests:GetChildren()) do
+	Touch(game.Players.LocalPlayer.Character.HumanoidRootPart,v.Hitbox)
+end
+
+-- View
+
+local Selected = 1
+game:GetService("UserInputService").InputBegan:Connect(function(Input)
+	if Input.KeyCode == Enum.KeyCode.E then
+		if Selected < #game:GetService("Players"):GetChildren() then
+			Selected = Selected + 1
+			plr = game:GetService("Players"):GetChildren()[Selected]
+			if not plr.Character  or not plr.Character:FindFirstChildWhichIsA("Humanoid") then
+				plr.CharacterAdded:wait()
+				repeat wait() until plr.Character:FindFirstChildWhichIsA("Humanoid")
+			end
+			View(plr.Character:FindFirstChildWhichIsA("Humanoid"))
+		else
+			Selected = #game:GetService("Players"):GetChildren()
+			plr = game:GetService("Players"):GetChildren()[Selected]
+			if not plr.Character  or not plr.Character:FindFirstChildWhichIsA("Humanoid") then
+				plr.CharacterAdded:wait()
+				repeat wait() until plr.Character:FindFirstChildWhichIsA("Humanoid")
+			end
+			View(plr.Character:FindFirstChildWhichIsA("Humanoid"))
+		end
+	elseif Input.KeyCode == Enum.KeyCode.Q then
+		if Selected == 1  then
+			Selected = 1
+			plr = game:GetService("Players"):GetChildren()[1]
+			if not plr.Character  or not plr.Character:FindFirstChildWhichIsA("Humanoid") then
+				plr.CharacterAdded:wait()
+				repeat wait() until plr.Character:FindFirstChildWhichIsA("Humanoid")
+			end
+			View(plr.Character:FindFirstChildWhichIsA("Humanoid"))
+		else
+			Selected = Selected - 1
+			plr = game:GetService("Players"):GetChildren()[Selected]
+			if not plr.Character  or not plr.Character:FindFirstChildWhichIsA("Humanoid") then
+				plr.CharacterAdded:wait()
+				repeat wait() until plr.Character:FindFirstChildWhichIsA("Humanoid")
+			end
+			View(plr.Character:FindFirstChildWhichIsA("Humanoid"))
+		end
+	end
+end)
+
+-- IsVisible
+
+Ignore = {}
+
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+	table.insert(Ignore,v.Character)
+end
+if IsVisible(game.Players.RealPlayer.Character.HumanoidRootPart,Ignore) then
+	workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.p, game.Players.RealPlayer.Character.HumanoidRootPart.Position)
+end
+
+-- GetPlayerFromPartial
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+local Player = Instance.new("TextBox")
+Player.Name = "Player"
+Player.Parent = ScreenGui
+Player.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+Player.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Player.BorderSizePixel = 0
+Player.Position = UDim2.new(0, 0, 0.51, 0)
+Player.Size = UDim2.new(0, 200, 0, 50)
+Player.Font = Enum.Font.ArialBold
+Player.PlaceholderColor3 = Color3.fromRGB(103, 103, 103)
+Player.PlaceholderText = "Type Player Name"
+Player.Text = ""
+Player.TextColor3 = Color3.fromRGB(189, 189, 189)
+Player.TextScaled = true
+Player.TextStrokeTransparency = 0
+Player.TextWrapped = true
+Player.FocusLost:Connect(function()
+	print(GetPlayerFromPartial(Player.Text))
+end)
+
+-- Walk
+local NPC = workspace.npcs.npc1
+Walk(NPC,true,false,true)
+print("Reached NPC")
+
+-- EnableMovement / DisableMovement
+
+DisableMovement()
+Humanoid = game.Players.LocalPlayer.Character.Humanoid
+Humanoid:MoveTo(workspace.Part.Position)
+Humanoid.MoveToFinished:wait()
+EnabelMovement()
+
+-- IsInArea
+
+Table = {
+	["Zone"] = workspace.Zones.Area1,
+	["Position"] = game.Players.LocalPlayer.Character.HumanoidRootPart
+}
+if IsInArea(Table) then
+	NextNPC = workspace.NPCS.Area1:GetChildren()[math.random(1,#workspace.NPCS.Area1:GetChildren())]
+	game.Players.LocalPlayer.Character.Humanoid:MoveTo(NextNPC.HumanoidRootPart.Posititon)
+end
+
+-- CheckUrl
+
+if not CheckUrl("https://github.com/account/main/blob/main/name") then
+	print("url not existant")
+end
+
+-- Tween / StopTween
+
+local Target = game.Players.RealPlayer.Character.HumanoidRootPart
+local TargetPos = Target.Position
+Tween(Target,200)
+while wait() do
+	if (Target.Position-TargetPos).magnitude > 1 then
+		Tween(Target,200)
+		TargetPos = Target.Position
+	end
+	if (game.Players.LocalPlayer.Character.HumanoidRootPart-Target.Position).magnitude < 2 then
+		StopTween()
+	end
+end

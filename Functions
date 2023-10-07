@@ -452,6 +452,8 @@ function Tween(Location,Speed,Started)
 		local l = Instance.new("Part")
 		l.CFrame = Location
 		Location = l
+	elseif typeof(Location) == "Instance" and not Location:IsA("BasePart") then
+		return
 	end
 	if GetRootPart(game.Players.LocalPlayer) then else return end
 	Started = game:GetService("Workspace").DistributedGameTime

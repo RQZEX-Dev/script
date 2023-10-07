@@ -1,0 +1,121 @@
+--[[
+HasProperty Checks if that Instance has an specific property, if so it returns the value of that property
+The First Property has to be an Instance inside the game
+The Second Property is a string (name of property)
+]]
+HasProperty(game:GetService("Workspace"),"CurrentCamera") -- Returns the camera
+HasProperty(game:GetService("Workspace"),"Color3") -- Returns nil
+HasProperty(game:GetService("Workspace"),Color4) -- Returns false
+
+--[[
+GetRootPart Returns you the Root / Main Part of an Player. Can be the Instance (Player) or the name of the player
+]]
+GetRootPart(game:GetService("Players").RealPlayer) -- Returns the main part of "RealPlayer"
+GetRootPart("RealPlayer") -- Returns the main part of "RealPlayer"
+
+--[[
+PressKey Presses a specific Key
+]]
+PressKey(Enum.KeyCode.E) -- Presses E
+PressKey("E") -- Presses E
+
+--[[
+HoldKey Makes you hold a specific key
+]]
+
+HoldKey(Enum.KeyCode.E) -- Holds E
+HoldKey("E") -- Holds E
+
+--[[
+ReleaseKey Makes you Stop holding a specific key
+]]
+
+ReleaseKey(Enum.KeyCode.E) -- Holds E
+ReleaseKey("E") -- Holds E
+
+--[[
+Click presses m1
+]]
+
+Click() -- Clicks
+
+--[[
+Touch Makes you Fire an Touch Interest, you can put an Part where an touch interest is inside or an touch interest itself
+]]
+
+Touch(game.Players.LocalPlayer.Character.HumanoidRootPart,game:GetService("Workspace"):FindFirstChild("Part")) -- Touches Part
+Touch(game.Players.LocalPlayer.Character.HumanoidRootPart,game:GetService("Workspace"):FindFirstChild("Part").TouchInterest) -- Touches Part
+
+--[[
+View makes your camera View an specific Object (Model,Part,Humanoid)
+]]
+View(game.Players.RealPlayer.Character) -- Views the Character of "RealPlayer"
+View(game.Players.RealPlayer.Character.Humanoid) -- Views the Humanoid of "RealPlayer"
+View(game.Players.RealPlayer.Character.Head) -- Views the Head of "RealPlayer"
+
+--[[
+IsVisible Checks if your camera can Currently see that Part / position (Part,Position,CFrame)
+First Property is the position you want to check
+Second Property is a table of parts you want to ignore
+]]
+IsVisible(workspace.Part,{workspace.Part1,workspace.WeirdPart}) -- Returns true if workspace.Part is Visible
+
+--[[
+GetPlayerFromPartial Returns you a player by just a partial of their name/displayer
+]]
+Playerlist = {
+	"localPlayer",
+	"RealPlayer"
+}
+GetPlayerFromPartial("rEAlP") -- Returns RealPlayer
+
+--[[
+Walk Makes you walk to a specific location (Part,Position,CFrame)
+First Property is Position
+Second Property is if it should be using Pathfinding true / false / nil
+Third Property is if it should let the script wait till the walk is done
+Fourth Property is if it should put Balls at every WalkPoint (only works with pathfinding)
+]]
+Walk(workspace.Part,true,true,true) -- Walks to workspace.Part
+
+--[[
+DisableMovement Disables your movemt
+]]
+DisableMovement() -- Makes you not able to move anymore
+
+--[[
+EnableMovement Disables your movemt
+]]
+EnableMovement() -- Makes you able to move again
+
+--[[
+IsInArea Checks if Position is in an Area (only works on Cubic Areas)
+]]
+Table = {
+	["V1"] = Vector3.new(50,50,20), -- first Position of the zone
+	["V2"] = Vector3.new(100,0,50), -- second Position of the zone
+	["Position"] = Vector3.new(77,10,25) -- Position that gets Checked if its in the zone
+}
+IsInArea(Table)
+Table = {
+	["Zone"] = workspace.Zone, -- the zone that gets checked
+	["Position"] = workspace.Part -- Part that gets Checked if its in the zone
+}
+IsInArea(Table)
+
+--[[
+CheckUrl Checks if that Url is existing (small check)
+]]
+CheckUrl("https://RealWebsite.com/frfr")
+
+--[[
+Tween Tween Teleports you to your destination, Goes to the new tween if you start another one while its on
+First Property Position (Part,Vector3,CFrame)
+Second Property Speed
+]]
+Tween(workspace.Part,200)
+
+--[[
+StopTween Stops the Current Tween
+]]
+StopTween()

@@ -409,3 +409,68 @@ function CheckUrl(Url)
 	end
 	return false
 end
+local NoClipTable = {}
+spawn(function()
+	while true and wait() do
+		if _G.IsTweening == true and GetRootPart(game.Players.LocalPlayer) then
+			if not _G.AntiGravity then
+				_G.AntiGravity = Instance.new("BodyForce")
+				_G.AntiGravity.Name = "_G.AntiGravity"
+				_G.AntiGravity.Parent = GetRootPart(game.Players.LocalPlayer)
+			elseif _G.AntiGravity and not _G.AntiGravity.Parent then
+				_G.AntiGravity = Instance.new("BodyForce")
+				_G.AntiGravity.Name = "_G.AntiGravity"
+				_G.AntiGravity.Parent = GetRootPart(game.Players.LocalPlayer)
+			end
+			GetRootPart(game.Players.LocalPlayer).Velocity = Vector3.new(0,0,0)
+			_G.AntiGravity.Force = Vector3.new(0, GetRootPart(game.Players.LocalPlayer).AssemblyMass * workspace.Gravity, 0)
+			for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if v:IsA("BasePart") and v.CanCollide == true then
+					table.insert(NoClipTable,v)
+					v.CanCollide = false
+				end
+			end
+		elseif _G.IsTweening ~= true and GetRootPart(game.Players.LocalPlayer) then
+			if _G.AntiGravity and _G.AntiGravity.Parent then
+				_G.AntiGravity:destroy()
+			end
+			for i,v in pairs(NoClipTable) do
+				v.CanCollide = true
+				NoClipTable[i] = nil
+			end
+		end
+	end
+end)
+function Tween(Location,Speed,Started)
+	if typeof(Location) ~= "Instance" and typeof(Location) ~= "Vector3" and typeof(Location) ~= "CFrame" then 
+		return 
+	elseif typeof(Location) == "Vector3" then
+		local l = Instance.new("Part")
+		l.Position = Location
+		Location = l
+	elseif typeof(Location) == "CFrame" then
+		local l = Instance.new("Part")
+		l.CFrame = Location
+		Location = l
+	end
+	if GetRootPart(game.Players.LocalPlayer) then else return end
+	Started = game:GetService("Workspace").DistributedGameTime
+	_G.Started = Started
+	if _G.IsTweening == true then
+		_G.IsTweening = "Destroy"
+		repeat wait() until _G.IsTweening == "Destroyed"
+	end
+	spawn(function()
+		local Tween = game:GetService("TweenService"):Create(GetRootPart(game.Players.LocalPlayer),TweenInfo.new((GetRootPart(game.Players.LocalPlayer).Position-Location.Position).magnitude/Speed,Enum.EasingStyle.Linear,Enum.EasingDirection.Out),{["CFrame"]=Location.CFrame})
+		_G.IsTweening = true
+		Tween:Play()
+		Tween.Completed:Connect(function() if Started == _G.Started then _G.IsTweening = "Destroy" end end)
+		repeat wait() until _G.IsTweening == "Destroy"
+		_G.AntiGravity:Destroy()
+		if _G.IsTweening then
+			_G.IsTweening = "Destroyed"
+		else
+			_G.IsTweening = false
+		end
+	end)
+end

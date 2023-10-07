@@ -415,11 +415,9 @@ spawn(function()
 		if _G.IsTweening == true and GetRootPart(game.Players.LocalPlayer) then
 			if not _G.AntiGravity then
 				_G.AntiGravity = Instance.new("BodyForce")
-				_G.AntiGravity.Name = "_G.AntiGravity"
 				_G.AntiGravity.Parent = GetRootPart(game.Players.LocalPlayer)
 			elseif _G.AntiGravity and not _G.AntiGravity.Parent then
 				_G.AntiGravity = Instance.new("BodyForce")
-				_G.AntiGravity.Name = "_G.AntiGravity"
 				_G.AntiGravity.Parent = GetRootPart(game.Players.LocalPlayer)
 			end
 			GetRootPart(game.Players.LocalPlayer).Velocity = Vector3.new(0,0,0)
@@ -459,20 +457,19 @@ function Tween(Location,Speed,Started)
 	Started = game:GetService("Workspace").DistributedGameTime
 	_G.Started = Started
 	if _G.IsTweening == true then
-		_G.IsTweening = "Destroy"
-		repeat wait() until _G.IsTweening == "Destroyed"
+		_G.IsTweening = "Stop"
+		repeat wait() until _G.IsTweening == "Stopped"
 	end
 	spawn(function()
 		local Tween = game:GetService("TweenService"):Create(GetRootPart(game.Players.LocalPlayer),TweenInfo.new((GetRootPart(game.Players.LocalPlayer).Position-Location.Position).magnitude/Speed,Enum.EasingStyle.Linear,Enum.EasingDirection.Out),{["CFrame"]=Location.CFrame})
 		_G.IsTweening = true
 		Tween:Play()
-		Tween.Completed:Connect(function() if Started == _G.Started then _G.IsTweening = "Destroy" end end)
-		repeat wait() until _G.IsTweening == "Destroy"
+		Tween.Completed:Connect(function() if Started == _G.Started then _G.IsTweening = "Stop" end end)
+		repeat wait() until _G.IsTweening == "Stop"
 		_G.AntiGravity:Destroy()
-		if _G.IsTweening then
-			_G.IsTweening = "Destroyed"
-		else
-			_G.IsTweening = false
-		end
+		_G.IsTweening = "Stopped"
 	end)
+end
+function StopTween()
+	_G.IsTweening = "Stop"
 end

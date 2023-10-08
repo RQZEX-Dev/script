@@ -157,15 +157,17 @@ end
 
 -- Tween / StopTween
 
-local Target = game.Players.RealPlayer.Character.HumanoidRootPart
+local Target = workspace.part
 local TargetPos = Target.Position
-Tween(Target,200)
+local Speed = 255
+Tween(Target,Speed)
 while wait() do
 	if (Target.Position-TargetPos).magnitude > 1 then
-		Tween(Target,200)
+		Tween(Target,Speed)
 		TargetPos = Target.Position
 	end
-	if (game.Players.LocalPlayer.Character.HumanoidRootPart-Target.Position).magnitude < 2 then
+	if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Target.Position).magnitude < 2 then
 		StopTween()
+		break
 	end
 end

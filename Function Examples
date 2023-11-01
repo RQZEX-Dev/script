@@ -26,7 +26,6 @@ end
 
 -- HoldKey / ReleaseKey
 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Key.CFrame
 HoldKey("E")
 wait(2)
 ReleaseKey("E")
@@ -162,7 +161,7 @@ local TargetPos = Target.Position
 local Speed = 255
 Tween(Target,Speed)
 while wait() do
-	if (Target.Position-TargetPos).magnitude > 1 then
+	if (Target.Position-TargetPos).magnitude > 2 then
 		Tween(Target,Speed)
 		TargetPos = Target.Position
 	end
@@ -171,3 +170,6 @@ while wait() do
 		break
 	end
 end
+
+-- CheckDiff (no idea what example to do here, i've used it in the GetPlayerFromPartial function)
+

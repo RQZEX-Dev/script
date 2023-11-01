@@ -466,6 +466,27 @@ end
 function StopTween()
 	_G.IsTweening = "Stop"
 end
+function Check(word1,word2,Number)
+    if word1 == word2 then
+        return Number
+    end
+    local temp = ""
+    for i=1,#word1 do
+        if word2:split("")[i] ~= word1:split("")[i] then
+            for O,v in pairs(word2:split("")) do
+                for I,V in pairs(word1:split("")) do
+                    if I == i and #temp == i-1 then
+                        temp = temp..V
+                    elseif I == O and #temp == I-1 then
+                        temp = temp..v
+                    end
+                end
+            end
+            break
+        end
+    end
+    return temp
+end
 function CheckDiff(w,i)
     local d
     for I=1,#w do

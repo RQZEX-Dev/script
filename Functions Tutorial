@@ -119,3 +119,9 @@ Tween(workspace.Part,200)
 StopTween Stops the Current Tween
 ]]
 StopTween()
+
+--[[
+CheckDiff Checks how many Differences there are between 2 strings
+]]
+CheckDiff("Lol I'm so coolw","lol i'm so Cool") -- Returns 1
+

@@ -121,11 +121,54 @@ function IsVisible(Part,Ignore)
 	end
 end
 function GetPlayerFromPartial(Partial)
-	for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-		if string.sub(v.Name,1,#Partial):lower() == Partial:lower() or string.sub(v.DisplayName,1,#Partial):lower() == Partial:lower() then
-			return v
-		end
-	end
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if v.Name:lower() == Partial:lower() then
+            return v
+        end
+    end
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if v.DisplayName:lower() == Partial:lower() then
+            return v
+        end
+    end
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if string.sub(v.Name:lower(),1,#Partial) == Partial:lower() then
+            return v
+        end
+    end
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        if string.sub(v.DisplayName:lower(),1,#Partial) == Partial:lower() then
+            return v
+        end
+    end
+    local t={}
+    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+        t[v.Name]={}
+        t[v.Name][v.Name] = CheckDiff(v.Name:lower():sub(1,#Partial),Partial:lower())
+        t[v.Name][v.DisplayName] = CheckDiff(v.DisplayName:lower():sub(1,#Partial),Partial:lower())
+    end
+    local lowest = {{2,#Partial+1}}
+    local lowest2 = {{2,#Partial+1}}
+    for i,v in pairs(t) do
+        if lowest[1][2] > v[i] then
+            lowest = {}
+            lowest[1] = {i,v[i]}
+        elseif lowest[1][2] == v[i] then
+            table.insert(lowest,{i,v[i]})
+        end
+        if lowest2[1][2] > v[i] then
+            lowest2 = {}
+            lowest2[1] = {i,v[i]}
+        elseif lowest2[1][2] == v[i] then
+            table.insert(lowest2,{i,v[i]})
+        end
+    end
+    
+    if lowest[1][2] <= lowest2[1][2] then
+        return Playerlist[lowest[math.random(1,#lowest)][1]]
+    else
+        return Playerlist[lowest2[math.random(1,#lowest2)][1]]
+    end
 end
 function Walk(Destination,PathFinding,SpawnFunction,Balls)
 	function ActualWalk(Position)
@@ -422,4 +465,17 @@ function Tween(Location,Speed,Started)
 end
 function StopTween()
 	_G.IsTweening = "Stop"
+end
+function CheckDiff(w,i)
+    local d
+    for I=1,#w do
+        if d then
+            d = Check(w,d,I)
+        else
+            d = Check(w,i,I)
+        end
+        if d == w then
+            return I
+        end
+    end
 end

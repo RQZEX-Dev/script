@@ -267,21 +267,25 @@ function Walk(Destination,PathFinding,SpawnFunction,Balls)
 	end
 end
 function DisableMovement()
-	local w = 0
-	local a = 0
-	local s = 0
-	local d = 0
-	local jumping = false
-	for i,v in pairs(game:GetService("ContextActionService"):GetAllBoundActionInfo()) do
-		if i == "jumpAction" or i == "moveForwardAction" or i == "moveLeftAction" or i == "moveBackwardAction" or i == "moveRightAction" then
-			game:GetService("ContextActionService"):UnbindAction(i)
+	--[[
+		local w = 0
+		local a = 0
+		local s = 0
+		local d = 0
+		local jumping = false
+		for i,v in pairs(game:GetService("ContextActionService"):GetAllBoundActionInfo()) do
+			if i == "jumpAction" or i == "moveForwardAction" or i == "moveLeftAction" or i == "moveBackwardAction" or i == "moveRightAction" then
+				game:GetService("ContextActionService"):UnbindAction(i)
+			end
 		end
-	end
-	pcall(function()
-		game:GetService("RunService"):UnbindFromRenderStep("Move")
-	end)
+		pcall(function()
+			game:GetService("RunService"):UnbindFromRenderStep("Move")
+		end)
+	--]]
+	require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls():Disable()
 end
 function EnableMovement()
+	--[[
 	local w = 0
 	local a = 0
 	local s = 0
@@ -312,6 +316,8 @@ function EnableMovement()
 			end
 		end
 	end)
+	--]]
+	require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls():Enable()
 end
 function IsInArea(Table)
 	if typeof(Table) == "table" then

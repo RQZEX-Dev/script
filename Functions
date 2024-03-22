@@ -196,7 +196,7 @@ function Walk(Destination,PathFinding,SpawnFunction,Balls)
 				Part.Size = Vector3.new(.75,.75,.75)
 			end
 			local Humanoid = game.Players.LocalPlayer.Character.Humanoid
-			DisableMovement()
+			require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls():Disable()
 			local Finished
 			Humanoid.StateChanged:Connect(function()
 				Finished = true
@@ -244,7 +244,7 @@ function Walk(Destination,PathFinding,SpawnFunction,Balls)
 					break
 				end
 			end
-			EnableMovement()
+			require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls():Enable()
 			Folder:destroy()
 		else
 			game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):MoveTo(Position)
